@@ -1,0 +1,122 @@
+{
+  "report_version": "mvp-0.1",
+  "generated_at": "2026-09-15T05:23:32.769900+00:00",
+  "input": {
+    "prefix": "oss://ccm-ego/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/",
+    "object_count": 6,
+    "original_video_persisted": false
+  },
+  "config": {
+    "frame_interval_s": 2.0,
+    "adaptive_interval_s": 0.5,
+    "max_vlm_frames": 300,
+    "confidence_review_threshold": 0.75,
+    "vlm_provider": "aliyun-bailian/tongyi-vision"
+  },
+  "index": {
+    "object_count": 6,
+    "by_type": [
+      {
+        "type": "video",
+        "count": 1,
+        "keys": [
+          "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4"
+        ]
+      },
+      {
+        "type": "csv",
+        "count": 3,
+        "keys": [
+          "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/imu.csv",
+          "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/aligned.csv",
+          "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/frames.csv"
+        ]
+      },
+      {
+        "type": "metadata",
+        "count": 2,
+        "keys": [
+          "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/calibration.json",
+          "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/meta.json"
+        ]
+      }
+    ]
+  },
+  "recording": {
+    "recording_id": "d8a0h3v65vas73cq8vhg",
+    "video_count": 1,
+    "metadata_files": [
+      "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/calibration.json",
+      "potentia_10hours_part01/d8a0h3v65vas73cq8vhg/meta.json"
+    ],
+    "binary_files": []
+  },
+  "semantic": {
+    "status": "pending_vlm",
+    "summary": null,
+    "action_segments": [],
+    "canonical_action_vocabulary": [
+      "观察",
+      "接近",
+      "抓取",
+      "拿起",
+      "放下",
+      "移动",
+      "放置",
+      "打开",
+      "关闭",
+      "倒入",
+      "擦拭",
+      "折叠",
+      "装配",
+      "拆卸",
+      "按压",
+      "旋拧",
+      "交互",
+      "等待",
+      "恢复",
+      "未知"
+    ],
+    "object_vocabulary": [
+      "容器",
+      "餐具",
+      "食材",
+      "衣物",
+      "工具",
+      "家具",
+      "电子设备",
+      "人体/手",
+      "清洁用品",
+      "其他"
+    ],
+    "scene_vocabulary": [
+      "居家",
+      "厨房",
+      "卧室",
+      "客厅",
+      "办公",
+      "酒店",
+      "商业",
+      "工业",
+      "户外",
+      "其他"
+    ]
+  },
+  "difficulty": {
+    "level": "待判定",
+    "T": null,
+    "N": null,
+    "H": null,
+    "reason": "MVP 尚未调用 VLM 或缺少可解析语义证据"
+  },
+  "review_queue": [
+    {
+      "reason": "vlm_pending"
+    }
+  ],
+  "limitations": [
+    "本 MVP 不读取或保存原始视频",
+    "CSV/JSON/YAML 内容解析和 VLM 调用由适配器接入",
+    "没有语义证据时不把缺失当作 0"
+  ]
+}
