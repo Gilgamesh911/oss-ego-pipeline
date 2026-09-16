@@ -1,0 +1,241 @@
+#!/usr/bin/env python3
+"""Run Qwen3-VL semantic analysis on sampled frames from an OSS-mounted video."""
+from __future__ import annotations
+import argparse, json, time
+from pathlib import Path
+import torch
+from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
+
+IGNORED_FOR_N = {"观察", "等待", "未知"}
+H_TYPES = {"interaction", "conditional_decision", "multi_thread_coordination",
+           "交互", "条件决策", "多线程协调"}
+
+def recording_difficulty(semantic: dict, duration_s: float) -> dict:
+    """Conservative recording-level N/H/level calculation."""
+    segments = sorted((s for s in semantic.get("action_segments", [])
+                       if isinstance(s, dict) and s.get("action") not in IGNORED_FOR_N
+                       and isinstance(s.get("start_s"), (int, float))
+                       and isinstance(s.get("end_s"), (int, float))),
+                      key=lambda s: s["start_s"])
+    merged = []
+    for s in segments:
+        key = (s.get("action"), s.get("object"))
+        if merged and merged[-1]["key"] == key and s["start_s"] <= merged[-1]["end_s"] + 4:
+            merged[-1]["end_s"] = max(merged[-1]["end_s"], s["end_s"])
+            merged[-1]["evidence_times"] = sorted(set(merged[-1]["evidence_times"] + s.get("evidence_times", [])))
+        else:
+            merged.append({"key": key, "start_s": s["start_s"], "end_s": s["end_s"],
+                           "evidence_times": list(s.get("evidence_times", []))})
+    n = len(merged) if merged else None
+    candidates = semantic.get("high_difficulty_candidates", [])
+    confirmed = []
+    for c in candidates:
+        typ = c.get("type") or c.get("H_type")
+        evidence = c.get("evidence_times") or c.get("evidence_intervals")
+        reason = str(c.get("reason", ""))
+        # Ordinary contact, tool use, or two-handed assembly is not enough.
+        # Require textual evidence of the corresponding causal signal until a
+        # dedicated detector supplies state/feedback annotations.
+        causal = ((typ in {"interaction", "交互"} and any(x in reason for x in ("反馈", "响应", "调整", "feedback", "response"))) or
+                  (typ in {"conditional_decision", "条件决策"} and any(x in reason for x in ("条件", "判断", "决定", "condition", "decision"))) or
+                  (typ in {"multi_thread_coordination", "多线程协调"} and any(x in reason for x in ("切换", "恢复", "协调", "返回", "switch", "recover"))))
+        if causal and c.get("start_s") is not None and c.get("end_s") is not None and evidence:
+            confirmed.append(c)
+    unknown_duration = sum(max(0, float(u.get("end_s", 0)) - float(u.get("start_s", 0)))
+                         for u in semantic.get("unknown", []) if isinstance(u, dict))
+    complete = not semantic.get("unknown") and bool(segments)
+    if confirmed:
+        level, review = "高", "confirmed"
+    elif not complete or not n:
+        level, review = "待判定", "pending"
+    elif n <= 3:
+        level, review = "低", "candidate"
+    else:
+        level, review = "中", "candidate"
+    return {"T": round(duration_s, 3), "N": n, "H": len(confirmed),
+            "H_type": [c.get("type") or c.get("H_type") for c in confirmed],
+            "level": level, "confidence": "规则判定" if review == "confirmed" else "待人工复核",
+            "review_status": review,
+            "evidence_intervals": [{"start_s": c["start_s"], "end_s": c["end_s"],
+                                     "evidence_times": c.get("evidence_times", [])} for c in confirmed],
+            "unknown_duration": round(unknown_duration, 3),
+            "merged_action_count": n,
+            "reason": "存在有时间区间和证据帧的确认高难事件" if confirmed else
+                      ("动作链不完整或证据不足" if review == "pending" else "未确认高难事件")}
+
+def sample_video(video: str, interval: float, max_frames: int, frames_cache=None):
+    import av
+    import math
+    from PIL import Image
+    # FFmpeg decoder threads must not call back into Python during codec
+    # destruction. PyAV's logging callback can deadlock while holding the GIL.
+    av.logging.restore_default_callback()
+    if interval <= 0 or max_frames <= 0:
+        raise ValueError('interval and max_frames must be positive')
+    cache = Path(frames_cache) if frames_cache else None
+    signature = {'video': str(Path(video).resolve()), 'size': Path(video).stat().st_size,
+                 'mtime_ns': Path(video).stat().st_mtime_ns,
+                 'interval': interval, 'max_frames': max_frames, 'version': 2}
+    if cache:
+        cache.mkdir(parents=True, exist_ok=True)
+        index_path = cache / 'frames.json'
+        if index_path.exists():
+            index = json.loads(index_path.read_text())
+            if index.get('signature') == signature:
+                frames = []
+                for item in index['frames']:
+                    with Image.open(cache / item['file']) as image:
+                        frames.append(image.convert('RGB'))
+                return frames, [item['timestamp'] for item in index['frames']]
+    container = av.open(video)
+    stream = container.streams.video[0]
+    stream.thread_type = 'AUTO'
+    fps = float(stream.average_rate or 30)
+    # Cover the whole recording under the per-recording frame budget. The old
+    # implementation stopped after max_frames and therefore only saw the
+    # beginning of long recordings.
+    duration = float(stream.duration * stream.time_base) if stream.duration else None
+    frames, timestamps, records = [], [], []
+    def retain(frame, target):
+        timestamp = round(float(frame.time if frame.time is not None else target), 3)
+        if timestamps and timestamp <= timestamps[-1]:
+            return
+        image = frame.to_image()
+        frames.append(image); timestamps.append(timestamp)
+        if cache:
+            name = f'{len(frames)-1:04d}.jpg'
+            image.save(cache / name, quality=95)
+            records.append({'file': name, 'timestamp': timestamp, 'target': target})
+        if len(frames) % 20 == 0:
+            print(f'Sampled {len(frames)} frames, latest {timestamp:.3f}s', flush=True)
+    if duration:
+        last_time = max(0, duration - 1 / fps)
+        count = math.ceil(duration / interval)
+        targets = [i * interval for i in range(count)] if count <= max_frames else [
+            i * last_time / max(1, max_frames-1) for i in range(max_frames)]
+        for target in targets:
+            container.seek(int(target / float(stream.time_base)), stream=stream, backward=True)
+            for frame in container.decode(stream):
+                # Seeking returns a preceding keyframe; decode to the requested time.
+                if frame.time is not None and frame.time + 1e-5 < target:
+                    continue
+                retain(frame, target)
+                break
+    else:
+        every = max(1, round(interval * fps))
+        for i, frame in enumerate(container.decode(stream)):
+            if i % every == 0:
+                retain(frame, i/fps)
+            if len(frames) >= max_frames: break
+    container.close()
+    if cache:
+        (cache / 'frames.json').write_text(json.dumps({'signature': signature, 'duration_s': duration,
+            'frames': records}, ensure_ascii=False, indent=2))
+    return frames, timestamps
+
+def analyze(video: str, model_id: str, interval: float, max_frames: int, window_frames: int = 16,
+            frames_cache=None, max_duration: float = 600.0) -> dict:
+    started = time.monotonic()
+    import av
+    with av.open(video) as probe:
+        duration_s = float(probe.streams.video[0].duration * probe.streams.video[0].time_base)
+    if duration_s > max_duration:
+        return {"video": video, "model": model_id, "frame_count": 0,
+                "timestamps_s": [], "status": "skipped_too_long",
+                "semantic": {"difficulty": {"level": "待处理", "T": round(duration_s, 3)}},
+                "review_queue": [{"reason": "recording_exceeds_max_duration",
+                                  "duration_s": duration_s, "max_duration_s": max_duration}],
+                "elapsed_s": round(time.monotonic()-started, 2)}
+    print('Sampling video...', flush=True)
+    frames, timestamps = sample_video(video, interval, max_frames, frames_cache)
+    if not frames:
+        raise ValueError('No video frames decoded')
+    print(f'Sampled {len(frames)} frames, {timestamps[0]}–{timestamps[-1]} seconds', flush=True)
+    model = Qwen3VLForConditionalGeneration.from_pretrained(
+        model_id, dtype=torch.bfloat16, device_map="auto"
+    ).eval()
+    processor = AutoProcessor.from_pretrained(model_id)
+    instruction = (
+        "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
+        "summary（中文一句话）、scene（场景）、objects（对象数组）、"
+        "action_segments（最多12个主要阶段，每项含 start_s、end_s、action、object、confidence、"
+        "evidence_times（对应实际帧时间的数组）），unknown（无法判断的区间及原因），"
+        "high_difficulty_candidates（候选事件数组，每项含 type、start_s、end_s、evidence_times、reason）。"
+        "动作只能使用：观察、接近、抓取、拿起、放下、移动、放置、打开、关闭、"
+        "倒入、擦拭、折叠、装配、拆卸、按压、旋拧、交互、等待、恢复、未知。"
+        "只描述画面证据，不预设场景或任务。综合全程的前后状态识别动作。"
+        "时间必须使用所附帧时间，不能把帧序号当成秒，不能编造精确边界。"
+        "同阶段连续重复可以合并，跨阶段或目标变化分别保留。"
+        "候选高难事件仅限有外部反馈与响应的交互、有条件证据的决策、"
+        "有目标切换/恢复/协调证据的多线程协调；普通接触、双手操作或多个对象不等于确认高难。"
+        "没有候选则返回空数组；缺乏证据不能确认H=0。输出紧凑但完整的JSON，不要截断。"
+        "无法判断时使用unknown并说明原因，不要猜测。"
+    )
+    review_queue = []
+    status = 'candidate_semantics'; window_reports = []
+    for begin in range(0, len(frames), window_frames):
+        end = min(begin + window_frames, len(frames))
+        content = []
+        for image, timestamp in zip(frames[begin:end], timestamps[begin:end]):
+            content.extend([{"type": "text", "text": f"Frame timestamp: {timestamp} seconds."},
+                            {"type": "image", "image": image}])
+        content.append({"type": "text", "text": instruction})
+        inputs = processor.apply_chat_template([{"role": "user", "content": content}], tokenize=True,
+            add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
+        with torch.inference_mode():
+            output = model.generate(**inputs, max_new_tokens=3072, do_sample=False)
+        text = processor.batch_decode(output[:, inputs.input_ids.shape[1]:],
+            skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+        try:
+            parsed = json.loads(text[text.find("{"):text.rfind("}")+1])
+            if not isinstance(parsed, dict): raise ValueError('JSON is not an object')
+        except (ValueError, TypeError):
+            parsed = {"raw_output": text}; status = 'partial_semantic_output'
+            review_queue.append({'reason': 'invalid_or_truncated_window_json', 'window': [begin, end]})
+        window_reports.append({'window_index': len(window_reports), 'frame_start': begin,
+                               'frame_end': end, 'time_start': timestamps[begin],
+                               'time_end': timestamps[end-1], 'semantic': parsed})
+        print(f'Window {len(window_reports)} complete: {timestamps[begin]:.3f}–{timestamps[end-1]:.3f}s', flush=True)
+        if frames_cache:
+            (Path(frames_cache) / 'windows.json').write_text(json.dumps(window_reports, ensure_ascii=False, indent=2))
+    parsed = {
+        'summary': '；'.join(x['semantic'].get('summary','') for x in window_reports if x['semantic'].get('summary')),
+        'scene': next((x['semantic'].get('scene') for x in window_reports if x['semantic'].get('scene')), None),
+        'objects': sorted({o for x in window_reports for o in x['semantic'].get('objects', [])}),
+        'action_segments': [s for x in window_reports for s in x['semantic'].get('action_segments', [])],
+        'unknown': [u for x in window_reports for u in x['semantic'].get('unknown', [])],
+        'high_difficulty_candidates': [h for x in window_reports for h in x['semantic'].get('high_difficulty_candidates', [])],
+        'windows': window_reports,
+    }
+    if parsed['high_difficulty_candidates']:
+        review_queue.append({'reason': 'high_difficulty_candidates_require_evidence_review'})
+    # A model's generated wording or confidence is never a confirmation of H.
+    parsed['difficulty'] = recording_difficulty(parsed, duration_s)
+    review_queue.append({'reason': 'recording_level_merge_and_task_boundary_review_required'})
+    return {"video": video, "model": model_id, "frame_count": len(frames),
+            "timestamps_s": timestamps, "semantic": parsed, 'status': status,
+            'review_queue': review_queue, 'elapsed_s': round(time.monotonic()-started, 2)}
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--video", required=True)
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--model", default="Qwen/Qwen3-VL-4B-Instruct")
+    ap.add_argument("--interval", type=float, default=2.0)
+    # 300 is the per-recording cloud budget from PPU_CONTEXT. Sampling stays
+    # at the requested 2 s whenever the recording fits within that budget.
+    ap.add_argument("--max-frames", type=int, default=300)
+    ap.add_argument("--window-frames", type=int, default=16,
+                    help='frames per VLM window; windows are merged at recording level')
+    ap.add_argument('--frames-cache', help='cache selected frames and window outputs; never caches the original video')
+    ap.add_argument('--max-duration', type=float, default=600.0,
+                    help='skip recordings longer than this many seconds (default: 600)')
+    args = ap.parse_args()
+    report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames, args.frames_cache, args.max_duration)
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2))
+    print(json.dumps({"status": report['status'], "out": args.out,
+                      "frame_count": report["frame_count"]}, ensure_ascii=False))
+
+if __name__ == "__main__":
+    main()

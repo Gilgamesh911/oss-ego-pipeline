@@ -23,6 +23,32 @@ python3 ego_pipeline_mvp.py \
   --out outputs/mvp_potentia_report.json
 ```
 
+### Qwen3-VL 抽帧语义识别
+
+环境已配置 `transformers`、`qwen-vl-utils[decord]`，可直接对 OSS 挂载路径的视频运行：
+
+```bash
+python3 qwen_vl_pipeline.py \
+  --model /mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master \
+  --video /mnt/oss/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4 \
+  --out outputs/qwen3_vl_sample.json \
+  --interval 2 --max-frames 300 --frames-cache work/potentia_frames
+```
+
+首次运行会从 Hugging Face 下载 `Qwen/Qwen3-VL-4B-Instruct` 权重；模型使用 BF16 和自动设备映射，原始视频不写入报告。若 Hugging Face CAS 返回 401，可先设置 `HF_HUB_DISABLE_XET=1`，或将模型预下载到本地目录后通过 `--model /path/to/model` 使用：
+
+本机已将权重下载到 `/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master`，也可以直接使用该目录。长 recording 会在预算内覆盖全程，不再只读取开头。
+
+当前 Qwen 脚本以每 2 秒抽帧为目标、每 16 帧一个 VLM 窗口，并在 recording 级汇总窗口结果。超过300帧预算的长视频目前采用全程均匀粗采样，尚未接入自适应变化筛选。时间seek后会解码到目标时间，不直接把前置关键帧当作目标帧。
+
+`--frames-cache` 仅保存选定帧和逐窗推理检查点，不保存原视频；源文件及采样参数匹配时可复用完整抽帧缓存。PyAV使用FFmpeg原生日志回调，避免多线程解码器析构时Python日志回调死锁。每20帧和每个推理窗口均打印进度。
+
+level规则输出只是初判：现有动作合并不能可靠区分同阶段重复和任务依赖，也不能仅凭模型文字确认高难因果证据。历史商超报告的 `confirmed` 不能作为已核验结论，需结合证据帧和完整性检查复核。JSON解析失败会记录在 `review_queue`。
+
+```bash
+HF_HUB_DISABLE_XET=1 python3 qwen_vl_pipeline.py --video /mnt/oss/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4 --out outputs/qwen3_vl_sample.json --max-frames 300
+```
+
 manifest 格式：
 
 ```json

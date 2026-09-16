@@ -4,4 +4,8 @@ __pycache__/
 .env
 .env.*
 work/
+outputs/qwen3_vl_*.json
+outputs/*_partial.json
+outputs/*_partial.md
+outputs/cam0_7_overview.jpg
 *.log
