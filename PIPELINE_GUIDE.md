@@ -57,6 +57,30 @@ python3 qwen_vl_pipeline.py \
 
 ## 4. VLM 输出
 
+### 原子动作词表（来自需求 PDF）
+
+需求文档将原子动作分为 8 类。附件正文实际列出了 61 个英文动作名，虽然文档标题写作“85 类”；因此当前实现只把这 61 个正文动作作为受控词表，另设 `others` 兜底，不自行补齐未出现的 24 类。
+
+```text
+基础运动：Move Reach Retract Lift Lower Stop Drag
+抓取释放：Grasp Pick Release Drop Hold Handover
+放置定位：Place Position Rotate Tilt Flip Stack
+施力接触：Push Pull Press Squeeze Touch Tap Strike Hammer Shake Rub Crush Snap
+组装连接：Insert Screw Unscrew Attach Detach Switch Open Close
+柔性液体：Pour Stir Fold Unfold Braid Tie Wrap Thread Peel Spread
+工具与状态：Cut Wipe Clean Sweep Scrub Dispose Paint
+认知管理：Identify Verify Group Organize Wait
+兜底：others
+```
+
+`canonical_action` 必须来自此表；`raw_action` 保留模型原始短语。词表之外的动作不能悄悄改写成近似动作。需求文档还要求动作时间边界、示能框、2D 轨迹和导航 3D 框；当前视频 MVP 只实现动作候选和时间证据，尚未实现这些标注结构。
+
+### 场景与任务词表
+
+需求文档新增的场景/任务覆盖包括：开放式厨房、餐厅/用餐区、卧室、书房/办公桌、洗手间/卫浴区、洗衣房、玄关/门厅、阳台/室内绿植区、实验室工作台、工具操作区、超市货架区、便利店结账台、购物车存放区、办公室/会议室、储物间/仓库，以及多房间导航和动态空间跟踪。
+
+交互专项包括具身导航、主动澄清、异常恢复和约束遵循；这些应作为数据集标签和高难候选类型，不能仅凭普通物体接触确认。
+
 每个窗口要求输出：`summary`、`scene`、`objects`、`action_segments`、`unknown` 和 `high_difficulty_candidates`。
 
 动作段至少应包含：

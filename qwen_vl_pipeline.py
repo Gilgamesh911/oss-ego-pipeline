@@ -6,20 +6,51 @@ from pathlib import Path
 import torch
 from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
 
-IGNORED_FOR_N = {"观察", "等待", "未知"}
+ATOMIC_ACTIONS = [
+    # 基础运动与位移
+    "Move", "Reach", "Retract", "Lift", "Lower", "Stop", "Drag",
+    # 抓取与释放
+    "Grasp", "Pick", "Release", "Drop", "Hold", "Handover",
+    # 放置与定位
+    "Place", "Position", "Rotate", "Tilt", "Flip", "Stack",
+    # 施力与接触交互
+    "Push", "Pull", "Press", "Squeeze", "Touch", "Tap", "Strike", "Hammer", "Shake", "Rub", "Crush", "Snap",
+    # 组装、连接与分离
+    "Insert", "Screw", "Unscrew", "Attach", "Detach", "Switch", "Open", "Close",
+    # 柔性物体与液体
+    "Pour", "Stir", "Fold", "Unfold", "Braid", "Tie", "Wrap", "Thread", "Peel", "Spread",
+    # 工具使用与状态改变
+    "Cut", "Wipe", "Clean", "Sweep", "Scrub", "Dispose", "Paint",
+    # 认知、规划与管理
+    "Identify", "Verify", "Group", "Organize", "Wait",
+    "others",
+]
+ACTION_ZH = {"Move":"移动", "Reach":"伸向/接近", "Retract":"收回/撤回", "Lift":"举起/抬起",
+ "Lower":"放下/降低", "Stop":"停止/阻挡", "Drag":"拖拽", "Grasp":"抓取", "Pick":"拾取",
+ "Release":"释放", "Drop":"丢下", "Hold":"握住/保持", "Handover":"递送", "Place":"放置",
+ "Position":"定位", "Rotate":"旋转", "Tilt":"倾斜", "Flip":"翻转", "Stack":"堆叠", "Push":"推",
+ "Pull":"拉", "Press":"按压", "Squeeze":"挤压", "Touch":"触摸", "Tap":"轻击/打字", "Strike":"击打",
+ "Hammer":"锤击", "Shake":"摇晃", "Rub":"摩擦", "Crush":"压碎/捣碎", "Snap":"折断/弯折",
+ "Insert":"插入", "Screw":"旋紧", "Unscrew":"松开/拧开", "Attach":"连接", "Detach":"分离",
+ "Switch":"切换/开关", "Open":"打开", "Close":"关闭", "Pour":"倒/注", "Stir":"搅拌",
+ "Fold":"折叠", "Unfold":"展开/铺平", "Braid":"编织", "Tie":"打结/系", "Wrap":"包裹/裹",
+ "Thread":"穿线", "Peel":"剥", "Spread":"涂抹", "Cut":"切割/切开", "Wipe":"擦拭",
+ "Clean":"清扫", "Sweep":"扫", "Scrub":"擦洗/搓", "Dispose":"处理/丢弃", "Paint":"涂画",
+ "Identify":"识别/找", "Verify":"确认", "Group":"归类/分拣", "Organize":"整理", "Wait":"等待"}
+IGNORED_FOR_N = {"Wait", "等待", "观察", "未知"}
 H_TYPES = {"interaction", "conditional_decision", "multi_thread_coordination",
            "交互", "条件决策", "多线程协调"}
 
 def recording_difficulty(semantic: dict, duration_s: float) -> dict:
     """Conservative recording-level N/H/level calculation."""
     segments = sorted((s for s in semantic.get("action_segments", [])
-                       if isinstance(s, dict) and s.get("action") not in IGNORED_FOR_N
+                       if isinstance(s, dict) and (s.get("canonical_action", s.get("action")) not in IGNORED_FOR_N)
                        and isinstance(s.get("start_s"), (int, float))
                        and isinstance(s.get("end_s"), (int, float))),
                       key=lambda s: s["start_s"])
     merged = []
     for s in segments:
-        key = (s.get("action"), s.get("object"))
+        key = (s.get("canonical_action", s.get("action")), s.get("object"))
         if merged and merged[-1]["key"] == key and s["start_s"] <= merged[-1]["end_s"] + 4:
             merged[-1]["end_s"] = max(merged[-1]["end_s"], s["end_s"])
             merged[-1]["evidence_times"] = sorted(set(merged[-1]["evidence_times"] + s.get("evidence_times", [])))
@@ -158,11 +189,11 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     instruction = (
         "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
         "summary（中文一句话）、scene（场景）、objects（对象数组）、"
-        "action_segments（最多12个主要阶段，每项含 start_s、end_s、action、object、confidence、"
+        "action_segments（最多12个主要阶段，每项含 start_s、end_s、canonical_action、raw_action、object、confidence、"
         "evidence_times（对应实际帧时间的数组）），unknown（无法判断的区间及原因），"
         "high_difficulty_candidates（候选事件数组，每项含 type、start_s、end_s、evidence_times、reason）。"
-        "动作只能使用：观察、接近、抓取、拿起、放下、移动、放置、打开、关闭、"
-        "倒入、擦拭、折叠、装配、拆卸、按压、旋拧、交互、等待、恢复、未知。"
+        "canonical_action 必须严格使用以下原子动作之一：" + ", ".join(ATOMIC_ACTIONS) + "。"
+        "动作不在词表时使用 others，并在 raw_action 保留原始描述；不要创造新 canonical_action。"
         "只描述画面证据，不预设场景或任务。综合全程的前后状态识别动作。"
         "时间必须使用所附帧时间，不能把帧序号当成秒，不能编造精确边界。"
         "同阶段连续重复可以合并，跨阶段或目标变化分别保留。"
