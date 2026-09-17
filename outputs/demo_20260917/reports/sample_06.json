@@ -1,0 +1,975 @@
+{
+  "video": "/mnt/oss/补天石ego数据10小时/potentia_10hours_part02/d8b4jo765vas73fkfocg/video.mp4",
+  "model": "/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master",
+  "frame_count": 63,
+  "timestamps_s": [
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0,
+    10.002,
+    12.002,
+    14.002,
+    16.002,
+    18.002,
+    20.002,
+    22.002,
+    24.002,
+    26.002,
+    28.002,
+    30.003,
+    32.003,
+    34.003,
+    36.003,
+    38.003,
+    40.003,
+    42.003,
+    44.003,
+    46.003,
+    48.003,
+    50.005,
+    52.005,
+    54.005,
+    56.005,
+    58.005,
+    60.005,
+    62.005,
+    64.005,
+    66.005,
+    68.005,
+    70.007,
+    72.007,
+    74.007,
+    76.007,
+    78.007,
+    80.007,
+    82.007,
+    84.007,
+    86.007,
+    88.007,
+    90.008,
+    92.008,
+    94.008,
+    96.008,
+    98.008,
+    100.008,
+    102.008,
+    104.008,
+    106.008,
+    108.008,
+    110.01,
+    112.01,
+    114.01,
+    116.01,
+    118.01,
+    120.01,
+    122.01,
+    124.01
+  ],
+  "semantic": {
+    "summary": "两人在地面上整理和包装物品，包括一个毛绒玩具、气泡膜和充电线。；两人正在用气泡膜包装一个毛绒玩具，过程中有调整和整理动作。；一个人正在拆开一个用气泡膜包裹的物品并将其放入纸箱中。；一个人正在用透明胶带封箱，然后将箱子放在地上。",
+    "scene": "室内地面，有纸箱、气泡膜和一些杂物。",
+    "objects": [
+      "人",
+      "充电线",
+      "手环",
+      "手表",
+      "毛绒玩具",
+      "气柱袋",
+      "气泡膜",
+      "白色圆柱体",
+      "白色支架",
+      "红色凳子",
+      "红色箱子",
+      "纸箱",
+      "胶带",
+      "蓝色发夹",
+      "货架",
+      "鞋子"
+    ],
+    "action_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 4.0,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取充电线",
+        "object": "充电线",
+        "confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          2.0,
+          4.0
+        ]
+      },
+      {
+        "start_s": 4.0,
+        "end_s": 12.0,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹充电线",
+        "object": "充电线",
+        "confidence": 0.9,
+        "evidence_times": [
+          4.0,
+          6.0,
+          8.0,
+          10.0,
+          12.0
+        ]
+      },
+      {
+        "start_s": 12.0,
+        "end_s": 18.0,
+        "canonical_action": "Place",
+        "raw_action": "将包裹好的充电线放在地上",
+        "object": "充电线",
+        "confidence": 0.9,
+        "evidence_times": [
+          12.0,
+          14.0,
+          16.0,
+          18.0
+        ]
+      },
+      {
+        "start_s": 18.0,
+        "end_s": 28.0,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.85,
+        "evidence_times": [
+          18.0,
+          20.0,
+          22.0,
+          24.0,
+          26.0,
+          28.0
+        ]
+      },
+      {
+        "start_s": 28.0,
+        "end_s": 30.0,
+        "canonical_action": "Place",
+        "raw_action": "将包裹好的毛绒玩具放在气泡膜上",
+        "object": "毛绒玩具",
+        "confidence": 0.8,
+        "evidence_times": [
+          28.0,
+          30.0
+        ]
+      },
+      {
+        "start_s": 32.003,
+        "end_s": 34.003,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取气泡膜包裹物",
+        "object": "气泡膜",
+        "confidence": 0.95,
+        "evidence_times": [
+          32.003
+        ]
+      },
+      {
+        "start_s": 34.003,
+        "end_s": 36.003,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.92,
+        "evidence_times": [
+          34.003
+        ]
+      },
+      {
+        "start_s": 36.003,
+        "end_s": 40.003,
+        "canonical_action": "Wrap",
+        "raw_action": "继续用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.91,
+        "evidence_times": [
+          36.003
+        ]
+      },
+      {
+        "start_s": 40.003,
+        "end_s": 42.003,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.93,
+        "evidence_times": [
+          40.003
+        ]
+      },
+      {
+        "start_s": 42.003,
+        "end_s": 44.003,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.94,
+        "evidence_times": [
+          42.003
+        ]
+      },
+      {
+        "start_s": 44.003,
+        "end_s": 46.003,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          44.003
+        ]
+      },
+      {
+        "start_s": 46.003,
+        "end_s": 48.003,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.96,
+        "evidence_times": [
+          46.003
+        ]
+      },
+      {
+        "start_s": 48.003,
+        "end_s": 50.005,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.97,
+        "evidence_times": [
+          48.003
+        ]
+      },
+      {
+        "start_s": 50.005,
+        "end_s": 52.005,
+        "canonical_action": "Lift",
+        "raw_action": "提起包裹好的毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.98,
+        "evidence_times": [
+          50.005
+        ]
+      },
+      {
+        "start_s": 52.005,
+        "end_s": 54.005,
+        "canonical_action": "Place",
+        "raw_action": "将包裹好的毛绒玩具放在气柱袋上",
+        "object": "气柱袋",
+        "confidence": 0.96,
+        "evidence_times": [
+          52.005
+        ]
+      },
+      {
+        "start_s": 54.005,
+        "end_s": 56.005,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          54.005
+        ]
+      },
+      {
+        "start_s": 56.005,
+        "end_s": 60.005,
+        "canonical_action": "Wrap",
+        "raw_action": "用气泡膜包裹毛绒玩具",
+        "object": "毛绒玩具",
+        "confidence": 0.94,
+        "evidence_times": [
+          56.005
+        ]
+      },
+      {
+        "start_s": 64.005,
+        "end_s": 70.007,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓住气泡膜",
+        "object": "气泡膜",
+        "confidence": 0.95,
+        "evidence_times": [
+          64.005,
+          66.005,
+          68.005,
+          70.007
+        ]
+      },
+      {
+        "start_s": 70.007,
+        "end_s": 76.007,
+        "canonical_action": "Lift",
+        "raw_action": "抬起气泡膜",
+        "object": "气泡膜",
+        "confidence": 0.92,
+        "evidence_times": [
+          70.007,
+          72.007,
+          74.007,
+          76.007
+        ]
+      },
+      {
+        "start_s": 76.007,
+        "end_s": 80.007,
+        "canonical_action": "Lower",
+        "raw_action": "放下气泡膜",
+        "object": "气泡膜",
+        "confidence": 0.93,
+        "evidence_times": [
+          76.007,
+          78.007,
+          80.007
+        ]
+      },
+      {
+        "start_s": 80.007,
+        "end_s": 84.007,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓住纸箱",
+        "object": "纸箱",
+        "confidence": 0.94,
+        "evidence_times": [
+          80.007,
+          82.007,
+          84.007
+        ]
+      },
+      {
+        "start_s": 84.007,
+        "end_s": 90.008,
+        "canonical_action": "Place",
+        "raw_action": "将气泡膜放入纸箱",
+        "object": "纸箱",
+        "confidence": 0.91,
+        "evidence_times": [
+          84.007,
+          86.007,
+          88.007,
+          90.008
+        ]
+      },
+      {
+        "start_s": 90.008,
+        "end_s": 94.008,
+        "canonical_action": "Close",
+        "raw_action": "合上纸箱",
+        "object": "纸箱",
+        "confidence": 0.88,
+        "evidence_times": [
+          90.008,
+          92.008,
+          94.008
+        ]
+      },
+      {
+        "start_s": 96.008,
+        "end_s": 100.008,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓住纸箱",
+        "object": "纸箱",
+        "confidence": 0.95,
+        "evidence_times": [
+          96.008,
+          97.008,
+          98.008,
+          99.008
+        ]
+      },
+      {
+        "start_s": 100.008,
+        "end_s": 104.008,
+        "canonical_action": "Grasp",
+        "raw_action": "用手指捏住胶带",
+        "object": "胶带",
+        "confidence": 0.9,
+        "evidence_times": [
+          100.008,
+          101.008,
+          102.008,
+          103.008
+        ]
+      },
+      {
+        "start_s": 104.008,
+        "end_s": 110.008,
+        "canonical_action": "Wrap",
+        "raw_action": "用胶带缠绕纸箱",
+        "object": "纸箱",
+        "confidence": 0.92,
+        "evidence_times": [
+          104.008,
+          105.008,
+          106.008,
+          107.008,
+          108.008,
+          109.008
+        ]
+      },
+      {
+        "start_s": 110.008,
+        "end_s": 114.008,
+        "canonical_action": "Press",
+        "raw_action": "按压胶带使其粘牢",
+        "object": "胶带",
+        "confidence": 0.85,
+        "evidence_times": [
+          110.008,
+          111.008,
+          112.008,
+          113.008
+        ]
+      },
+      {
+        "start_s": 114.008,
+        "end_s": 118.008,
+        "canonical_action": "Place",
+        "raw_action": "将纸箱放在地上",
+        "object": "纸箱",
+        "confidence": 0.9,
+        "evidence_times": [
+          114.008,
+          115.008,
+          116.008,
+          117.008
+        ]
+      },
+      {
+        "start_s": 118.008,
+        "end_s": 120.008,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓住纸箱",
+        "object": "纸箱",
+        "confidence": 0.9,
+        "evidence_times": [
+          118.008,
+          119.008
+        ]
+      },
+      {
+        "start_s": 120.008,
+        "end_s": 124.008,
+        "canonical_action": "Place",
+        "raw_action": "将纸箱放在地上",
+        "object": "纸箱",
+        "confidence": 0.9,
+        "evidence_times": [
+          120.008,
+          121.008,
+          122.008,
+          123.008
+        ]
+      }
+    ],
+    "unknown": [],
+    "high_difficulty_candidates": [],
+    "windows": [
+      {
+        "window_index": 0,
+        "frame_start": 0,
+        "frame_end": 16,
+        "time_start": 0.0,
+        "time_end": 30.003,
+        "semantic": {
+          "summary": "两人在地面上整理和包装物品，包括一个毛绒玩具、气泡膜和充电线。",
+          "scene": "室内地面，有纸箱、气泡膜和一些杂物。",
+          "objects": [
+            "毛绒玩具",
+            "气泡膜",
+            "充电线",
+            "纸箱",
+            "白色圆柱体",
+            "蓝色发夹",
+            "红色凳子",
+            "白色支架"
+          ],
+          "action_segments": [
+            {
+              "start_s": 0.0,
+              "end_s": 4.0,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取充电线",
+              "object": "充电线",
+              "confidence": 0.95,
+              "evidence_times": [
+                0.0,
+                2.0,
+                4.0
+              ]
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 12.0,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹充电线",
+              "object": "充电线",
+              "confidence": 0.9,
+              "evidence_times": [
+                4.0,
+                6.0,
+                8.0,
+                10.0,
+                12.0
+              ]
+            },
+            {
+              "start_s": 12.0,
+              "end_s": 18.0,
+              "canonical_action": "Place",
+              "raw_action": "将包裹好的充电线放在地上",
+              "object": "充电线",
+              "confidence": 0.9,
+              "evidence_times": [
+                12.0,
+                14.0,
+                16.0,
+                18.0
+              ]
+            },
+            {
+              "start_s": 18.0,
+              "end_s": 28.0,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.85,
+              "evidence_times": [
+                18.0,
+                20.0,
+                22.0,
+                24.0,
+                26.0,
+                28.0
+              ]
+            },
+            {
+              "start_s": 28.0,
+              "end_s": 30.0,
+              "canonical_action": "Place",
+              "raw_action": "将包裹好的毛绒玩具放在气泡膜上",
+              "object": "毛绒玩具",
+              "confidence": 0.8,
+              "evidence_times": [
+                28.0,
+                30.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 1,
+        "frame_start": 16,
+        "frame_end": 32,
+        "time_start": 32.003,
+        "time_end": 62.005,
+        "semantic": {
+          "summary": "两人正在用气泡膜包装一个毛绒玩具，过程中有调整和整理动作。",
+          "scene": "室内，地面为水泥地，周围有纸箱和包装材料。",
+          "objects": [
+            "人",
+            "毛绒玩具",
+            "气泡膜",
+            "气柱袋",
+            "纸箱",
+            "红色箱子"
+          ],
+          "action_segments": [
+            {
+              "start_s": 32.003,
+              "end_s": 34.003,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取气泡膜包裹物",
+              "object": "气泡膜",
+              "confidence": 0.95,
+              "evidence_times": [
+                32.003
+              ]
+            },
+            {
+              "start_s": 34.003,
+              "end_s": 36.003,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.92,
+              "evidence_times": [
+                34.003
+              ]
+            },
+            {
+              "start_s": 36.003,
+              "end_s": 40.003,
+              "canonical_action": "Wrap",
+              "raw_action": "继续用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.91,
+              "evidence_times": [
+                36.003
+              ]
+            },
+            {
+              "start_s": 40.003,
+              "end_s": 42.003,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.93,
+              "evidence_times": [
+                40.003
+              ]
+            },
+            {
+              "start_s": 42.003,
+              "end_s": 44.003,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.94,
+              "evidence_times": [
+                42.003
+              ]
+            },
+            {
+              "start_s": 44.003,
+              "end_s": 46.003,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                44.003
+              ]
+            },
+            {
+              "start_s": 46.003,
+              "end_s": 48.003,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.96,
+              "evidence_times": [
+                46.003
+              ]
+            },
+            {
+              "start_s": 48.003,
+              "end_s": 50.005,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.97,
+              "evidence_times": [
+                48.003
+              ]
+            },
+            {
+              "start_s": 50.005,
+              "end_s": 52.005,
+              "canonical_action": "Lift",
+              "raw_action": "提起包裹好的毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.98,
+              "evidence_times": [
+                50.005
+              ]
+            },
+            {
+              "start_s": 52.005,
+              "end_s": 54.005,
+              "canonical_action": "Place",
+              "raw_action": "将包裹好的毛绒玩具放在气柱袋上",
+              "object": "气柱袋",
+              "confidence": 0.96,
+              "evidence_times": [
+                52.005
+              ]
+            },
+            {
+              "start_s": 54.005,
+              "end_s": 56.005,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                54.005
+              ]
+            },
+            {
+              "start_s": 56.005,
+              "end_s": 60.005,
+              "canonical_action": "Wrap",
+              "raw_action": "用气泡膜包裹毛绒玩具",
+              "object": "毛绒玩具",
+              "confidence": 0.94,
+              "evidence_times": [
+                56.005
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 2,
+        "frame_start": 32,
+        "frame_end": 48,
+        "time_start": 64.005,
+        "time_end": 94.008,
+        "semantic": {
+          "summary": "一个人正在拆开一个用气泡膜包裹的物品并将其放入纸箱中。",
+          "scene": "仓库或储物间，地面为水泥地，周围有纸箱和货架。",
+          "objects": [
+            "人",
+            "气泡膜",
+            "纸箱",
+            "鞋子",
+            "手表",
+            "手环",
+            "红色箱子"
+          ],
+          "action_segments": [
+            {
+              "start_s": 64.005,
+              "end_s": 70.007,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓住气泡膜",
+              "object": "气泡膜",
+              "confidence": 0.95,
+              "evidence_times": [
+                64.005,
+                66.005,
+                68.005,
+                70.007
+              ]
+            },
+            {
+              "start_s": 70.007,
+              "end_s": 76.007,
+              "canonical_action": "Lift",
+              "raw_action": "抬起气泡膜",
+              "object": "气泡膜",
+              "confidence": 0.92,
+              "evidence_times": [
+                70.007,
+                72.007,
+                74.007,
+                76.007
+              ]
+            },
+            {
+              "start_s": 76.007,
+              "end_s": 80.007,
+              "canonical_action": "Lower",
+              "raw_action": "放下气泡膜",
+              "object": "气泡膜",
+              "confidence": 0.93,
+              "evidence_times": [
+                76.007,
+                78.007,
+                80.007
+              ]
+            },
+            {
+              "start_s": 80.007,
+              "end_s": 84.007,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓住纸箱",
+              "object": "纸箱",
+              "confidence": 0.94,
+              "evidence_times": [
+                80.007,
+                82.007,
+                84.007
+              ]
+            },
+            {
+              "start_s": 84.007,
+              "end_s": 90.008,
+              "canonical_action": "Place",
+              "raw_action": "将气泡膜放入纸箱",
+              "object": "纸箱",
+              "confidence": 0.91,
+              "evidence_times": [
+                84.007,
+                86.007,
+                88.007,
+                90.008
+              ]
+            },
+            {
+              "start_s": 90.008,
+              "end_s": 94.008,
+              "canonical_action": "Close",
+              "raw_action": "合上纸箱",
+              "object": "纸箱",
+              "confidence": 0.88,
+              "evidence_times": [
+                90.008,
+                92.008,
+                94.008
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 3,
+        "frame_start": 48,
+        "frame_end": 63,
+        "time_start": 96.008,
+        "time_end": 124.01,
+        "semantic": {
+          "summary": "一个人正在用透明胶带封箱，然后将箱子放在地上。",
+          "scene": "仓库或储物间",
+          "objects": [
+            "人",
+            "纸箱",
+            "胶带",
+            "鞋子",
+            "货架",
+            "红色箱子"
+          ],
+          "action_segments": [
+            {
+              "start_s": 96.008,
+              "end_s": 100.008,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓住纸箱",
+              "object": "纸箱",
+              "confidence": 0.95,
+              "evidence_times": [
+                96.008,
+                97.008,
+                98.008,
+                99.008
+              ]
+            },
+            {
+              "start_s": 100.008,
+              "end_s": 104.008,
+              "canonical_action": "Grasp",
+              "raw_action": "用手指捏住胶带",
+              "object": "胶带",
+              "confidence": 0.9,
+              "evidence_times": [
+                100.008,
+                101.008,
+                102.008,
+                103.008
+              ]
+            },
+            {
+              "start_s": 104.008,
+              "end_s": 110.008,
+              "canonical_action": "Wrap",
+              "raw_action": "用胶带缠绕纸箱",
+              "object": "纸箱",
+              "confidence": 0.92,
+              "evidence_times": [
+                104.008,
+                105.008,
+                106.008,
+                107.008,
+                108.008,
+                109.008
+              ]
+            },
+            {
+              "start_s": 110.008,
+              "end_s": 114.008,
+              "canonical_action": "Press",
+              "raw_action": "按压胶带使其粘牢",
+              "object": "胶带",
+              "confidence": 0.85,
+              "evidence_times": [
+                110.008,
+                111.008,
+                112.008,
+                113.008
+              ]
+            },
+            {
+              "start_s": 114.008,
+              "end_s": 118.008,
+              "canonical_action": "Place",
+              "raw_action": "将纸箱放在地上",
+              "object": "纸箱",
+              "confidence": 0.9,
+              "evidence_times": [
+                114.008,
+                115.008,
+                116.008,
+                117.008
+              ]
+            },
+            {
+              "start_s": 118.008,
+              "end_s": 120.008,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓住纸箱",
+              "object": "纸箱",
+              "confidence": 0.9,
+              "evidence_times": [
+                118.008,
+                119.008
+              ]
+            },
+            {
+              "start_s": 120.008,
+              "end_s": 124.008,
+              "canonical_action": "Place",
+              "raw_action": "将纸箱放在地上",
+              "object": "纸箱",
+              "confidence": 0.9,
+              "evidence_times": [
+                120.008,
+                121.008,
+                122.008,
+                123.008
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      }
+    ],
+    "difficulty": {
+      "T": 124.527,
+      "N": 23,
+      "H": 0,
+      "H_type": [],
+      "level": "中",
+      "confidence": "待人工复核",
+      "review_status": "candidate",
+      "evidence_intervals": [],
+      "unknown_duration": 0,
+      "merged_action_count": 23,
+      "reason": "未确认高难事件"
+    }
+  },
+  "status": "candidate_semantics",
+  "review_queue": [
+    {
+      "reason": "recording_level_merge_and_task_boundary_review_required"
+    }
+  ],
+  "elapsed_s": 197.93
+}

@@ -1,0 +1,876 @@
+{
+  "windows": 14,
+  "parsed_windows": 14,
+  "segments": 90,
+  "vocabulary_valid": 90,
+  "schema_complete": 90,
+  "time_and_reference_valid": 44,
+  "validated_interval_coverage_s": 209.988,
+  "validated_interval_coverage_ratio": 0.49038937584655384,
+  "errors": [
+    {
+      "window": 0,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "canonical_action": "Grasp",
+        "raw_action": "用手握住锅盖",
+        "object": "锅盖",
+        "confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 2.0,
+        "end_s": 6.0,
+        "canonical_action": "Lift",
+        "raw_action": "抬起锅盖",
+        "object": "锅盖",
+        "confidence": 0.95,
+        "evidence_times": [
+          2.0,
+          5.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 6.0,
+        "end_s": 10.0,
+        "canonical_action": "Clean",
+        "raw_action": "用海绵清洗锅盖",
+        "object": "锅盖",
+        "confidence": 0.9,
+        "evidence_times": [
+          6.0,
+          9.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 10.0,
+        "end_s": 12.0,
+        "canonical_action": "Place",
+        "raw_action": "将锅盖放在灶台上",
+        "object": "锅盖",
+        "confidence": 0.85,
+        "evidence_times": [
+          10.0,
+          11.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 12.0,
+        "end_s": 14.0,
+        "canonical_action": "Move",
+        "raw_action": "移动到水槽另一侧",
+        "object": "清洁海绵",
+        "confidence": 0.8,
+        "evidence_times": [
+          12.0,
+          13.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 5,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 14.0,
+        "end_s": 18.0,
+        "canonical_action": "Clean",
+        "raw_action": "用海绵清洗水槽",
+        "object": "水槽",
+        "confidence": 0.85,
+        "evidence_times": [
+          14.0,
+          17.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 6,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 18.0,
+        "end_s": 24.0,
+        "canonical_action": "Rub",
+        "raw_action": "用海绵擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.8,
+        "evidence_times": [
+          18.0,
+          23.0
+        ]
+      }
+    },
+    {
+      "window": 0,
+      "segment": 7,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 24.0,
+        "end_s": 30.0,
+        "canonical_action": "Clean",
+        "raw_action": "用海绵清洗水槽排水口",
+        "object": "水槽",
+        "confidence": 0.85,
+        "evidence_times": [
+          24.0,
+          29.0
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 64.03,
+        "end_s": 68.028,
+        "canonical_action": "Scrub",
+        "raw_action": "用钢丝球擦拭金属容器",
+        "object": "金属容器",
+        "confidence": 0.95,
+        "evidence_times": [
+          64.03,
+          65.028,
+          66.028,
+          67.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 68.028,
+        "end_s": 72.028,
+        "canonical_action": "Rub",
+        "raw_action": "用钢丝球擦拭水槽内壁",
+        "object": "水槽",
+        "confidence": 0.9,
+        "evidence_times": [
+          68.028,
+          69.028,
+          70.028,
+          71.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 72.028,
+        "end_s": 76.028,
+        "canonical_action": "Hold",
+        "raw_action": "用手握住金属容器",
+        "object": "金属容器",
+        "confidence": 0.9,
+        "evidence_times": [
+          72.028,
+          73.028,
+          74.028,
+          75.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 76.028,
+        "end_s": 80.028,
+        "canonical_action": "Scrub",
+        "raw_action": "用钢丝球擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.85,
+        "evidence_times": [
+          76.028,
+          77.028,
+          78.028,
+          79.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 80.028,
+        "end_s": 84.028,
+        "canonical_action": "Rub",
+        "raw_action": "用钢丝球擦拭水槽内壁",
+        "object": "水槽",
+        "confidence": 0.9,
+        "evidence_times": [
+          80.028,
+          81.028,
+          82.028,
+          83.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 5,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 84.028,
+        "end_s": 88.028,
+        "canonical_action": "Scrub",
+        "raw_action": "用钢丝球擦拭金属容器",
+        "object": "金属容器",
+        "confidence": 0.9,
+        "evidence_times": [
+          84.028,
+          85.028,
+          86.028,
+          87.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 6,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 88.028,
+        "end_s": 92.027,
+        "canonical_action": "Scrub",
+        "raw_action": "用钢丝球擦拭金属容器",
+        "object": "金属容器",
+        "confidence": 0.9,
+        "evidence_times": [
+          88.028,
+          89.028,
+          90.028,
+          91.028
+        ]
+      }
+    },
+    {
+      "window": 2,
+      "segment": 7,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 92.027,
+        "end_s": 94.027,
+        "canonical_action": "Rub",
+        "raw_action": "用钢丝球擦拭水槽内壁",
+        "object": "水槽",
+        "confidence": 0.85,
+        "evidence_times": [
+          92.027,
+          93.027,
+          94.027
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 96.027,
+        "end_s": 100.027,
+        "canonical_action": "Grasp",
+        "raw_action": "双手握住钢丝球",
+        "object": "钢丝球",
+        "confidence": 0.95,
+        "evidence_times": [
+          96.027,
+          97.027,
+          98.027,
+          99.027
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 100.027,
+        "end_s": 104.027,
+        "canonical_action": "Move",
+        "raw_action": "将钢丝球从台面移到水槽中",
+        "object": "钢丝球",
+        "confidence": 0.9,
+        "evidence_times": [
+          100.027,
+          101.027,
+          102.027,
+          103.027
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 104.027,
+        "end_s": 112.027,
+        "canonical_action": "Scrub",
+        "raw_action": "用钢丝球擦拭水槽排水口",
+        "object": "排水口",
+        "confidence": 0.92,
+        "evidence_times": [
+          104.027,
+          105.027,
+          106.027,
+          107.027,
+          108.027,
+          109.027,
+          110.027,
+          111.027
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 112.027,
+        "end_s": 114.027,
+        "canonical_action": "Hold",
+        "raw_action": "用手握住排水口盖",
+        "object": "排水口盖",
+        "confidence": 0.85,
+        "evidence_times": [
+          112.027,
+          113.027,
+          114.027
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 114.027,
+        "end_s": 116.027,
+        "canonical_action": "Place",
+        "raw_action": "将排水口盖放在水槽边缘",
+        "object": "排水口盖",
+        "confidence": 0.88,
+        "evidence_times": [
+          114.027,
+          115.027,
+          116.027
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 5,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 116.027,
+        "end_s": 126.027,
+        "canonical_action": "Scrub",
+        "raw_action": "继续用钢丝球擦拭排水口",
+        "object": "排水口",
+        "confidence": 0.9,
+        "evidence_times": [
+          116.027,
+          117.027,
+          118.027,
+          119.027,
+          120.027,
+          121.027,
+          122.027,
+          123.027,
+          124.027,
+          125.027,
+          126.027
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 160.023,
+        "end_s": 162.023,
+        "canonical_action": "Clean",
+        "raw_action": "用钢丝球清洁水槽",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          160.023,
+          161.023,
+          162.023
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 162.023,
+        "end_s": 164.023,
+        "canonical_action": "Move",
+        "raw_action": "将钢丝球移至水槽边缘",
+        "object": "钢丝球",
+        "confidence": 0.85,
+        "evidence_times": [
+          162.023,
+          163.023,
+          164.023
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 164.023,
+        "end_s": 166.023,
+        "canonical_action": "Hold",
+        "raw_action": "用手握住水槽边缘",
+        "object": "水槽",
+        "confidence": 0.8,
+        "evidence_times": [
+          164.023,
+          165.023,
+          166.023
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 166.023,
+        "end_s": 168.023,
+        "canonical_action": "Clean",
+        "raw_action": "用钢丝球清洁水槽",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          166.023,
+          167.023,
+          168.023
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 168.023,
+        "end_s": 170.022,
+        "canonical_action": "Move",
+        "raw_action": "将钢丝球移至水槽边缘",
+        "object": "钢丝球",
+        "confidence": 0.85,
+        "evidence_times": [
+          168.023,
+          169.023,
+          170.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 5,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 170.022,
+        "end_s": 172.022,
+        "canonical_action": "Clean",
+        "raw_action": "用钢丝球清洁水槽",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          170.022,
+          171.022,
+          172.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 6,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 172.022,
+        "end_s": 174.022,
+        "canonical_action": "Move",
+        "raw_action": "将钢丝球移至水槽边缘",
+        "object": "钢丝球",
+        "confidence": 0.85,
+        "evidence_times": [
+          172.022,
+          173.022,
+          174.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 7,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 174.022,
+        "end_s": 176.022,
+        "canonical_action": "Clean",
+        "raw_action": "用钢丝球清洁水槽",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          174.022,
+          175.022,
+          176.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 8,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 176.022,
+        "end_s": 178.022,
+        "canonical_action": "Move",
+        "raw_action": "将钢丝球移至水槽边缘",
+        "object": "钢丝球",
+        "confidence": 0.85,
+        "evidence_times": [
+          176.022,
+          177.022,
+          178.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 9,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 178.022,
+        "end_s": 180.022,
+        "canonical_action": "Clean",
+        "raw_action": "用钢丝球清洁水槽",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          178.022,
+          179.022,
+          180.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 10,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 180.022,
+        "end_s": 182.022,
+        "canonical_action": "Move",
+        "raw_action": "将钢丝球移至水槽边缘",
+        "object": "钢丝球",
+        "confidence": 0.85,
+        "evidence_times": [
+          180.022,
+          181.022,
+          182.022
+        ]
+      }
+    },
+    {
+      "window": 5,
+      "segment": 11,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 182.022,
+        "end_s": 184.022,
+        "canonical_action": "Clean",
+        "raw_action": "用钢丝球清洁水槽",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          182.022,
+          183.022,
+          184.022
+        ]
+      }
+    },
+    {
+      "window": 6,
+      "segment": 7,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 222.018,
+        "end_s": 222.018,
+        "canonical_action": "Stop",
+        "raw_action": "停止擦拭",
+        "object": "水槽",
+        "confidence": 0.85,
+        "evidence_times": [
+          222.018
+        ]
+      }
+    },
+    {
+      "window": 10,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 320.013,
+        "end_s": 326.012,
+        "canonical_action": "Clean",
+        "raw_action": "用双手在水槽中搓洗布料",
+        "object": "布料",
+        "confidence": 0.95,
+        "evidence_times": [
+          320.013,
+          321.013,
+          322.013,
+          323.013,
+          324.013,
+          325.013,
+          326.012
+        ]
+      }
+    },
+    {
+      "window": 10,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 326.012,
+        "end_s": 330.012,
+        "canonical_action": "Rub",
+        "raw_action": "用双手揉搓布料",
+        "object": "布料",
+        "confidence": 0.9,
+        "evidence_times": [
+          326.012,
+          327.012,
+          328.012,
+          329.012,
+          330.012
+        ]
+      }
+    },
+    {
+      "window": 10,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 330.012,
+        "end_s": 334.012,
+        "canonical_action": "Clean",
+        "raw_action": "在水槽中清洗布料",
+        "object": "布料",
+        "confidence": 0.9,
+        "evidence_times": [
+          330.012,
+          331.012,
+          332.012,
+          333.012,
+          334.012
+        ]
+      }
+    },
+    {
+      "window": 10,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 334.012,
+        "end_s": 342.012,
+        "canonical_action": "Rub",
+        "raw_action": "用双手揉搓布料",
+        "object": "布料",
+        "confidence": 0.9,
+        "evidence_times": [
+          334.012,
+          335.012,
+          336.012,
+          337.012,
+          338.012,
+          339.012,
+          340.012,
+          341.012,
+          342.012
+        ]
+      }
+    },
+    {
+      "window": 10,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 342.012,
+        "end_s": 348.012,
+        "canonical_action": "Clean",
+        "raw_action": "在水槽中清洗布料",
+        "object": "布料",
+        "confidence": 0.9,
+        "evidence_times": [
+          342.012,
+          343.012,
+          344.012,
+          345.012,
+          346.012,
+          347.012,
+          348.012
+        ]
+      }
+    },
+    {
+      "window": 10,
+      "segment": 5,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 348.012,
+        "end_s": 350.012,
+        "canonical_action": "Release",
+        "raw_action": "松开布料",
+        "object": "布料",
+        "confidence": 0.85,
+        "evidence_times": [
+          348.012,
+          349.012,
+          350.012
+        ]
+      }
+    },
+    {
+      "window": 13,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 416.007,
+        "end_s": 418.007,
+        "canonical_action": "Wipe",
+        "raw_action": "用毛巾擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          416.007,
+          417.007,
+          418.007
+        ]
+      }
+    },
+    {
+      "window": 13,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 418.007,
+        "end_s": 420.007,
+        "canonical_action": "Wipe",
+        "raw_action": "继续用毛巾擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          418.007,
+          419.007,
+          420.007
+        ]
+      }
+    },
+    {
+      "window": 13,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 420.007,
+        "end_s": 422.007,
+        "canonical_action": "Wipe",
+        "raw_action": "用毛巾擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          420.007,
+          421.007,
+          422.007
+        ]
+      }
+    },
+    {
+      "window": 13,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 422.007,
+        "end_s": 424.007,
+        "canonical_action": "Wipe",
+        "raw_action": "用毛巾擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          422.007,
+          423.007,
+          424.007
+        ]
+      }
+    },
+    {
+      "window": 13,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 424.007,
+        "end_s": 426.007,
+        "canonical_action": "Wipe",
+        "raw_action": "用毛巾擦拭水槽边缘",
+        "object": "水槽",
+        "confidence": 0.95,
+        "evidence_times": [
+          424.007,
+          425.007,
+          426.007
+        ]
+      }
+    }
+  ],
+  "level": "中",
+  "N": 63,
+  "H": 0,
+  "review_status": "candidate",
+  "pipeline_status": "candidate_semantics",
+  "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+}

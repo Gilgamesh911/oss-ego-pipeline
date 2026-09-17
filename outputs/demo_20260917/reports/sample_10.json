@@ -1,0 +1,761 @@
+{
+  "video": "/mnt/oss/Deepreach/dr-egoview-teaser-slam/clips/aec5beea-3f7e-4a2c-b623-2e2e0eb2b730_grp002_p01of01/source.mp4",
+  "model": "/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master",
+  "frame_count": 42,
+  "timestamps_s": [
+    0.0,
+    2.002,
+    4.004,
+    6.006,
+    8.008,
+    10.01,
+    12.012,
+    14.014,
+    16.016,
+    18.018,
+    20.02,
+    22.022,
+    24.024,
+    26.026,
+    28.028,
+    30.03,
+    32.032,
+    34.001,
+    36.003,
+    38.005,
+    40.007,
+    42.009,
+    44.011,
+    46.013,
+    48.015,
+    50.017,
+    52.019,
+    54.021,
+    56.023,
+    58.025,
+    60.027,
+    62.029,
+    64.031,
+    66.033,
+    68.001,
+    70.003,
+    72.005,
+    74.007,
+    76.009,
+    78.011,
+    80.013,
+    82.015
+  ],
+  "semantic": {
+    "summary": "一个人正在将彩色塑料玩具放入透明塑料袋中。；一个人正在将彩色塑料玩具部件放入透明塑料袋中。；一个人正在将彩色塑料玩具装入透明塑料袋中。",
+    "scene": "桌面，上面散落着许多彩色塑料玩具和几个透明塑料袋。",
+    "objects": [
+      "双手",
+      "彩色塑料玩具",
+      "彩色塑料玩具部件",
+      "透明塑料袋",
+      "黑色桌子"
+    ],
+    "action_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 2.002,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取一个透明塑料袋",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          2.002
+        ]
+      },
+      {
+        "start_s": 2.002,
+        "end_s": 4.004,
+        "canonical_action": "Place",
+        "raw_action": "将塑料袋放在桌面上",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          2.002,
+          4.004
+        ]
+      },
+      {
+        "start_s": 4.004,
+        "end_s": 6.006,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取一个彩色塑料玩具",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          4.004,
+          6.006
+        ]
+      },
+      {
+        "start_s": 6.006,
+        "end_s": 8.008,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          6.006,
+          8.008
+        ]
+      },
+      {
+        "start_s": 8.008,
+        "end_s": 10.01,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          8.008,
+          10.01
+        ]
+      },
+      {
+        "start_s": 10.01,
+        "end_s": 12.012,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          10.01,
+          12.012
+        ]
+      },
+      {
+        "start_s": 12.012,
+        "end_s": 14.014,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          12.012,
+          14.014
+        ]
+      },
+      {
+        "start_s": 14.014,
+        "end_s": 16.016,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          14.014,
+          16.016
+        ]
+      },
+      {
+        "start_s": 16.016,
+        "end_s": 18.018,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          16.016,
+          18.018
+        ]
+      },
+      {
+        "start_s": 18.018,
+        "end_s": 20.02,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          18.018,
+          20.02
+        ]
+      },
+      {
+        "start_s": 20.02,
+        "end_s": 22.022,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          20.02,
+          22.022
+        ]
+      },
+      {
+        "start_s": 22.022,
+        "end_s": 24.024,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.95,
+        "evidence_times": [
+          22.022,
+          24.024
+        ]
+      },
+      {
+        "start_s": 32.032,
+        "end_s": 34.001,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取一个彩色塑料玩具部件",
+        "object": "彩色塑料玩具部件",
+        "confidence": 0.95,
+        "evidence_times": [
+          32.032
+        ]
+      },
+      {
+        "start_s": 34.001,
+        "end_s": 36.003,
+        "canonical_action": "Place",
+        "raw_action": "将玩具部件放入透明塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.92,
+        "evidence_times": [
+          34.001
+        ]
+      },
+      {
+        "start_s": 36.003,
+        "end_s": 38.005,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具部件",
+        "object": "彩色塑料玩具部件",
+        "confidence": 0.93,
+        "evidence_times": [
+          36.003
+        ]
+      },
+      {
+        "start_s": 38.005,
+        "end_s": 40.007,
+        "canonical_action": "Place",
+        "raw_action": "将玩具部件放入透明塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.91,
+        "evidence_times": [
+          38.005
+        ]
+      },
+      {
+        "start_s": 40.007,
+        "end_s": 42.009,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具部件",
+        "object": "彩色塑料玩具部件",
+        "confidence": 0.94,
+        "evidence_times": [
+          40.007
+        ]
+      },
+      {
+        "start_s": 42.009,
+        "end_s": 44.011,
+        "canonical_action": "Place",
+        "raw_action": "将玩具部件放入透明塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.9,
+        "evidence_times": [
+          42.009
+        ]
+      },
+      {
+        "start_s": 44.011,
+        "end_s": 46.013,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具部件",
+        "object": "彩色塑料玩具部件",
+        "confidence": 0.93,
+        "evidence_times": [
+          44.011
+        ]
+      },
+      {
+        "start_s": 46.013,
+        "end_s": 48.015,
+        "canonical_action": "Place",
+        "raw_action": "将玩具部件放入透明塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.91,
+        "evidence_times": [
+          46.013
+        ]
+      },
+      {
+        "start_s": 48.015,
+        "end_s": 50.017,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具部件",
+        "object": "彩色塑料玩具部件",
+        "confidence": 0.92,
+        "evidence_times": [
+          48.015
+        ]
+      },
+      {
+        "start_s": 50.017,
+        "end_s": 52.019,
+        "canonical_action": "Place",
+        "raw_action": "将玩具部件放入透明塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.9,
+        "evidence_times": [
+          50.017
+        ]
+      },
+      {
+        "start_s": 52.019,
+        "end_s": 54.021,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓取另一个彩色塑料玩具部件",
+        "object": "彩色塑料玩具部件",
+        "confidence": 0.93,
+        "evidence_times": [
+          52.019
+        ]
+      },
+      {
+        "start_s": 54.021,
+        "end_s": 56.023,
+        "canonical_action": "Place",
+        "raw_action": "将玩具部件放入透明塑料袋中",
+        "object": "透明塑料袋",
+        "confidence": 0.91,
+        "evidence_times": [
+          54.021
+        ]
+      },
+      {
+        "start_s": 64.031,
+        "end_s": 75.009,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入透明塑料袋中",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          64.031,
+          66.033,
+          68.001,
+          70.003,
+          72.005,
+          74.007,
+          76.009
+        ]
+      },
+      {
+        "start_s": 76.009,
+        "end_s": 82.015,
+        "canonical_action": "Place",
+        "raw_action": "将装满玩具的塑料袋放在桌子上",
+        "object": "透明塑料袋",
+        "confidence": 0.92,
+        "evidence_times": [
+          76.009,
+          78.011,
+          80.013,
+          82.015
+        ]
+      }
+    ],
+    "unknown": [],
+    "high_difficulty_candidates": [],
+    "windows": [
+      {
+        "window_index": 0,
+        "frame_start": 0,
+        "frame_end": 16,
+        "time_start": 0.0,
+        "time_end": 30.03,
+        "semantic": {
+          "summary": "一个人正在将彩色塑料玩具放入透明塑料袋中。",
+          "scene": "桌面，上面散落着许多彩色塑料玩具和几个透明塑料袋。",
+          "objects": [
+            "双手",
+            "彩色塑料玩具",
+            "透明塑料袋"
+          ],
+          "action_segments": [
+            {
+              "start_s": 0.0,
+              "end_s": 2.002,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取一个透明塑料袋",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                0.0,
+                2.002
+              ]
+            },
+            {
+              "start_s": 2.002,
+              "end_s": 4.004,
+              "canonical_action": "Place",
+              "raw_action": "将塑料袋放在桌面上",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                2.002,
+                4.004
+              ]
+            },
+            {
+              "start_s": 4.004,
+              "end_s": 6.006,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取一个彩色塑料玩具",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                4.004,
+                6.006
+              ]
+            },
+            {
+              "start_s": 6.006,
+              "end_s": 8.008,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                6.006,
+                8.008
+              ]
+            },
+            {
+              "start_s": 8.008,
+              "end_s": 10.01,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                8.008,
+                10.01
+              ]
+            },
+            {
+              "start_s": 10.01,
+              "end_s": 12.012,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                10.01,
+                12.012
+              ]
+            },
+            {
+              "start_s": 12.012,
+              "end_s": 14.014,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                12.012,
+                14.014
+              ]
+            },
+            {
+              "start_s": 14.014,
+              "end_s": 16.016,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                14.014,
+                16.016
+              ]
+            },
+            {
+              "start_s": 16.016,
+              "end_s": 18.018,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                16.016,
+                18.018
+              ]
+            },
+            {
+              "start_s": 18.018,
+              "end_s": 20.02,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                18.018,
+                20.02
+              ]
+            },
+            {
+              "start_s": 20.02,
+              "end_s": 22.022,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                20.02,
+                22.022
+              ]
+            },
+            {
+              "start_s": 22.022,
+              "end_s": 24.024,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.95,
+              "evidence_times": [
+                22.022,
+                24.024
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 1,
+        "frame_start": 16,
+        "frame_end": 32,
+        "time_start": 32.032,
+        "time_end": 62.029,
+        "semantic": {
+          "summary": "一个人正在将彩色塑料玩具部件放入透明塑料袋中。",
+          "scene": "桌面，上面散落着许多彩色塑料玩具部件和几个透明塑料袋。",
+          "objects": [
+            "双手",
+            "彩色塑料玩具部件",
+            "透明塑料袋"
+          ],
+          "action_segments": [
+            {
+              "start_s": 32.032,
+              "end_s": 34.001,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取一个彩色塑料玩具部件",
+              "object": "彩色塑料玩具部件",
+              "confidence": 0.95,
+              "evidence_times": [
+                32.032
+              ]
+            },
+            {
+              "start_s": 34.001,
+              "end_s": 36.003,
+              "canonical_action": "Place",
+              "raw_action": "将玩具部件放入透明塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.92,
+              "evidence_times": [
+                34.001
+              ]
+            },
+            {
+              "start_s": 36.003,
+              "end_s": 38.005,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具部件",
+              "object": "彩色塑料玩具部件",
+              "confidence": 0.93,
+              "evidence_times": [
+                36.003
+              ]
+            },
+            {
+              "start_s": 38.005,
+              "end_s": 40.007,
+              "canonical_action": "Place",
+              "raw_action": "将玩具部件放入透明塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.91,
+              "evidence_times": [
+                38.005
+              ]
+            },
+            {
+              "start_s": 40.007,
+              "end_s": 42.009,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具部件",
+              "object": "彩色塑料玩具部件",
+              "confidence": 0.94,
+              "evidence_times": [
+                40.007
+              ]
+            },
+            {
+              "start_s": 42.009,
+              "end_s": 44.011,
+              "canonical_action": "Place",
+              "raw_action": "将玩具部件放入透明塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.9,
+              "evidence_times": [
+                42.009
+              ]
+            },
+            {
+              "start_s": 44.011,
+              "end_s": 46.013,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具部件",
+              "object": "彩色塑料玩具部件",
+              "confidence": 0.93,
+              "evidence_times": [
+                44.011
+              ]
+            },
+            {
+              "start_s": 46.013,
+              "end_s": 48.015,
+              "canonical_action": "Place",
+              "raw_action": "将玩具部件放入透明塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.91,
+              "evidence_times": [
+                46.013
+              ]
+            },
+            {
+              "start_s": 48.015,
+              "end_s": 50.017,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具部件",
+              "object": "彩色塑料玩具部件",
+              "confidence": 0.92,
+              "evidence_times": [
+                48.015
+              ]
+            },
+            {
+              "start_s": 50.017,
+              "end_s": 52.019,
+              "canonical_action": "Place",
+              "raw_action": "将玩具部件放入透明塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.9,
+              "evidence_times": [
+                50.017
+              ]
+            },
+            {
+              "start_s": 52.019,
+              "end_s": 54.021,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓取另一个彩色塑料玩具部件",
+              "object": "彩色塑料玩具部件",
+              "confidence": 0.93,
+              "evidence_times": [
+                52.019
+              ]
+            },
+            {
+              "start_s": 54.021,
+              "end_s": 56.023,
+              "canonical_action": "Place",
+              "raw_action": "将玩具部件放入透明塑料袋中",
+              "object": "透明塑料袋",
+              "confidence": 0.91,
+              "evidence_times": [
+                54.021
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 2,
+        "frame_start": 32,
+        "frame_end": 42,
+        "time_start": 64.031,
+        "time_end": 82.015,
+        "semantic": {
+          "summary": "一个人正在将彩色塑料玩具装入透明塑料袋中。",
+          "scene": "室内，一张黑色桌子，上面散落着许多彩色塑料玩具和几个透明塑料袋。",
+          "objects": [
+            "双手",
+            "彩色塑料玩具",
+            "透明塑料袋",
+            "黑色桌子"
+          ],
+          "action_segments": [
+            {
+              "start_s": 64.031,
+              "end_s": 75.009,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入透明塑料袋中",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                64.031,
+                66.033,
+                68.001,
+                70.003,
+                72.005,
+                74.007,
+                76.009
+              ]
+            },
+            {
+              "start_s": 76.009,
+              "end_s": 82.015,
+              "canonical_action": "Place",
+              "raw_action": "将装满玩具的塑料袋放在桌子上",
+              "object": "透明塑料袋",
+              "confidence": 0.92,
+              "evidence_times": [
+                76.009,
+                78.011,
+                80.013,
+                82.015
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      }
+    ],
+    "difficulty": {
+      "T": 82.416,
+      "N": 26,
+      "H": 0,
+      "H_type": [],
+      "level": "中",
+      "confidence": "待人工复核",
+      "review_status": "candidate",
+      "evidence_intervals": [],
+      "unknown_duration": 0,
+      "merged_action_count": 26,
+      "reason": "未确认高难事件"
+    }
+  },
+  "status": "candidate_semantics",
+  "review_queue": [
+    {
+      "reason": "recording_level_merge_and_task_boundary_review_required"
+    }
+  ],
+  "elapsed_s": 120.75
+}

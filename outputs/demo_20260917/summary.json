@@ -1,0 +1,138 @@
+{
+  "sample_count": 10,
+  "total_video_seconds": 1281.0613666666666,
+  "source_count": 7,
+  "first_run_process_success": {
+    "numerator": 9,
+    "denominator": 10,
+    "ratio": 0.9
+  },
+  "first_run_end_to_end_success": {
+    "numerator": 9,
+    "denominator": 10,
+    "ratio": 0.9
+  },
+  "window_json_parse_success": {
+    "numerator": 45,
+    "denominator": 45,
+    "ratio": 1.0
+  },
+  "atomic_vocabulary_compliance": {
+    "numerator": 270,
+    "denominator": 272,
+    "ratio": 0.9926470588235294
+  },
+  "required_action_fields_present": {
+    "numerator": 272,
+    "denominator": 272,
+    "ratio": 1.0
+  },
+  "time_and_frame_reference_valid": {
+    "numerator": 178,
+    "denominator": 272,
+    "ratio": 0.6544117647058824
+  },
+  "repeat_count": 3,
+  "repeat_level_consistency": {
+    "numerator": 3,
+    "denominator": 3,
+    "ratio": 1.0
+  },
+  "repeat_semantic_json_consistency": {
+    "numerator": 3,
+    "denominator": 3,
+    "ratio": 1.0
+  },
+  "repeat_comparisons": [
+    {
+      "id": "sample_01",
+      "both_runs_succeeded": true,
+      "frame_times_identical": true,
+      "semantic_json_identical": true,
+      "level_identical": true,
+      "N_identical": true,
+      "H_identical": true,
+      "N_values": [
+        11,
+        11
+      ],
+      "level_values": [
+        "中",
+        "中"
+      ],
+      "action_class_jaccard": 1.0
+    },
+    {
+      "id": "sample_05",
+      "both_runs_succeeded": true,
+      "frame_times_identical": true,
+      "semantic_json_identical": true,
+      "level_identical": true,
+      "N_identical": true,
+      "H_identical": true,
+      "N_values": [
+        63,
+        63
+      ],
+      "level_values": [
+        "中",
+        "中"
+      ],
+      "action_class_jaccard": 1.0
+    },
+    {
+      "id": "sample_07",
+      "both_runs_succeeded": true,
+      "frame_times_identical": true,
+      "semantic_json_identical": true,
+      "level_identical": true,
+      "N_identical": true,
+      "H_identical": true,
+      "N_values": [
+        13,
+        13
+      ],
+      "level_values": [
+        "中",
+        "中"
+      ],
+      "action_class_jaccard": 1.0
+    }
+  ],
+  "first_run_level_distribution": {
+    "中": 8,
+    "失败/无结果": 1,
+    "低": 1
+  },
+  "assistant_visual_audit": {
+    "method": "助手逐图查看独立抽帧总览，以及每个样本第一/中间/最后一个动作的证据邻帧；不是专家全视频真值。支持率只用于这批抽查动作，不评估±0.1秒边界精度；未听音轨，涉及说话的复合描述只按视觉部分判断。",
+    "counts": {
+      "supported": 15,
+      "insufficient": 2,
+      "unsupported": 5,
+      "partial": 6
+    },
+    "strict_supported": {
+      "numerator": 15,
+      "denominator": 28,
+      "ratio": 0.5357142857142857
+    },
+    "formal_expert_accuracy": null,
+    "selection": "first/middle/last generated action per sample; failed pipelines use raw checkpoint windows; not a random action sample"
+  },
+  "task_label_agreement_proxy": {
+    "numerator": 5,
+    "denominator": 6,
+    "ratio": 0.8333333333333334
+  },
+  "formal_level_accuracy": null,
+  "limitations": [
+    "来源分层的有限候选目录抽样，不代表全桶分布。",
+    "没有独立人工难度真值，不能报告正式level准确率。",
+    "参考任务标注可能是自动生成；只报告任务文字一致性。",
+    "视觉抽查是助手基于选中帧核查，非专家逐帧验收。",
+    "重复运行一致不等于正确；do_sample=False仍须实测。"
+  ],
+  "pipeline_commit": "07fe1121ab508e512aff6e064ea0a6655fce8dbd",
+  "pipeline_sha256": "36e25811352607b95fee981b3a8cf28b10635b0f088d7beb5489fbcad16ff7b0"
+}

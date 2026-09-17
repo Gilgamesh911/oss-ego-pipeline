@@ -1,0 +1,92 @@
+{
+  "video": "/mnt/oss/擎羽/Hugging_face/category__small_object_storage_sorting/task_002__empty_all_sachets_from_box_onto_table/episode_0001_episode_000145_u12_aligned_attempt_clips_20260706_episode_000065/videos/left_cam_left.mp4",
+  "model": "/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master",
+  "frame_count": 2,
+  "timestamps_s": [
+    0.0,
+    2.0
+  ],
+  "semantic": {
+    "summary": "一只手在木桌上操作，旁边有史迪奇玩偶和纸巾。",
+    "scene": "室内办公桌环境",
+    "objects": [
+      "史迪奇玩偶",
+      "手",
+      "木桌",
+      "纸巾",
+      "纸箱"
+    ],
+    "action_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "canonical_action": "Move",
+        "raw_action": "手从桌子右侧向左移动",
+        "object": "手",
+        "confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          2.0
+        ]
+      }
+    ],
+    "unknown": [],
+    "high_difficulty_candidates": [],
+    "windows": [
+      {
+        "window_index": 0,
+        "frame_start": 0,
+        "frame_end": 2,
+        "time_start": 0.0,
+        "time_end": 2.0,
+        "semantic": {
+          "summary": "一只手在木桌上操作，旁边有史迪奇玩偶和纸巾。",
+          "scene": "室内办公桌环境",
+          "objects": [
+            "手",
+            "史迪奇玩偶",
+            "木桌",
+            "纸巾",
+            "纸箱"
+          ],
+          "action_segments": [
+            {
+              "start_s": 0.0,
+              "end_s": 2.0,
+              "canonical_action": "Move",
+              "raw_action": "手从桌子右侧向左移动",
+              "object": "手",
+              "confidence": 0.95,
+              "evidence_times": [
+                0.0,
+                2.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      }
+    ],
+    "difficulty": {
+      "T": 4.0,
+      "N": 1,
+      "H": 0,
+      "H_type": [],
+      "level": "低",
+      "confidence": "待人工复核",
+      "review_status": "candidate",
+      "evidence_intervals": [],
+      "unknown_duration": 0,
+      "merged_action_count": 1,
+      "reason": "未确认高难事件"
+    }
+  },
+  "status": "candidate_semantics",
+  "review_queue": [
+    {
+      "reason": "recording_level_merge_and_task_boundary_review_required"
+    }
+  ],
+  "elapsed_s": 8.4
+}

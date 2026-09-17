@@ -1,0 +1,17 @@
+{
+  "windows": 1,
+  "parsed_windows": 1,
+  "segments": 5,
+  "vocabulary_valid": 5,
+  "schema_complete": 5,
+  "time_and_reference_valid": 5,
+  "validated_interval_coverage_s": 14.0,
+  "validated_interval_coverage_ratio": 0.9190371991247265,
+  "errors": [],
+  "level": null,
+  "N": null,
+  "H": null,
+  "review_status": null,
+  "pipeline_status": null,
+  "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+}

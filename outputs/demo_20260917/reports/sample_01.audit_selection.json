@@ -1,0 +1,68 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 4.0,
+      "canonical_action": "Move",
+      "raw_action": "人从门口走向餐桌",
+      "object": "人",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_01_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0,
+      6.0
+    ]
+  },
+  {
+    "segment_index": 5,
+    "claim": {
+      "start_s": 18.0,
+      "end_s": 22.0,
+      "canonical_action": "Wipe",
+      "raw_action": "人用抹布擦拭餐桌",
+      "object": "餐桌",
+      "confidence": 0.9,
+      "evidence_times": [
+        18.0,
+        22.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_01_action_005.jpg",
+    "checked_times": [
+      16.0,
+      18.0,
+      20.0,
+      22.0,
+      24.0
+    ]
+  },
+  {
+    "segment_index": 10,
+    "claim": {
+      "start_s": 40.0,
+      "end_s": 42.0,
+      "canonical_action": "Wipe",
+      "raw_action": "用抹布擦拭桌面",
+      "object": "桌子",
+      "confidence": 0.85,
+      "evidence_times": [
+        40.0,
+        42.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_01_action_010.jpg",
+    "checked_times": [
+      38.0,
+      40.0,
+      42.0
+    ]
+  }
+]

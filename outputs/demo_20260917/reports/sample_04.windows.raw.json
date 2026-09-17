@@ -1,0 +1,36 @@
+[
+  {
+    "window_index": 0,
+    "frame_start": 0,
+    "frame_end": 2,
+    "time_start": 0.0,
+    "time_end": 2.0,
+    "semantic": {
+      "summary": "一只手在木桌上操作，旁边有史迪奇玩偶和纸巾。",
+      "scene": "室内办公桌环境",
+      "objects": [
+        "手",
+        "史迪奇玩偶",
+        "木桌",
+        "纸巾",
+        "纸箱"
+      ],
+      "action_segments": [
+        {
+          "start_s": 0.0,
+          "end_s": 2.0,
+          "canonical_action": "Move",
+          "raw_action": "手从桌子右侧向左移动",
+          "object": "手",
+          "confidence": 0.95,
+          "evidence_times": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  }
+]

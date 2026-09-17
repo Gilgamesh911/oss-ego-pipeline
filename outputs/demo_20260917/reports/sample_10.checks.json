@@ -1,0 +1,40 @@
+{
+  "windows": 3,
+  "parsed_windows": 3,
+  "segments": 26,
+  "vocabulary_valid": 26,
+  "schema_complete": 26,
+  "time_and_reference_valid": 25,
+  "validated_interval_coverage_s": 54.021,
+  "validated_interval_coverage_ratio": 0.6554700360368377,
+  "errors": [
+    {
+      "window": 2,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 64.031,
+        "end_s": 75.009,
+        "canonical_action": "Place",
+        "raw_action": "将彩色塑料玩具放入透明塑料袋中",
+        "object": "彩色塑料玩具",
+        "confidence": 0.95,
+        "evidence_times": [
+          64.031,
+          66.033,
+          68.001,
+          70.003,
+          72.005,
+          74.007,
+          76.009
+        ]
+      }
+    }
+  ],
+  "level": "中",
+  "N": 26,
+  "H": 0,
+  "review_status": "candidate",
+  "pipeline_status": "candidate_semantics",
+  "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+}

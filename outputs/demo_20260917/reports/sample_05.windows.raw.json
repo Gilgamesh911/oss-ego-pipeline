@@ -1,0 +1,1518 @@
+[
+  {
+    "window_index": 0,
+    "frame_start": 0,
+    "frame_end": 16,
+    "time_start": 0.0,
+    "time_end": 30.032,
+    "semantic": {
+      "summary": "一个人在厨房水槽中清洗锅盖和清洁海绵。",
+      "scene": "厨房水槽区域",
+      "objects": [
+        "人",
+        "锅盖",
+        "清洁海绵",
+        "水槽",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 0.0,
+          "end_s": 2.0,
+          "canonical_action": "Grasp",
+          "raw_action": "用手握住锅盖",
+          "object": "锅盖",
+          "confidence": 0.95,
+          "evidence_times": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "start_s": 2.0,
+          "end_s": 6.0,
+          "canonical_action": "Lift",
+          "raw_action": "抬起锅盖",
+          "object": "锅盖",
+          "confidence": 0.95,
+          "evidence_times": [
+            2.0,
+            5.0
+          ]
+        },
+        {
+          "start_s": 6.0,
+          "end_s": 10.0,
+          "canonical_action": "Clean",
+          "raw_action": "用海绵清洗锅盖",
+          "object": "锅盖",
+          "confidence": 0.9,
+          "evidence_times": [
+            6.0,
+            9.0
+          ]
+        },
+        {
+          "start_s": 10.0,
+          "end_s": 12.0,
+          "canonical_action": "Place",
+          "raw_action": "将锅盖放在灶台上",
+          "object": "锅盖",
+          "confidence": 0.85,
+          "evidence_times": [
+            10.0,
+            11.0
+          ]
+        },
+        {
+          "start_s": 12.0,
+          "end_s": 14.0,
+          "canonical_action": "Move",
+          "raw_action": "移动到水槽另一侧",
+          "object": "清洁海绵",
+          "confidence": 0.8,
+          "evidence_times": [
+            12.0,
+            13.0
+          ]
+        },
+        {
+          "start_s": 14.0,
+          "end_s": 18.0,
+          "canonical_action": "Clean",
+          "raw_action": "用海绵清洗水槽",
+          "object": "水槽",
+          "confidence": 0.85,
+          "evidence_times": [
+            14.0,
+            17.0
+          ]
+        },
+        {
+          "start_s": 18.0,
+          "end_s": 24.0,
+          "canonical_action": "Rub",
+          "raw_action": "用海绵擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.8,
+          "evidence_times": [
+            18.0,
+            23.0
+          ]
+        },
+        {
+          "start_s": 24.0,
+          "end_s": 30.0,
+          "canonical_action": "Clean",
+          "raw_action": "用海绵清洗水槽排水口",
+          "object": "水槽",
+          "confidence": 0.85,
+          "evidence_times": [
+            24.0,
+            29.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 1,
+    "frame_start": 16,
+    "frame_end": 32,
+    "time_start": 32.032,
+    "time_end": 62.03,
+    "semantic": {
+      "summary": "一个人在厨房水槽中用钢丝球清洁排水口。",
+      "scene": "厨房水槽区域",
+      "objects": [
+        "人",
+        "钢丝球",
+        "排水口",
+        "水槽",
+        "水"
+      ],
+      "action_segments": [
+        {
+          "start_s": 32.032,
+          "end_s": 38.032,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.95,
+          "evidence_times": [
+            32.032,
+            34.032,
+            36.032
+          ]
+        },
+        {
+          "start_s": 38.032,
+          "end_s": 40.03,
+          "canonical_action": "Drop",
+          "raw_action": "将钢丝球放入粉色盆中",
+          "object": "钢丝球",
+          "confidence": 0.85,
+          "evidence_times": [
+            38.032
+          ]
+        },
+        {
+          "start_s": 40.03,
+          "end_s": 42.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            40.03,
+            42.03
+          ]
+        },
+        {
+          "start_s": 42.03,
+          "end_s": 44.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            42.03,
+            44.03
+          ]
+        },
+        {
+          "start_s": 44.03,
+          "end_s": 46.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            44.03,
+            46.03
+          ]
+        },
+        {
+          "start_s": 46.03,
+          "end_s": 48.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            46.03,
+            48.03
+          ]
+        },
+        {
+          "start_s": 48.03,
+          "end_s": 50.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            48.03,
+            50.03
+          ]
+        },
+        {
+          "start_s": 50.03,
+          "end_s": 52.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            50.03,
+            52.03
+          ]
+        },
+        {
+          "start_s": 52.03,
+          "end_s": 54.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            52.03,
+            54.03
+          ]
+        },
+        {
+          "start_s": 54.03,
+          "end_s": 56.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            54.03,
+            56.03
+          ]
+        },
+        {
+          "start_s": 56.03,
+          "end_s": 58.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            56.03,
+            58.03
+          ]
+        },
+        {
+          "start_s": 58.03,
+          "end_s": 62.03,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            58.03,
+            60.03,
+            62.03
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 2,
+    "frame_start": 32,
+    "frame_end": 48,
+    "time_start": 64.03,
+    "time_end": 94.027,
+    "semantic": {
+      "summary": "一个人在厨房水槽中用钢丝球清洗一个金属容器。",
+      "scene": "厨房水槽区域",
+      "objects": [
+        "人",
+        "钢丝球",
+        "金属容器",
+        "水槽",
+        "水"
+      ],
+      "action_segments": [
+        {
+          "start_s": 64.03,
+          "end_s": 68.028,
+          "canonical_action": "Scrub",
+          "raw_action": "用钢丝球擦拭金属容器",
+          "object": "金属容器",
+          "confidence": 0.95,
+          "evidence_times": [
+            64.03,
+            65.028,
+            66.028,
+            67.028
+          ]
+        },
+        {
+          "start_s": 68.028,
+          "end_s": 72.028,
+          "canonical_action": "Rub",
+          "raw_action": "用钢丝球擦拭水槽内壁",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            68.028,
+            69.028,
+            70.028,
+            71.028
+          ]
+        },
+        {
+          "start_s": 72.028,
+          "end_s": 76.028,
+          "canonical_action": "Hold",
+          "raw_action": "用手握住金属容器",
+          "object": "金属容器",
+          "confidence": 0.9,
+          "evidence_times": [
+            72.028,
+            73.028,
+            74.028,
+            75.028
+          ]
+        },
+        {
+          "start_s": 76.028,
+          "end_s": 80.028,
+          "canonical_action": "Scrub",
+          "raw_action": "用钢丝球擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.85,
+          "evidence_times": [
+            76.028,
+            77.028,
+            78.028,
+            79.028
+          ]
+        },
+        {
+          "start_s": 80.028,
+          "end_s": 84.028,
+          "canonical_action": "Rub",
+          "raw_action": "用钢丝球擦拭水槽内壁",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            80.028,
+            81.028,
+            82.028,
+            83.028
+          ]
+        },
+        {
+          "start_s": 84.028,
+          "end_s": 88.028,
+          "canonical_action": "Scrub",
+          "raw_action": "用钢丝球擦拭金属容器",
+          "object": "金属容器",
+          "confidence": 0.9,
+          "evidence_times": [
+            84.028,
+            85.028,
+            86.028,
+            87.028
+          ]
+        },
+        {
+          "start_s": 88.028,
+          "end_s": 92.027,
+          "canonical_action": "Scrub",
+          "raw_action": "用钢丝球擦拭金属容器",
+          "object": "金属容器",
+          "confidence": 0.9,
+          "evidence_times": [
+            88.028,
+            89.028,
+            90.028,
+            91.028
+          ]
+        },
+        {
+          "start_s": 92.027,
+          "end_s": 94.027,
+          "canonical_action": "Rub",
+          "raw_action": "用钢丝球擦拭水槽内壁",
+          "object": "水槽",
+          "confidence": 0.85,
+          "evidence_times": [
+            92.027,
+            93.027,
+            94.027
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 3,
+    "frame_start": 48,
+    "frame_end": 64,
+    "time_start": 96.027,
+    "time_end": 126.025,
+    "semantic": {
+      "summary": "一个人在厨房水槽中用钢丝球清洁排水口。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "水槽",
+        "钢丝球",
+        "抹布",
+        "排水口盖",
+        "清洁剂"
+      ],
+      "action_segments": [
+        {
+          "start_s": 96.027,
+          "end_s": 100.027,
+          "canonical_action": "Grasp",
+          "raw_action": "双手握住钢丝球",
+          "object": "钢丝球",
+          "confidence": 0.95,
+          "evidence_times": [
+            96.027,
+            97.027,
+            98.027,
+            99.027
+          ]
+        },
+        {
+          "start_s": 100.027,
+          "end_s": 104.027,
+          "canonical_action": "Move",
+          "raw_action": "将钢丝球从台面移到水槽中",
+          "object": "钢丝球",
+          "confidence": 0.9,
+          "evidence_times": [
+            100.027,
+            101.027,
+            102.027,
+            103.027
+          ]
+        },
+        {
+          "start_s": 104.027,
+          "end_s": 112.027,
+          "canonical_action": "Scrub",
+          "raw_action": "用钢丝球擦拭水槽排水口",
+          "object": "排水口",
+          "confidence": 0.92,
+          "evidence_times": [
+            104.027,
+            105.027,
+            106.027,
+            107.027,
+            108.027,
+            109.027,
+            110.027,
+            111.027
+          ]
+        },
+        {
+          "start_s": 112.027,
+          "end_s": 114.027,
+          "canonical_action": "Hold",
+          "raw_action": "用手握住排水口盖",
+          "object": "排水口盖",
+          "confidence": 0.85,
+          "evidence_times": [
+            112.027,
+            113.027,
+            114.027
+          ]
+        },
+        {
+          "start_s": 114.027,
+          "end_s": 116.027,
+          "canonical_action": "Place",
+          "raw_action": "将排水口盖放在水槽边缘",
+          "object": "排水口盖",
+          "confidence": 0.88,
+          "evidence_times": [
+            114.027,
+            115.027,
+            116.027
+          ]
+        },
+        {
+          "start_s": 116.027,
+          "end_s": 126.027,
+          "canonical_action": "Scrub",
+          "raw_action": "继续用钢丝球擦拭排水口",
+          "object": "排水口",
+          "confidence": 0.9,
+          "evidence_times": [
+            116.027,
+            117.027,
+            118.027,
+            119.027,
+            120.027,
+            121.027,
+            122.027,
+            123.027,
+            124.027,
+            125.027,
+            126.027
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 4,
+    "frame_start": 64,
+    "frame_end": 80,
+    "time_start": 128.025,
+    "time_end": 158.023,
+    "semantic": {
+      "summary": "一个人用钢丝球清洁厨房水槽的排水口。",
+      "scene": "厨房水槽",
+      "objects": [
+        "人",
+        "钢丝球",
+        "水槽",
+        "毛巾",
+        "排水口"
+      ],
+      "action_segments": [
+        {
+          "start_s": 128.025,
+          "end_s": 142.025,
+          "canonical_action": "Scrub",
+          "raw_action": "用钢丝球擦拭排水口",
+          "object": "排水口",
+          "confidence": 0.95,
+          "evidence_times": [
+            128.025,
+            130.025,
+            132.025,
+            134.025,
+            136.025,
+            138.025,
+            140.025
+          ]
+        },
+        {
+          "start_s": 142.023,
+          "end_s": 154.023,
+          "canonical_action": "Scrub",
+          "raw_action": "继续用钢丝球擦拭排水口",
+          "object": "排水口",
+          "confidence": 0.95,
+          "evidence_times": [
+            142.023,
+            144.023,
+            146.023,
+            148.023,
+            150.023
+          ]
+        },
+        {
+          "start_s": 154.023,
+          "end_s": 158.023,
+          "canonical_action": "Stop",
+          "raw_action": "停止擦拭",
+          "object": "排水口",
+          "confidence": 0.85,
+          "evidence_times": [
+            154.023,
+            156.023,
+            158.023
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 5,
+    "frame_start": 80,
+    "frame_end": 96,
+    "time_start": 160.023,
+    "time_end": 190.022,
+    "semantic": {
+      "summary": "一个人在厨房水槽中用钢丝球和抹布清洁水槽。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "水槽",
+        "钢丝球",
+        "抹布",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 160.023,
+          "end_s": 162.023,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            160.023,
+            161.023,
+            162.023
+          ]
+        },
+        {
+          "start_s": 162.023,
+          "end_s": 164.023,
+          "canonical_action": "Move",
+          "raw_action": "将钢丝球移至水槽边缘",
+          "object": "钢丝球",
+          "confidence": 0.85,
+          "evidence_times": [
+            162.023,
+            163.023,
+            164.023
+          ]
+        },
+        {
+          "start_s": 164.023,
+          "end_s": 166.023,
+          "canonical_action": "Hold",
+          "raw_action": "用手握住水槽边缘",
+          "object": "水槽",
+          "confidence": 0.8,
+          "evidence_times": [
+            164.023,
+            165.023,
+            166.023
+          ]
+        },
+        {
+          "start_s": 166.023,
+          "end_s": 168.023,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            166.023,
+            167.023,
+            168.023
+          ]
+        },
+        {
+          "start_s": 168.023,
+          "end_s": 170.022,
+          "canonical_action": "Move",
+          "raw_action": "将钢丝球移至水槽边缘",
+          "object": "钢丝球",
+          "confidence": 0.85,
+          "evidence_times": [
+            168.023,
+            169.023,
+            170.022
+          ]
+        },
+        {
+          "start_s": 170.022,
+          "end_s": 172.022,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            170.022,
+            171.022,
+            172.022
+          ]
+        },
+        {
+          "start_s": 172.022,
+          "end_s": 174.022,
+          "canonical_action": "Move",
+          "raw_action": "将钢丝球移至水槽边缘",
+          "object": "钢丝球",
+          "confidence": 0.85,
+          "evidence_times": [
+            172.022,
+            173.022,
+            174.022
+          ]
+        },
+        {
+          "start_s": 174.022,
+          "end_s": 176.022,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            174.022,
+            175.022,
+            176.022
+          ]
+        },
+        {
+          "start_s": 176.022,
+          "end_s": 178.022,
+          "canonical_action": "Move",
+          "raw_action": "将钢丝球移至水槽边缘",
+          "object": "钢丝球",
+          "confidence": 0.85,
+          "evidence_times": [
+            176.022,
+            177.022,
+            178.022
+          ]
+        },
+        {
+          "start_s": 178.022,
+          "end_s": 180.022,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            178.022,
+            179.022,
+            180.022
+          ]
+        },
+        {
+          "start_s": 180.022,
+          "end_s": 182.022,
+          "canonical_action": "Move",
+          "raw_action": "将钢丝球移至水槽边缘",
+          "object": "钢丝球",
+          "confidence": 0.85,
+          "evidence_times": [
+            180.022,
+            181.022,
+            182.022
+          ]
+        },
+        {
+          "start_s": 182.022,
+          "end_s": 184.022,
+          "canonical_action": "Clean",
+          "raw_action": "用钢丝球清洁水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            182.022,
+            183.022,
+            184.022
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 6,
+    "frame_start": 96,
+    "frame_end": 112,
+    "time_start": 192.022,
+    "time_end": 222.018,
+    "semantic": {
+      "summary": "一个人正在用抹布清洗厨房水槽。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "抹布",
+        "水槽",
+        "清洁剂"
+      ],
+      "action_segments": [
+        {
+          "start_s": 192.022,
+          "end_s": 196.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            192.022,
+            194.022,
+            196.02
+          ]
+        },
+        {
+          "start_s": 198.02,
+          "end_s": 200.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            198.02,
+            200.02
+          ]
+        },
+        {
+          "start_s": 202.02,
+          "end_s": 204.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            202.02,
+            204.02
+          ]
+        },
+        {
+          "start_s": 206.02,
+          "end_s": 208.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            206.02,
+            208.02
+          ]
+        },
+        {
+          "start_s": 210.02,
+          "end_s": 212.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            210.02,
+            212.02
+          ]
+        },
+        {
+          "start_s": 214.02,
+          "end_s": 216.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            214.02,
+            216.02
+          ]
+        },
+        {
+          "start_s": 218.02,
+          "end_s": 220.02,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            218.02,
+            220.02
+          ]
+        },
+        {
+          "start_s": 222.018,
+          "end_s": 222.018,
+          "canonical_action": "Stop",
+          "raw_action": "停止擦拭",
+          "object": "水槽",
+          "confidence": 0.85,
+          "evidence_times": [
+            222.018
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 7,
+    "frame_start": 112,
+    "frame_end": 128,
+    "time_start": 224.018,
+    "time_end": 254.017,
+    "semantic": {
+      "summary": "一个人用抹布擦拭厨房水槽和水龙头。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "抹布",
+        "水槽",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 224.018,
+          "end_s": 232.018,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            224.018,
+            226.018,
+            228.018,
+            230.018,
+            232.018
+          ]
+        },
+        {
+          "start_s": 232.018,
+          "end_s": 236.018,
+          "canonical_action": "Move",
+          "raw_action": "移动抹布到水龙头",
+          "object": "抹布",
+          "confidence": 0.85,
+          "evidence_times": [
+            232.018,
+            234.018,
+            236.018
+          ]
+        },
+        {
+          "start_s": 238.018,
+          "end_s": 246.018,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水龙头",
+          "object": "水龙头",
+          "confidence": 0.92,
+          "evidence_times": [
+            238.018,
+            240.018,
+            242.018,
+            244.018,
+            246.018
+          ]
+        },
+        {
+          "start_s": 248.017,
+          "end_s": 254.017,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水龙头",
+          "object": "水龙头",
+          "confidence": 0.88,
+          "evidence_times": [
+            248.017,
+            250.017,
+            252.017,
+            254.017
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 8,
+    "frame_start": 128,
+    "frame_end": 144,
+    "time_start": 256.017,
+    "time_end": 286.015,
+    "semantic": {
+      "summary": "一个人在厨房水槽边用抹布清洗水龙头和水槽。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "水龙头",
+        "抹布",
+        "水槽",
+        "洗洁精"
+      ],
+      "action_segments": [
+        {
+          "start_s": 256.017,
+          "end_s": 260.017,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水龙头",
+          "object": "水龙头",
+          "confidence": 0.95,
+          "evidence_times": [
+            256.017,
+            258.017,
+            260.017
+          ]
+        },
+        {
+          "start_s": 260.017,
+          "end_s": 264.017,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            260.017,
+            262.017,
+            264.017
+          ]
+        },
+        {
+          "start_s": 264.017,
+          "end_s": 268.017,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水龙头",
+          "object": "水龙头",
+          "confidence": 0.95,
+          "evidence_times": [
+            264.017,
+            266.017,
+            268.017
+          ]
+        },
+        {
+          "start_s": 268.017,
+          "end_s": 272.015,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            268.017,
+            270.017,
+            272.015
+          ]
+        },
+        {
+          "start_s": 272.015,
+          "end_s": 276.015,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            272.015,
+            274.015,
+            276.015
+          ]
+        },
+        {
+          "start_s": 276.015,
+          "end_s": 280.015,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            276.015,
+            278.015,
+            280.015
+          ]
+        },
+        {
+          "start_s": 280.015,
+          "end_s": 284.015,
+          "canonical_action": "Rub",
+          "raw_action": "用抹布擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            280.015,
+            282.015,
+            284.015
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 9,
+    "frame_start": 144,
+    "frame_end": 160,
+    "time_start": 288.015,
+    "time_end": 318.013,
+    "semantic": {
+      "summary": "一个人在厨房水槽中清洗排水口盖子和抹布。",
+      "scene": "厨房水槽区域",
+      "objects": [
+        "人",
+        "水槽",
+        "排水口盖子",
+        "抹布",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 288.015,
+          "end_s": 300.013,
+          "canonical_action": "Clean",
+          "raw_action": "用抹布擦拭水槽排水口盖子",
+          "object": "排水口盖子",
+          "confidence": 0.95,
+          "evidence_times": [
+            288.015,
+            290.015,
+            292.015,
+            294.015,
+            296.015,
+            298.015,
+            300.013
+          ]
+        },
+        {
+          "start_s": 300.013,
+          "end_s": 304.013,
+          "canonical_action": "Clean",
+          "raw_action": "用清水冲洗排水口盖子",
+          "object": "排水口盖子",
+          "confidence": 0.9,
+          "evidence_times": [
+            300.013,
+            302.013,
+            304.013
+          ]
+        },
+        {
+          "start_s": 304.013,
+          "end_s": 308.013,
+          "canonical_action": "Place",
+          "raw_action": "将排水口盖子放在水槽边",
+          "object": "排水口盖子",
+          "confidence": 0.85,
+          "evidence_times": [
+            304.013,
+            306.013,
+            308.013
+          ]
+        },
+        {
+          "start_s": 308.013,
+          "end_s": 318.013,
+          "canonical_action": "Clean",
+          "raw_action": "用清水冲洗抹布",
+          "object": "抹布",
+          "confidence": 0.9,
+          "evidence_times": [
+            308.013,
+            310.013,
+            312.013,
+            314.013,
+            316.013,
+            318.013
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 10,
+    "frame_start": 160,
+    "frame_end": 176,
+    "time_start": 320.013,
+    "time_end": 350.012,
+    "semantic": {
+      "summary": "一个人在厨房水槽中清洗一块布料。",
+      "scene": "厨房水槽区域",
+      "objects": [
+        "人",
+        "布料",
+        "水槽",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 320.013,
+          "end_s": 326.012,
+          "canonical_action": "Clean",
+          "raw_action": "用双手在水槽中搓洗布料",
+          "object": "布料",
+          "confidence": 0.95,
+          "evidence_times": [
+            320.013,
+            321.013,
+            322.013,
+            323.013,
+            324.013,
+            325.013,
+            326.012
+          ]
+        },
+        {
+          "start_s": 326.012,
+          "end_s": 330.012,
+          "canonical_action": "Rub",
+          "raw_action": "用双手揉搓布料",
+          "object": "布料",
+          "confidence": 0.9,
+          "evidence_times": [
+            326.012,
+            327.012,
+            328.012,
+            329.012,
+            330.012
+          ]
+        },
+        {
+          "start_s": 330.012,
+          "end_s": 334.012,
+          "canonical_action": "Clean",
+          "raw_action": "在水槽中清洗布料",
+          "object": "布料",
+          "confidence": 0.9,
+          "evidence_times": [
+            330.012,
+            331.012,
+            332.012,
+            333.012,
+            334.012
+          ]
+        },
+        {
+          "start_s": 334.012,
+          "end_s": 342.012,
+          "canonical_action": "Rub",
+          "raw_action": "用双手揉搓布料",
+          "object": "布料",
+          "confidence": 0.9,
+          "evidence_times": [
+            334.012,
+            335.012,
+            336.012,
+            337.012,
+            338.012,
+            339.012,
+            340.012,
+            341.012,
+            342.012
+          ]
+        },
+        {
+          "start_s": 342.012,
+          "end_s": 348.012,
+          "canonical_action": "Clean",
+          "raw_action": "在水槽中清洗布料",
+          "object": "布料",
+          "confidence": 0.9,
+          "evidence_times": [
+            342.012,
+            343.012,
+            344.012,
+            345.012,
+            346.012,
+            347.012,
+            348.012
+          ]
+        },
+        {
+          "start_s": 348.012,
+          "end_s": 350.012,
+          "canonical_action": "Release",
+          "raw_action": "松开布料",
+          "object": "布料",
+          "confidence": 0.85,
+          "evidence_times": [
+            348.012,
+            349.012,
+            350.012
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 11,
+    "frame_start": 176,
+    "frame_end": 192,
+    "time_start": 352.01,
+    "time_end": 382.008,
+    "semantic": {
+      "summary": "一个人在厨房水槽中用抹布清洗水槽，然后用清水冲洗抹布。",
+      "scene": "厨房水槽区域",
+      "objects": [
+        "人",
+        "抹布",
+        "水槽",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 352.01,
+          "end_s": 364.01,
+          "canonical_action": "Clean",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            352.01,
+            354.01,
+            356.01,
+            358.01,
+            360.01,
+            362.01,
+            364.01
+          ]
+        },
+        {
+          "start_s": 366.01,
+          "end_s": 370.01,
+          "canonical_action": "Place",
+          "raw_action": "将水槽盖放入右侧水槽",
+          "object": "水槽盖",
+          "confidence": 0.85,
+          "evidence_times": [
+            366.01,
+            368.01,
+            370.01
+          ]
+        },
+        {
+          "start_s": 372.01,
+          "end_s": 378.008,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            372.01,
+            374.01,
+            376.01,
+            378.008
+          ]
+        },
+        {
+          "start_s": 380.008,
+          "end_s": 382.008,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水龙头",
+          "object": "水龙头",
+          "confidence": 0.8,
+          "evidence_times": [
+            380.008,
+            382.008
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 12,
+    "frame_start": 192,
+    "frame_end": 208,
+    "time_start": 384.008,
+    "time_end": 414.007,
+    "semantic": {
+      "summary": "一个人在厨房水槽中用抹布擦拭水槽和排水口。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "水槽",
+        "抹布",
+        "水龙头"
+      ],
+      "action_segments": [
+        {
+          "start_s": 384.008,
+          "end_s": 398.008,
+          "canonical_action": "Clean",
+          "raw_action": "用抹布擦拭水槽和排水口",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            384.008,
+            386.008,
+            388.008,
+            390.008,
+            392.008,
+            394.008,
+            396.008,
+            398.008
+          ]
+        },
+        {
+          "start_s": 400.008,
+          "end_s": 402.008,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.9,
+          "evidence_times": [
+            400.008,
+            402.008
+          ]
+        },
+        {
+          "start_s": 404.007,
+          "end_s": 414.007,
+          "canonical_action": "Clean",
+          "raw_action": "用抹布擦拭水槽和排水口",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            404.007,
+            406.007,
+            408.007,
+            410.007,
+            412.007,
+            414.007
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 13,
+    "frame_start": 208,
+    "frame_end": 215,
+    "time_start": 416.007,
+    "time_end": 428.007,
+    "semantic": {
+      "summary": "一个人在厨房水槽旁用毛巾擦拭水槽边缘。",
+      "scene": "厨房",
+      "objects": [
+        "人",
+        "水槽",
+        "毛巾",
+        "水龙头",
+        "清洁用品"
+      ],
+      "action_segments": [
+        {
+          "start_s": 416.007,
+          "end_s": 418.007,
+          "canonical_action": "Wipe",
+          "raw_action": "用毛巾擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            416.007,
+            417.007,
+            418.007
+          ]
+        },
+        {
+          "start_s": 418.007,
+          "end_s": 420.007,
+          "canonical_action": "Wipe",
+          "raw_action": "继续用毛巾擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            418.007,
+            419.007,
+            420.007
+          ]
+        },
+        {
+          "start_s": 420.007,
+          "end_s": 422.007,
+          "canonical_action": "Wipe",
+          "raw_action": "用毛巾擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            420.007,
+            421.007,
+            422.007
+          ]
+        },
+        {
+          "start_s": 422.007,
+          "end_s": 424.007,
+          "canonical_action": "Wipe",
+          "raw_action": "用毛巾擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            422.007,
+            423.007,
+            424.007
+          ]
+        },
+        {
+          "start_s": 424.007,
+          "end_s": 426.007,
+          "canonical_action": "Wipe",
+          "raw_action": "用毛巾擦拭水槽边缘",
+          "object": "水槽",
+          "confidence": 0.95,
+          "evidence_times": [
+            424.007,
+            425.007,
+            426.007
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  }
+]

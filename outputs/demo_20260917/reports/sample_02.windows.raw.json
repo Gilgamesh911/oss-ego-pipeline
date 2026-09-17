@@ -1,0 +1,103 @@
+[
+  {
+    "window_index": 0,
+    "frame_start": 0,
+    "frame_end": 8,
+    "time_start": 0.0,
+    "time_end": 14.0,
+    "semantic": {
+      "summary": "一个人在超市饮料区用抹布擦拭可口可乐瓶并将其放回货架。",
+      "scene": "超市饮料区",
+      "objects": [
+        {
+          "name": "手",
+          "type": "人体部位",
+          "description": "一只手拿着抹布，另一只手拿饮料瓶"
+        },
+        {
+          "name": "抹布",
+          "type": "清洁用品",
+          "description": "粉色和绿色相间的抹布"
+        },
+        {
+          "name": "可口可乐瓶",
+          "type": "饮料瓶",
+          "description": "带有红色标签的深色塑料瓶"
+        },
+        {
+          "name": "货架",
+          "type": "陈列架",
+          "description": "多层货架，摆放各种饮料"
+        },
+        {
+          "name": "塑料桶",
+          "type": "容器",
+          "description": "装有饮料瓶的塑料桶"
+        }
+      ],
+      "action_segments": [
+        {
+          "start_s": 0.0,
+          "end_s": 2.0,
+          "canonical_action": "Grasp",
+          "raw_action": "用手抓起抹布",
+          "object": "抹布",
+          "confidence": 0.95,
+          "evidence_times": [
+            0.0
+          ]
+        },
+        {
+          "start_s": 2.0,
+          "end_s": 4.0,
+          "canonical_action": "Pick",
+          "raw_action": "从桶中取出一瓶可口可乐",
+          "object": "可口可乐瓶",
+          "confidence": 0.92,
+          "evidence_times": [
+            2.0
+          ]
+        },
+        {
+          "start_s": 4.0,
+          "end_s": 8.0,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭可口可乐瓶",
+          "object": "可口可乐瓶",
+          "confidence": 0.9,
+          "evidence_times": [
+            4.0,
+            6.0,
+            8.0
+          ]
+        },
+        {
+          "start_s": 8.0,
+          "end_s": 12.0,
+          "canonical_action": "Place",
+          "raw_action": "将可口可乐瓶放回货架",
+          "object": "可口可乐瓶",
+          "confidence": 0.88,
+          "evidence_times": [
+            8.0,
+            10.0,
+            12.0
+          ]
+        },
+        {
+          "start_s": 12.0,
+          "end_s": 14.0,
+          "canonical_action": "Release",
+          "raw_action": "松开抹布",
+          "object": "抹布",
+          "confidence": 0.85,
+          "evidence_times": [
+            12.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  }
+]

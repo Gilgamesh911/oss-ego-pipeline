@@ -1,0 +1,151 @@
+{
+  "windows": 4,
+  "parsed_windows": 4,
+  "segments": 30,
+  "vocabulary_valid": 30,
+  "schema_complete": 30,
+  "time_and_reference_valid": 23,
+  "validated_interval_coverage_s": 88.005,
+  "validated_interval_coverage_ratio": 0.7067160982921997,
+  "errors": [
+    {
+      "window": 3,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 96.008,
+        "end_s": 100.008,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓住纸箱",
+        "object": "纸箱",
+        "confidence": 0.95,
+        "evidence_times": [
+          96.008,
+          97.008,
+          98.008,
+          99.008
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 1,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 100.008,
+        "end_s": 104.008,
+        "canonical_action": "Grasp",
+        "raw_action": "用手指捏住胶带",
+        "object": "胶带",
+        "confidence": 0.9,
+        "evidence_times": [
+          100.008,
+          101.008,
+          102.008,
+          103.008
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 2,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 104.008,
+        "end_s": 110.008,
+        "canonical_action": "Wrap",
+        "raw_action": "用胶带缠绕纸箱",
+        "object": "纸箱",
+        "confidence": 0.92,
+        "evidence_times": [
+          104.008,
+          105.008,
+          106.008,
+          107.008,
+          108.008,
+          109.008
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 3,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 110.008,
+        "end_s": 114.008,
+        "canonical_action": "Press",
+        "raw_action": "按压胶带使其粘牢",
+        "object": "胶带",
+        "confidence": 0.85,
+        "evidence_times": [
+          110.008,
+          111.008,
+          112.008,
+          113.008
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 4,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 114.008,
+        "end_s": 118.008,
+        "canonical_action": "Place",
+        "raw_action": "将纸箱放在地上",
+        "object": "纸箱",
+        "confidence": 0.9,
+        "evidence_times": [
+          114.008,
+          115.008,
+          116.008,
+          117.008
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 5,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 118.008,
+        "end_s": 120.008,
+        "canonical_action": "Grasp",
+        "raw_action": "双手抓住纸箱",
+        "object": "纸箱",
+        "confidence": 0.9,
+        "evidence_times": [
+          118.008,
+          119.008
+        ]
+      }
+    },
+    {
+      "window": 3,
+      "segment": 6,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 120.008,
+        "end_s": 124.008,
+        "canonical_action": "Place",
+        "raw_action": "将纸箱放在地上",
+        "object": "纸箱",
+        "confidence": 0.9,
+        "evidence_times": [
+          120.008,
+          121.008,
+          122.008,
+          123.008
+        ]
+      }
+    }
+  ],
+  "level": null,
+  "N": null,
+  "H": null,
+  "review_status": null,
+  "pipeline_status": null,
+  "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 2.0,
+      "canonical_action": "Grasp",
+      "raw_action": "用手握住锅盖",
+      "object": "锅盖",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        1.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_05_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0
+    ]
+  },
+  {
+    "segment_index": 45,
+    "claim": {
+      "start_s": 176.022,
+      "end_s": 178.022,
+      "canonical_action": "Move",
+      "raw_action": "将钢丝球移至水槽边缘",
+      "object": "钢丝球",
+      "confidence": 0.85,
+      "evidence_times": [
+        176.022,
+        177.022,
+        178.022
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_05_action_045.jpg",
+    "checked_times": [
+      174.022,
+      176.022,
+      178.022,
+      180.022
+    ]
+  },
+  {
+    "segment_index": 89,
+    "claim": {
+      "start_s": 424.007,
+      "end_s": 426.007,
+      "canonical_action": "Wipe",
+      "raw_action": "用毛巾擦拭水槽边缘",
+      "object": "水槽",
+      "confidence": 0.95,
+      "evidence_times": [
+        424.007,
+        425.007,
+        426.007
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_05_action_089.jpg",
+    "checked_times": [
+      422.007,
+      424.007,
+      426.007,
+      428.007
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 2.0,
+      "canonical_action": "Grasp",
+      "raw_action": "用手抓起抹布",
+      "object": "抹布",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_02_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0
+    ]
+  },
+  {
+    "segment_index": 2,
+    "claim": {
+      "start_s": 4.0,
+      "end_s": 8.0,
+      "canonical_action": "Wipe",
+      "raw_action": "用抹布擦拭可口可乐瓶",
+      "object": "可口可乐瓶",
+      "confidence": 0.9,
+      "evidence_times": [
+        4.0,
+        6.0,
+        8.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_02_action_002.jpg",
+    "checked_times": [
+      2.0,
+      4.0,
+      6.0,
+      8.0,
+      10.0
+    ]
+  },
+  {
+    "segment_index": 4,
+    "claim": {
+      "start_s": 12.0,
+      "end_s": 14.0,
+      "canonical_action": "Release",
+      "raw_action": "松开抹布",
+      "object": "抹布",
+      "confidence": 0.85,
+      "evidence_times": [
+        12.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_02_action_004.jpg",
+    "checked_times": [
+      10.0,
+      12.0,
+      14.0
+    ]
+  }
+]

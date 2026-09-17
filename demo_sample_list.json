@@ -1,0 +1,5498 @@
+{
+  "seed": 20260917,
+  "method": "source-stratified random sampling from bounded inventory; one eligible video per source first, then random source fill; maxdepth=9; no manual selection by semantic result",
+  "not_bucket_uniform": true,
+  "inventory": {
+    "Deepreach": {
+      "complete": true,
+      "listed_count": 929
+    },
+    "xquare": {
+      "complete": true,
+      "listed_count": 0
+    },
+    "astribot": {
+      "complete": true,
+      "listed_count": 92
+    },
+    "lingchu": {
+      "complete": false,
+      "listed_count": 0
+    },
+    "XJGT_EgoExo_sample0714": {
+      "complete": true,
+      "listed_count": 25
+    },
+    "补天石ego数据10小时": {
+      "complete": true,
+      "listed_count": 109
+    },
+    "擎羽": {
+      "complete": true,
+      "listed_count": 1982
+    },
+    "shushuogushi": {
+      "complete": true,
+      "listed_count": 24
+    },
+    "youtube": {
+      "complete": true,
+      "listed_count": 16
+    },
+    "scene_example_测试样例": {
+      "complete": true,
+      "listed_count": 32
+    }
+  },
+  "max_duration_s": 600,
+  "parameters": {
+    "interval": 2,
+    "max_frames": 300,
+    "window_frames": 16,
+    "max_duration": 600
+  },
+  "pipeline_commit": "07fe1121ab508e512aff6e064ea0a6655fce8dbd",
+  "pipeline_sha256": "36e25811352607b95fee981b3a8cf28b10635b0f088d7beb5489fbcad16ff7b0",
+  "repeat_ids": [
+    "sample_01",
+    "sample_05",
+    "sample_07"
+  ],
+  "samples": [
+    {
+      "video": "/mnt/oss/scene_example_测试样例/双目餐饮1.03h/cam0.mp4",
+      "source": "scene_example_测试样例",
+      "duration_s": 42.766666666666666,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1200,
+      "codec": "hevc",
+      "eligible": true,
+      "id": "sample_01",
+      "oss_uri": "oss://ccm-ego/scene_example_测试样例/双目餐饮1.03h/cam0.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_01.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 59.34,
+        "metrics": {
+          "windows": 2,
+          "parsed_windows": 2,
+          "segments": 11,
+          "vocabulary_valid": 11,
+          "schema_complete": 11,
+          "time_and_reference_valid": 11,
+          "validated_interval_coverage_s": 40.0,
+          "validated_interval_coverage_ratio": 0.9353078721745908,
+          "errors": [],
+          "level": "中",
+          "N": 11,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一个人用抹布擦拭餐桌，整理餐具。；服务员用抹布擦拭餐桌上的碗碟。",
+        "preview": "outputs/demo_20260917/previews/sample_01.jpg",
+        "report": "outputs/demo_20260917/reports/sample_01.json"
+      },
+      "repeat": {
+        "exit_code": 0,
+        "wall_seconds": 58.97,
+        "metrics": {
+          "windows": 2,
+          "parsed_windows": 2,
+          "segments": 11,
+          "vocabulary_valid": 11,
+          "schema_complete": 11,
+          "time_and_reference_valid": 11,
+          "validated_interval_coverage_s": 40.0,
+          "validated_interval_coverage_ratio": 0.9353078721745908,
+          "errors": [],
+          "level": "中",
+          "N": 11,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一个人用抹布擦拭餐桌，整理餐具。；服务员用抹布擦拭餐桌上的碗碟。",
+        "preview": "outputs/demo_20260917/previews/sample_01_repeat.jpg",
+        "report": "outputs/demo_20260917/reports/sample_01_repeat.json"
+      },
+      "review": {
+        "task_assessment": "主要任务一致，个别对象描述待核验",
+        "conclusion": "正确识别餐桌擦拭和餐具移位；后窗把擦桌附近动作称为擦碗；N=11仍可能高估重复清洁阶段。",
+        "visual_evidence": "0–42秒抽帧显示穿粉色衣服的人持抹布擦餐桌，并移动碗盘/筷子。",
+        "reference_label": null,
+        "reference_agreement": null,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "supported",
+            "reason": "0–4秒从门口地面视角移动到餐桌附近。"
+          },
+          {
+            "segment_index": 5,
+            "verdict": "supported",
+            "reason": "18–22秒右手持布擦桌，左手整理桌上物品。"
+          },
+          {
+            "segment_index": 10,
+            "verdict": "supported",
+            "reason": "40–42秒右手仍持布接触桌面。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 2,
+        "parsed_windows": 2,
+        "segments": 11,
+        "vocabulary_valid": 11,
+        "schema_complete": 11,
+        "time_and_reference_valid": 11,
+        "validated_interval_coverage_s": 40.0,
+        "validated_interval_coverage_ratio": 0.9353078721745908,
+        "errors": [],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/scene_example_测试样例/双目商超2   2.48h/cam0.mp4",
+      "source": "scene_example_测试样例",
+      "duration_s": 15.233333333333333,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1200,
+      "codec": "hevc",
+      "eligible": true,
+      "id": "sample_02",
+      "oss_uri": "oss://ccm-ego/scene_example_测试样例/双目商超2   2.48h/cam0.mp4",
+      "status": "failed",
+      "report": "outputs/demo_20260917/reports/sample_02.json",
+      "result": {
+        "exit_code": 1,
+        "wall_seconds": 31.22,
+        "metrics": {
+          "windows": 0,
+          "parsed_windows": 0,
+          "segments": 0,
+          "vocabulary_valid": 0,
+          "schema_complete": 0,
+          "time_and_reference_valid": 0,
+          "validated_interval_coverage_s": 0,
+          "validated_interval_coverage_ratio": 0.0,
+          "errors": [],
+          "level": null,
+          "N": null,
+          "H": null,
+          "review_status": null,
+          "pipeline_status": "failed",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "失败，见日志",
+        "preview": "outputs/demo_20260917/previews/sample_02.jpg",
+        "report": "outputs/demo_20260917/reports/sample_02.json"
+      },
+      "review": {
+        "task_assessment": "原始窗口主任务一致，但整条管线失败",
+        "conclusion": "窗口识别可乐瓶清洁基本正确；objects输出字典导致聚合TypeError；末段Release缺乏支持。",
+        "visual_evidence": "0–14秒持布擦拭可乐瓶，饮料货架与桶可见；12–14秒仍抓持抹布。",
+        "reference_label": null,
+        "reference_agreement": null,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "insufficient",
+            "reason": "0秒已持有抹布，抽帧不足以证实在0–2秒发生抓起动作。"
+          },
+          {
+            "segment_index": 2,
+            "verdict": "supported",
+            "reason": "4–8秒双手持瓶和抹布，连续画面支持擦瓶。"
+          },
+          {
+            "segment_index": 4,
+            "verdict": "unsupported",
+            "reason": "12–14秒仍持抹布擦另一瓶，画面不支持松开抹布。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 1,
+        "parsed_windows": 1,
+        "segments": 5,
+        "vocabulary_valid": 5,
+        "schema_complete": 5,
+        "time_and_reference_valid": 5,
+        "validated_interval_coverage_s": 14.0,
+        "validated_interval_coverage_ratio": 0.9190371991247265,
+        "errors": [],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/shushuogushi/cc_20260824_02_simple/nD9JbhaH3eM.mp4",
+      "source": "shushuogushi",
+      "duration_s": 361.3666666666667,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "eligible": true,
+      "id": "sample_03",
+      "oss_uri": "oss://ccm-ego/shushuogushi/cc_20260824_02_simple/nD9JbhaH3eM.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_03.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 376.96,
+        "metrics": {
+          "windows": 12,
+          "parsed_windows": 12,
+          "segments": 63,
+          "vocabulary_valid": 61,
+          "schema_complete": 63,
+          "time_and_reference_valid": 24,
+          "validated_interval_coverage_s": 161.0,
+          "validated_interval_coverage_ratio": 0.44553085508716905,
+          "errors": [
+            {
+              "window": 2,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 64.0,
+                "end_s": 68.0,
+                "canonical_action": "Rotate",
+                "raw_action": "男子旋转头盔，展示其正面",
+                "object": "头盔",
+                "confidence": 0.95,
+                "evidence_times": [
+                  64.0,
+                  65.0,
+                  66.0,
+                  67.0,
+                  68.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 68.0,
+                "end_s": 72.0,
+                "canonical_action": "Hold",
+                "raw_action": "男子用双手持头盔，展示其侧面",
+                "object": "头盔",
+                "confidence": 0.92,
+                "evidence_times": [
+                  68.0,
+                  69.0,
+                  70.0,
+                  71.0,
+                  72.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 72.0,
+                "end_s": 78.0,
+                "canonical_action": "Open",
+                "raw_action": "男子打开头盔的面罩",
+                "object": "头盔",
+                "confidence": 0.9,
+                "evidence_times": [
+                  72.0,
+                  73.0,
+                  74.0,
+                  75.0,
+                  76.0,
+                  77.0,
+                  78.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 78.0,
+                "end_s": 84.0,
+                "canonical_action": "Hold",
+                "raw_action": "男子继续持头盔，展示其内部结构",
+                "object": "头盔",
+                "confidence": 0.88,
+                "evidence_times": [
+                  78.0,
+                  79.0,
+                  80.0,
+                  81.0,
+                  82.0,
+                  83.0,
+                  84.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 84.0,
+                "end_s": 88.0,
+                "canonical_action": "Rotate",
+                "raw_action": "男子旋转头盔，展示其背面",
+                "object": "头盔",
+                "confidence": 0.93,
+                "evidence_times": [
+                  84.0,
+                  85.0,
+                  86.0,
+                  87.0,
+                  88.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 88.0,
+                "end_s": 94.0,
+                "canonical_action": "Touch",
+                "raw_action": "男子用手指触摸头盔的调节部件",
+                "object": "头盔",
+                "confidence": 0.85,
+                "evidence_times": [
+                  88.0,
+                  89.0,
+                  90.0,
+                  91.0,
+                  92.0,
+                  93.0,
+                  94.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 96.0,
+                "end_s": 100.0,
+                "canonical_action": "Touch",
+                "raw_action": "男子用手指触摸头盔的部件",
+                "object": "头盔配件",
+                "confidence": 0.95,
+                "evidence_times": [
+                  96.0,
+                  97.0,
+                  98.0,
+                  99.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 100.0,
+                "end_s": 104.0,
+                "canonical_action": "Grasp",
+                "raw_action": "男子握住头盔",
+                "object": "摩托车头盔",
+                "confidence": 0.92,
+                "evidence_times": [
+                  100.0,
+                  101.0,
+                  102.0,
+                  103.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 104.0,
+                "end_s": 108.0,
+                "canonical_action": "Rotate",
+                "raw_action": "男子旋转头盔展示其侧面",
+                "object": "摩托车头盔",
+                "confidence": 0.88,
+                "evidence_times": [
+                  104.0,
+                  105.0,
+                  106.0,
+                  107.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 108.0,
+                "end_s": 110.0,
+                "canonical_action": "Hold",
+                "raw_action": "男子双手持头盔配件",
+                "object": "头盔配件",
+                "confidence": 0.9,
+                "evidence_times": [
+                  108.0,
+                  109.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 110.0,
+                "end_s": 114.0,
+                "canonical_action": "Hold",
+                "raw_action": "男子用手指捏住头盔配件",
+                "object": "头盔配件",
+                "confidence": 0.9,
+                "evidence_times": [
+                  110.0,
+                  111.0,
+                  112.0,
+                  113.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 114.0,
+                "end_s": 118.0,
+                "canonical_action": "Grasp",
+                "raw_action": "男子用双手握住头盔配件",
+                "object": "头盔配件",
+                "confidence": 0.9,
+                "evidence_times": [
+                  114.0,
+                  115.0,
+                  116.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 118.0,
+                "end_s": 122.0,
+                "canonical_action": "Insert",
+                "raw_action": "男子将配件插入头盔",
+                "object": "头盔配件",
+                "confidence": 0.85,
+                "evidence_times": [
+                  118.0,
+                  119.0,
+                  120.0,
+                  121.0
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 122.0,
+                "end_s": 126.0,
+                "canonical_action": "Attach",
+                "raw_action": "男子将配件固定在头盔上",
+                "object": "头盔配件",
+                "confidence": 0.88,
+                "evidence_times": [
+                  122.0,
+                  123.0,
+                  124.0,
+                  125.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 128.0,
+                "end_s": 130.0,
+                "canonical_action": "Attach",
+                "raw_action": "将相机支架安装到头盔上",
+                "object": "相机支架",
+                "confidence": 0.95,
+                "evidence_times": [
+                  128.0,
+                  129.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 130.0,
+                "end_s": 132.0,
+                "canonical_action": "Attach",
+                "raw_action": "将相机支架固定到头盔上",
+                "object": "相机支架",
+                "confidence": 0.9,
+                "evidence_times": [
+                  130.0,
+                  131.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 132.0,
+                "end_s": 134.0,
+                "canonical_action": "Hold",
+                "raw_action": "手持头盔",
+                "object": "头盔",
+                "confidence": 0.85,
+                "evidence_times": [
+                  132.0,
+                  133.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 134.0,
+                "end_s": 136.0,
+                "canonical_action": "Grasp",
+                "raw_action": "抓取相机",
+                "object": "运动相机",
+                "confidence": 0.9,
+                "evidence_times": [
+                  134.0,
+                  135.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 136.0,
+                "end_s": 138.0,
+                "canonical_action": "Attach",
+                "raw_action": "将相机安装到支架上",
+                "object": "运动相机",
+                "confidence": 0.88,
+                "evidence_times": [
+                  136.0,
+                  137.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 138.0,
+                "end_s": 140.0,
+                "canonical_action": "Hold",
+                "raw_action": "手持相机展示",
+                "object": "运动相机",
+                "confidence": 0.92,
+                "evidence_times": [
+                  138.0,
+                  139.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 140.0,
+                "end_s": 142.0,
+                "canonical_action": "Hold",
+                "raw_action": "手持相机和头盔",
+                "object": "运动相机",
+                "confidence": 0.87,
+                "evidence_times": [
+                  140.0,
+                  141.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 142.0,
+                "end_s": 144.0,
+                "canonical_action": "Grasp",
+                "raw_action": "抓取相机支架",
+                "object": "相机支架",
+                "confidence": 0.85,
+                "evidence_times": [
+                  142.0,
+                  143.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 8,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 144.0,
+                "end_s": 146.0,
+                "canonical_action": "Attach",
+                "raw_action": "将相机支架安装到头盔上",
+                "object": "相机支架",
+                "confidence": 0.9,
+                "evidence_times": [
+                  144.0,
+                  145.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 9,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 146.0,
+                "end_s": 148.0,
+                "canonical_action": "Hold",
+                "raw_action": "手持头盔和相机",
+                "object": "头盔",
+                "confidence": 0.88,
+                "evidence_times": [
+                  146.0,
+                  147.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 10,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 148.0,
+                "end_s": 150.0,
+                "canonical_action": "Move",
+                "raw_action": "移动头盔展示安装位置",
+                "object": "头盔",
+                "confidence": 0.85,
+                "evidence_times": [
+                  148.0,
+                  149.0
+                ]
+              }
+            },
+            {
+              "window": 4,
+              "segment": 11,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 150.0,
+                "end_s": 152.0,
+                "canonical_action": "Hold",
+                "raw_action": "手持头盔",
+                "object": "头盔",
+                "confidence": 0.9,
+                "evidence_times": [
+                  150.0,
+                  151.0
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 160.0,
+                "end_s": 165.0,
+                "canonical_action": "Hold",
+                "raw_action": "男子手持头盔和运动相机，展示给镜头",
+                "object": "头盔, 运动相机",
+                "confidence": 0.95,
+                "evidence_times": [
+                  160.0,
+                  161.0,
+                  162.0,
+                  163.0,
+                  164.0
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 166.0,
+                "end_s": 175.0,
+                "canonical_action": "Move",
+                "raw_action": "第一人称视角骑行摩托车，双手握把，仪表盘和后视镜可见",
+                "object": "摩托车",
+                "confidence": 0.98,
+                "evidence_times": [
+                  166.0,
+                  167.0,
+                  168.0,
+                  169.0,
+                  170.0,
+                  171.0,
+                  172.0,
+                  173.0,
+                  174.0,
+                  175.0
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 176.0,
+                "end_s": 190.0,
+                "canonical_action": "Hold",
+                "raw_action": "男子再次手持头盔和运动相机，面向镜头讲解",
+                "object": "头盔, 运动相机",
+                "confidence": 0.95,
+                "evidence_times": [
+                  176.0,
+                  177.0,
+                  178.0,
+                  179.0,
+                  180.0,
+                  181.0,
+                  182.0,
+                  183.0,
+                  184.0,
+                  185.0,
+                  186.0,
+                  187.0,
+                  188.0,
+                  189.0,
+                  190.0
+                ]
+              }
+            },
+            {
+              "window": 8,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 256.0,
+                "end_s": 265.0,
+                "canonical_action": "Move",
+                "raw_action": "骑手骑着摩托车在公路上行驶",
+                "object": "摩托车",
+                "confidence": 0.95,
+                "evidence_times": [
+                  256.0,
+                  258.0,
+                  260.0,
+                  262.0,
+                  264.0,
+                  266.0
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 320.0,
+                "end_s": 324.0,
+                "canonical_action": "Touch",
+                "raw_action": "用手指触摸头盔边缘",
+                "object": "头盔",
+                "confidence": 0.95,
+                "evidence_times": [
+                  320.0,
+                  321.0,
+                  322.0,
+                  323.0
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 324.0,
+                "end_s": 330.0,
+                "canonical_action": "Move",
+                "raw_action": "手从头盔边缘移开并抬起",
+                "object": "手",
+                "confidence": 0.9,
+                "evidence_times": [
+                  324.0,
+                  325.0,
+                  326.0,
+                  327.0,
+                  328.0
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 330.0,
+                "end_s": 336.0,
+                "canonical_action": "Touch",
+                "raw_action": "手再次触摸头盔",
+                "object": "头盔",
+                "confidence": 0.9,
+                "evidence_times": [
+                  330.0,
+                  331.0,
+                  332.0,
+                  333.0,
+                  334.0
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 336.0,
+                "end_s": 342.0,
+                "canonical_action": "Move",
+                "raw_action": "手从头盔上移开并做出手势",
+                "object": "手",
+                "confidence": 0.85,
+                "evidence_times": [
+                  336.0,
+                  337.0,
+                  338.0,
+                  339.0,
+                  340.0
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 342.0,
+                "end_s": 350.0,
+                "canonical_action": "Move",
+                "raw_action": "手再次靠近头盔并做出手势",
+                "object": "手",
+                "confidence": 0.85,
+                "evidence_times": [
+                  342.0,
+                  343.0,
+                  344.0,
+                  345.0,
+                  346.0,
+                  347.0,
+                  348.0,
+                  349.0
+                ]
+              }
+            },
+            {
+              "window": 11,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 352.0,
+                "end_s": 354.0,
+                "canonical_action": "Move",
+                "raw_action": "男子移动右手做手势",
+                "object": "男子",
+                "confidence": 0.95,
+                "evidence_times": [
+                  352.0,
+                  353.0,
+                  354.0
+                ]
+              }
+            },
+            {
+              "window": 11,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 354.0,
+                "end_s": 356.0,
+                "canonical_action": "Move",
+                "raw_action": "男子移动右手",
+                "object": "男子",
+                "confidence": 0.95,
+                "evidence_times": [
+                  354.0,
+                  355.0,
+                  356.0
+                ]
+              }
+            },
+            {
+              "window": 11,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 356.0,
+                "end_s": 358.0,
+                "canonical_action": "Move",
+                "raw_action": "男子抬起右手",
+                "object": "男子",
+                "confidence": 0.95,
+                "evidence_times": [
+                  356.0,
+                  357.0,
+                  358.0
+                ]
+              }
+            },
+            {
+              "window": 11,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 358.0,
+                "end_s": 360.0,
+                "canonical_action": "Move",
+                "raw_action": "男子挥手",
+                "object": "男子",
+                "confidence": 0.95,
+                "evidence_times": [
+                  358.0,
+                  359.0,
+                  360.0
+                ]
+              }
+            }
+          ],
+          "level": "中",
+          "N": 55,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一名男子在黑暗背景下展示并讲解一个头盔下巴支架。；男子在黑暗背景下展示并安装摩托车头盔的配件。；男子在黑暗背景下展示并操作一个黑色摩托车头盔，包括旋转、打开和调整部件。；男子在黑暗背景下展示并操作一个摩托车头盔及其配件。；男子在黑暗背景下安装运动相机到头盔上并进行演示。；男子在室内展示摩托车头盔和运动相机，随后切换到第一人称视角骑行摩托车，最后回到室内继续讲解。；男子演示如何将运动相机安装在摩托车头盔上。；骑摩托车行驶在乡村公路上，中途切换到展示安装在头盔上的运动相机。；第一视角骑行摩托车，随后切换到一名男子手持相机讲解。；一名男子在黑暗背景下对着镜头说话，同时用手势辅助表达。；一名男子手持安装了运动相机的头盔，一边说话一边用手势辅助说明。；一名男子在黑暗背景下手持相机，边说话边做手势，最后挥手告别并展示订阅按钮。",
+        "preview": "outputs/demo_20260917/previews/sample_03.jpg",
+        "report": "outputs/demo_20260917/reports/sample_03.json"
+      },
+      "review": {
+        "task_assessment": "头盔相机演示及骑行主题与画面一致；混合视角",
+        "conclusion": "识别头盔相机演示与骑行；出现词表外Speak/Gesture及未抽到的证据时间；N=55混入大量讲解手势。",
+        "visual_evidence": "总览可见室内男子展示头盔/运动相机与公路骑行镜头；抽查的挥手、持相机、告别动作有画面支持，但无音轨核查说话内容。",
+        "reference_label": null,
+        "reference_agreement": null,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "partial",
+            "reason": "可见手势、张口，Move有支持；静帧不能验证“说话”。"
+          },
+          {
+            "segment_index": 31,
+            "verdict": "supported",
+            "reason": "138–140秒持续拿着安装到头盔的运动相机展示。"
+          },
+          {
+            "segment_index": 62,
+            "verdict": "supported",
+            "reason": "358–360秒举手挥动告别。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 12,
+        "parsed_windows": 12,
+        "segments": 63,
+        "vocabulary_valid": 61,
+        "schema_complete": 63,
+        "time_and_reference_valid": 24,
+        "validated_interval_coverage_s": 161.0,
+        "validated_interval_coverage_ratio": 0.44553085508716905,
+        "errors": [
+          {
+            "window": 2,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 64.0,
+              "end_s": 68.0,
+              "canonical_action": "Rotate",
+              "raw_action": "男子旋转头盔，展示其正面",
+              "object": "头盔",
+              "confidence": 0.95,
+              "evidence_times": [
+                64.0,
+                65.0,
+                66.0,
+                67.0,
+                68.0
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 68.0,
+              "end_s": 72.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子用双手持头盔，展示其侧面",
+              "object": "头盔",
+              "confidence": 0.92,
+              "evidence_times": [
+                68.0,
+                69.0,
+                70.0,
+                71.0,
+                72.0
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 72.0,
+              "end_s": 78.0,
+              "canonical_action": "Open",
+              "raw_action": "男子打开头盔的面罩",
+              "object": "头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                72.0,
+                73.0,
+                74.0,
+                75.0,
+                76.0,
+                77.0,
+                78.0
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 78.0,
+              "end_s": 84.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子继续持头盔，展示其内部结构",
+              "object": "头盔",
+              "confidence": 0.88,
+              "evidence_times": [
+                78.0,
+                79.0,
+                80.0,
+                81.0,
+                82.0,
+                83.0,
+                84.0
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 84.0,
+              "end_s": 88.0,
+              "canonical_action": "Rotate",
+              "raw_action": "男子旋转头盔，展示其背面",
+              "object": "头盔",
+              "confidence": 0.93,
+              "evidence_times": [
+                84.0,
+                85.0,
+                86.0,
+                87.0,
+                88.0
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 88.0,
+              "end_s": 94.0,
+              "canonical_action": "Touch",
+              "raw_action": "男子用手指触摸头盔的调节部件",
+              "object": "头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                88.0,
+                89.0,
+                90.0,
+                91.0,
+                92.0,
+                93.0,
+                94.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 96.0,
+              "end_s": 100.0,
+              "canonical_action": "Touch",
+              "raw_action": "男子用手指触摸头盔的部件",
+              "object": "头盔配件",
+              "confidence": 0.95,
+              "evidence_times": [
+                96.0,
+                97.0,
+                98.0,
+                99.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 100.0,
+              "end_s": 104.0,
+              "canonical_action": "Grasp",
+              "raw_action": "男子握住头盔",
+              "object": "摩托车头盔",
+              "confidence": 0.92,
+              "evidence_times": [
+                100.0,
+                101.0,
+                102.0,
+                103.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 104.0,
+              "end_s": 108.0,
+              "canonical_action": "Rotate",
+              "raw_action": "男子旋转头盔展示其侧面",
+              "object": "摩托车头盔",
+              "confidence": 0.88,
+              "evidence_times": [
+                104.0,
+                105.0,
+                106.0,
+                107.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 108.0,
+              "end_s": 110.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子双手持头盔配件",
+              "object": "头盔配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                108.0,
+                109.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 110.0,
+              "end_s": 114.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子用手指捏住头盔配件",
+              "object": "头盔配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                110.0,
+                111.0,
+                112.0,
+                113.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 114.0,
+              "end_s": 118.0,
+              "canonical_action": "Grasp",
+              "raw_action": "男子用双手握住头盔配件",
+              "object": "头盔配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                114.0,
+                115.0,
+                116.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 6,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 118.0,
+              "end_s": 122.0,
+              "canonical_action": "Insert",
+              "raw_action": "男子将配件插入头盔",
+              "object": "头盔配件",
+              "confidence": 0.85,
+              "evidence_times": [
+                118.0,
+                119.0,
+                120.0,
+                121.0
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 7,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 122.0,
+              "end_s": 126.0,
+              "canonical_action": "Attach",
+              "raw_action": "男子将配件固定在头盔上",
+              "object": "头盔配件",
+              "confidence": 0.88,
+              "evidence_times": [
+                122.0,
+                123.0,
+                124.0,
+                125.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 128.0,
+              "end_s": 130.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架安装到头盔上",
+              "object": "相机支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                128.0,
+                129.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 130.0,
+              "end_s": 132.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架固定到头盔上",
+              "object": "相机支架",
+              "confidence": 0.9,
+              "evidence_times": [
+                130.0,
+                131.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 132.0,
+              "end_s": 134.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔",
+              "object": "头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                132.0,
+                133.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 134.0,
+              "end_s": 136.0,
+              "canonical_action": "Grasp",
+              "raw_action": "抓取相机",
+              "object": "运动相机",
+              "confidence": 0.9,
+              "evidence_times": [
+                134.0,
+                135.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 136.0,
+              "end_s": 138.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机安装到支架上",
+              "object": "运动相机",
+              "confidence": 0.88,
+              "evidence_times": [
+                136.0,
+                137.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 138.0,
+              "end_s": 140.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持相机展示",
+              "object": "运动相机",
+              "confidence": 0.92,
+              "evidence_times": [
+                138.0,
+                139.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 6,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 140.0,
+              "end_s": 142.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持相机和头盔",
+              "object": "运动相机",
+              "confidence": 0.87,
+              "evidence_times": [
+                140.0,
+                141.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 7,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 142.0,
+              "end_s": 144.0,
+              "canonical_action": "Grasp",
+              "raw_action": "抓取相机支架",
+              "object": "相机支架",
+              "confidence": 0.85,
+              "evidence_times": [
+                142.0,
+                143.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 8,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 144.0,
+              "end_s": 146.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架安装到头盔上",
+              "object": "相机支架",
+              "confidence": 0.9,
+              "evidence_times": [
+                144.0,
+                145.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 9,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 146.0,
+              "end_s": 148.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔和相机",
+              "object": "头盔",
+              "confidence": 0.88,
+              "evidence_times": [
+                146.0,
+                147.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 10,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 148.0,
+              "end_s": 150.0,
+              "canonical_action": "Move",
+              "raw_action": "移动头盔展示安装位置",
+              "object": "头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                148.0,
+                149.0
+              ]
+            }
+          },
+          {
+            "window": 4,
+            "segment": 11,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 150.0,
+              "end_s": 152.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔",
+              "object": "头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                150.0,
+                151.0
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 160.0,
+              "end_s": 165.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子手持头盔和运动相机，展示给镜头",
+              "object": "头盔, 运动相机",
+              "confidence": 0.95,
+              "evidence_times": [
+                160.0,
+                161.0,
+                162.0,
+                163.0,
+                164.0
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 166.0,
+              "end_s": 175.0,
+              "canonical_action": "Move",
+              "raw_action": "第一人称视角骑行摩托车，双手握把，仪表盘和后视镜可见",
+              "object": "摩托车",
+              "confidence": 0.98,
+              "evidence_times": [
+                166.0,
+                167.0,
+                168.0,
+                169.0,
+                170.0,
+                171.0,
+                172.0,
+                173.0,
+                174.0,
+                175.0
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 176.0,
+              "end_s": 190.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子再次手持头盔和运动相机，面向镜头讲解",
+              "object": "头盔, 运动相机",
+              "confidence": 0.95,
+              "evidence_times": [
+                176.0,
+                177.0,
+                178.0,
+                179.0,
+                180.0,
+                181.0,
+                182.0,
+                183.0,
+                184.0,
+                185.0,
+                186.0,
+                187.0,
+                188.0,
+                189.0,
+                190.0
+              ]
+            }
+          },
+          {
+            "window": 8,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 256.0,
+              "end_s": 265.0,
+              "canonical_action": "Move",
+              "raw_action": "骑手骑着摩托车在公路上行驶",
+              "object": "摩托车",
+              "confidence": 0.95,
+              "evidence_times": [
+                256.0,
+                258.0,
+                260.0,
+                262.0,
+                264.0,
+                266.0
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 320.0,
+              "end_s": 324.0,
+              "canonical_action": "Touch",
+              "raw_action": "用手指触摸头盔边缘",
+              "object": "头盔",
+              "confidence": 0.95,
+              "evidence_times": [
+                320.0,
+                321.0,
+                322.0,
+                323.0
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 324.0,
+              "end_s": 330.0,
+              "canonical_action": "Move",
+              "raw_action": "手从头盔边缘移开并抬起",
+              "object": "手",
+              "confidence": 0.9,
+              "evidence_times": [
+                324.0,
+                325.0,
+                326.0,
+                327.0,
+                328.0
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 330.0,
+              "end_s": 336.0,
+              "canonical_action": "Touch",
+              "raw_action": "手再次触摸头盔",
+              "object": "头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                330.0,
+                331.0,
+                332.0,
+                333.0,
+                334.0
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 336.0,
+              "end_s": 342.0,
+              "canonical_action": "Move",
+              "raw_action": "手从头盔上移开并做出手势",
+              "object": "手",
+              "confidence": 0.85,
+              "evidence_times": [
+                336.0,
+                337.0,
+                338.0,
+                339.0,
+                340.0
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 342.0,
+              "end_s": 350.0,
+              "canonical_action": "Move",
+              "raw_action": "手再次靠近头盔并做出手势",
+              "object": "手",
+              "confidence": 0.85,
+              "evidence_times": [
+                342.0,
+                343.0,
+                344.0,
+                345.0,
+                346.0,
+                347.0,
+                348.0,
+                349.0
+              ]
+            }
+          },
+          {
+            "window": 11,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 352.0,
+              "end_s": 354.0,
+              "canonical_action": "Move",
+              "raw_action": "男子移动右手做手势",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                352.0,
+                353.0,
+                354.0
+              ]
+            }
+          },
+          {
+            "window": 11,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 354.0,
+              "end_s": 356.0,
+              "canonical_action": "Move",
+              "raw_action": "男子移动右手",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                354.0,
+                355.0,
+                356.0
+              ]
+            }
+          },
+          {
+            "window": 11,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 356.0,
+              "end_s": 358.0,
+              "canonical_action": "Move",
+              "raw_action": "男子抬起右手",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                356.0,
+                357.0,
+                358.0
+              ]
+            }
+          },
+          {
+            "window": 11,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 358.0,
+              "end_s": 360.0,
+              "canonical_action": "Move",
+              "raw_action": "男子挥手",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                358.0,
+                359.0,
+                360.0
+              ]
+            }
+          }
+        ],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/擎羽/Hugging_face/category__small_object_storage_sorting/task_002__empty_all_sachets_from_box_onto_table/episode_0001_episode_000145_u12_aligned_attempt_clips_20260706_episode_000065/videos/left_cam_left.mp4",
+      "source": "擎羽",
+      "duration_s": 4.0,
+      "fps": 30.0,
+      "width": 640,
+      "height": 480,
+      "codec": "mpeg4",
+      "eligible": true,
+      "id": "sample_04",
+      "oss_uri": "oss://ccm-ego/擎羽/Hugging_face/category__small_object_storage_sorting/task_002__empty_all_sachets_from_box_onto_table/episode_0001_episode_000145_u12_aligned_attempt_clips_20260706_episode_000065/videos/left_cam_left.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_04.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 16.1,
+        "metrics": {
+          "windows": 1,
+          "parsed_windows": 1,
+          "segments": 1,
+          "vocabulary_valid": 1,
+          "schema_complete": 1,
+          "time_and_reference_valid": 1,
+          "validated_interval_coverage_s": 2.0,
+          "validated_interval_coverage_ratio": 0.5,
+          "errors": [],
+          "level": "低",
+          "N": 1,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一只手在木桌上操作，旁边有史迪奇玩偶和纸巾。",
+        "preview": "outputs/demo_20260917/previews/sample_04.jpg",
+        "report": "outputs/demo_20260917/reports/sample_04.json"
+      },
+      "review": {
+        "task_assessment": "与原始自动标注不一致，边缘操作证据不足",
+        "conclusion": "仅2帧，输出泛化的手部Move，未识别标签中的倒袋任务；加密复核仍见操作在画面边缘，不能据自动标签断言模型漏检。",
+        "visual_evidence": "0/2秒手臂移向画面右侧；额外0.5秒间隔复核到3.5秒见右侧盒子被拿起，但没有清楚完整的倾倒过程。参见sample_04_dense_review.jpg。",
+        "reference_label": "Empty all sachets from box onto table；dense_action为generated状态，非人工真值",
+        "reference_agreement": false,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "partial",
+            "reason": "手部移动可见，但“右侧向左”的方向描述与可见手臂向右伸展不一致。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 1,
+        "parsed_windows": 1,
+        "segments": 1,
+        "vocabulary_valid": 1,
+        "schema_complete": 1,
+        "time_and_reference_valid": 1,
+        "validated_interval_coverage_s": 2.0,
+        "validated_interval_coverage_ratio": 0.5,
+        "errors": [],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/补天石ego数据10小时/potentia_10hours_part01/d8jv4tf65vas73e3id80/video.mp4",
+      "source": "补天石ego数据10小时",
+      "duration_s": 428.20666666666665,
+      "fps": 30.001868256760755,
+      "width": 1920,
+      "height": 1440,
+      "codec": "hevc",
+      "eligible": true,
+      "id": "sample_05",
+      "oss_uri": "oss://ccm-ego/补天石ego数据10小时/potentia_10hours_part01/d8jv4tf65vas73e3id80/video.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_05.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 628.29,
+        "metrics": {
+          "windows": 14,
+          "parsed_windows": 14,
+          "segments": 90,
+          "vocabulary_valid": 90,
+          "schema_complete": 90,
+          "time_and_reference_valid": 44,
+          "validated_interval_coverage_s": 209.988,
+          "validated_interval_coverage_ratio": 0.49038937584655384,
+          "errors": [
+            {
+              "window": 0,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 0.0,
+                "end_s": 2.0,
+                "canonical_action": "Grasp",
+                "raw_action": "用手握住锅盖",
+                "object": "锅盖",
+                "confidence": 0.95,
+                "evidence_times": [
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 2.0,
+                "end_s": 6.0,
+                "canonical_action": "Lift",
+                "raw_action": "抬起锅盖",
+                "object": "锅盖",
+                "confidence": 0.95,
+                "evidence_times": [
+                  2.0,
+                  5.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 6.0,
+                "end_s": 10.0,
+                "canonical_action": "Clean",
+                "raw_action": "用海绵清洗锅盖",
+                "object": "锅盖",
+                "confidence": 0.9,
+                "evidence_times": [
+                  6.0,
+                  9.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 10.0,
+                "end_s": 12.0,
+                "canonical_action": "Place",
+                "raw_action": "将锅盖放在灶台上",
+                "object": "锅盖",
+                "confidence": 0.85,
+                "evidence_times": [
+                  10.0,
+                  11.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 12.0,
+                "end_s": 14.0,
+                "canonical_action": "Move",
+                "raw_action": "移动到水槽另一侧",
+                "object": "清洁海绵",
+                "confidence": 0.8,
+                "evidence_times": [
+                  12.0,
+                  13.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 14.0,
+                "end_s": 18.0,
+                "canonical_action": "Clean",
+                "raw_action": "用海绵清洗水槽",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  14.0,
+                  17.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 18.0,
+                "end_s": 24.0,
+                "canonical_action": "Rub",
+                "raw_action": "用海绵擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.8,
+                "evidence_times": [
+                  18.0,
+                  23.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 24.0,
+                "end_s": 30.0,
+                "canonical_action": "Clean",
+                "raw_action": "用海绵清洗水槽排水口",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  24.0,
+                  29.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 64.03,
+                "end_s": 68.028,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭金属容器",
+                "object": "金属容器",
+                "confidence": 0.95,
+                "evidence_times": [
+                  64.03,
+                  65.028,
+                  66.028,
+                  67.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 68.028,
+                "end_s": 72.028,
+                "canonical_action": "Rub",
+                "raw_action": "用钢丝球擦拭水槽内壁",
+                "object": "水槽",
+                "confidence": 0.9,
+                "evidence_times": [
+                  68.028,
+                  69.028,
+                  70.028,
+                  71.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 72.028,
+                "end_s": 76.028,
+                "canonical_action": "Hold",
+                "raw_action": "用手握住金属容器",
+                "object": "金属容器",
+                "confidence": 0.9,
+                "evidence_times": [
+                  72.028,
+                  73.028,
+                  74.028,
+                  75.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 76.028,
+                "end_s": 80.028,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  76.028,
+                  77.028,
+                  78.028,
+                  79.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 80.028,
+                "end_s": 84.028,
+                "canonical_action": "Rub",
+                "raw_action": "用钢丝球擦拭水槽内壁",
+                "object": "水槽",
+                "confidence": 0.9,
+                "evidence_times": [
+                  80.028,
+                  81.028,
+                  82.028,
+                  83.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 84.028,
+                "end_s": 88.028,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭金属容器",
+                "object": "金属容器",
+                "confidence": 0.9,
+                "evidence_times": [
+                  84.028,
+                  85.028,
+                  86.028,
+                  87.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 88.028,
+                "end_s": 92.027,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭金属容器",
+                "object": "金属容器",
+                "confidence": 0.9,
+                "evidence_times": [
+                  88.028,
+                  89.028,
+                  90.028,
+                  91.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 92.027,
+                "end_s": 94.027,
+                "canonical_action": "Rub",
+                "raw_action": "用钢丝球擦拭水槽内壁",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  92.027,
+                  93.027,
+                  94.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 96.027,
+                "end_s": 100.027,
+                "canonical_action": "Grasp",
+                "raw_action": "双手握住钢丝球",
+                "object": "钢丝球",
+                "confidence": 0.95,
+                "evidence_times": [
+                  96.027,
+                  97.027,
+                  98.027,
+                  99.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 100.027,
+                "end_s": 104.027,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球从台面移到水槽中",
+                "object": "钢丝球",
+                "confidence": 0.9,
+                "evidence_times": [
+                  100.027,
+                  101.027,
+                  102.027,
+                  103.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 104.027,
+                "end_s": 112.027,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭水槽排水口",
+                "object": "排水口",
+                "confidence": 0.92,
+                "evidence_times": [
+                  104.027,
+                  105.027,
+                  106.027,
+                  107.027,
+                  108.027,
+                  109.027,
+                  110.027,
+                  111.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 112.027,
+                "end_s": 114.027,
+                "canonical_action": "Hold",
+                "raw_action": "用手握住排水口盖",
+                "object": "排水口盖",
+                "confidence": 0.85,
+                "evidence_times": [
+                  112.027,
+                  113.027,
+                  114.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 114.027,
+                "end_s": 116.027,
+                "canonical_action": "Place",
+                "raw_action": "将排水口盖放在水槽边缘",
+                "object": "排水口盖",
+                "confidence": 0.88,
+                "evidence_times": [
+                  114.027,
+                  115.027,
+                  116.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 116.027,
+                "end_s": 126.027,
+                "canonical_action": "Scrub",
+                "raw_action": "继续用钢丝球擦拭排水口",
+                "object": "排水口",
+                "confidence": 0.9,
+                "evidence_times": [
+                  116.027,
+                  117.027,
+                  118.027,
+                  119.027,
+                  120.027,
+                  121.027,
+                  122.027,
+                  123.027,
+                  124.027,
+                  125.027,
+                  126.027
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 160.023,
+                "end_s": 162.023,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  160.023,
+                  161.023,
+                  162.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 162.023,
+                "end_s": 164.023,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  162.023,
+                  163.023,
+                  164.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 164.023,
+                "end_s": 166.023,
+                "canonical_action": "Hold",
+                "raw_action": "用手握住水槽边缘",
+                "object": "水槽",
+                "confidence": 0.8,
+                "evidence_times": [
+                  164.023,
+                  165.023,
+                  166.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 166.023,
+                "end_s": 168.023,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  166.023,
+                  167.023,
+                  168.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 168.023,
+                "end_s": 170.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  168.023,
+                  169.023,
+                  170.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 170.022,
+                "end_s": 172.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  170.022,
+                  171.022,
+                  172.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 172.022,
+                "end_s": 174.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  172.022,
+                  173.022,
+                  174.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 174.022,
+                "end_s": 176.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  174.022,
+                  175.022,
+                  176.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 8,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 176.022,
+                "end_s": 178.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  176.022,
+                  177.022,
+                  178.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 9,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 178.022,
+                "end_s": 180.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  178.022,
+                  179.022,
+                  180.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 10,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 180.022,
+                "end_s": 182.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  180.022,
+                  181.022,
+                  182.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 11,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 182.022,
+                "end_s": 184.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  182.022,
+                  183.022,
+                  184.022
+                ]
+              }
+            },
+            {
+              "window": 6,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 222.018,
+                "end_s": 222.018,
+                "canonical_action": "Stop",
+                "raw_action": "停止擦拭",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  222.018
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 320.013,
+                "end_s": 326.012,
+                "canonical_action": "Clean",
+                "raw_action": "用双手在水槽中搓洗布料",
+                "object": "布料",
+                "confidence": 0.95,
+                "evidence_times": [
+                  320.013,
+                  321.013,
+                  322.013,
+                  323.013,
+                  324.013,
+                  325.013,
+                  326.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 326.012,
+                "end_s": 330.012,
+                "canonical_action": "Rub",
+                "raw_action": "用双手揉搓布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  326.012,
+                  327.012,
+                  328.012,
+                  329.012,
+                  330.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 330.012,
+                "end_s": 334.012,
+                "canonical_action": "Clean",
+                "raw_action": "在水槽中清洗布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  330.012,
+                  331.012,
+                  332.012,
+                  333.012,
+                  334.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 334.012,
+                "end_s": 342.012,
+                "canonical_action": "Rub",
+                "raw_action": "用双手揉搓布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  334.012,
+                  335.012,
+                  336.012,
+                  337.012,
+                  338.012,
+                  339.012,
+                  340.012,
+                  341.012,
+                  342.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 342.012,
+                "end_s": 348.012,
+                "canonical_action": "Clean",
+                "raw_action": "在水槽中清洗布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  342.012,
+                  343.012,
+                  344.012,
+                  345.012,
+                  346.012,
+                  347.012,
+                  348.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 348.012,
+                "end_s": 350.012,
+                "canonical_action": "Release",
+                "raw_action": "松开布料",
+                "object": "布料",
+                "confidence": 0.85,
+                "evidence_times": [
+                  348.012,
+                  349.012,
+                  350.012
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 416.007,
+                "end_s": 418.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  416.007,
+                  417.007,
+                  418.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 418.007,
+                "end_s": 420.007,
+                "canonical_action": "Wipe",
+                "raw_action": "继续用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  418.007,
+                  419.007,
+                  420.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 420.007,
+                "end_s": 422.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  420.007,
+                  421.007,
+                  422.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 422.007,
+                "end_s": 424.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  422.007,
+                  423.007,
+                  424.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 424.007,
+                "end_s": 426.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  424.007,
+                  425.007,
+                  426.007
+                ]
+              }
+            }
+          ],
+          "level": "中",
+          "N": 63,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一个人在厨房水槽中清洗锅盖和清洁海绵。；一个人在厨房水槽中用钢丝球清洁排水口。；一个人在厨房水槽中用钢丝球清洗一个金属容器。；一个人在厨房水槽中用钢丝球清洁排水口。；一个人用钢丝球清洁厨房水槽的排水口。；一个人在厨房水槽中用钢丝球和抹布清洁水槽。；一个人正在用抹布清洗厨房水槽。；一个人用抹布擦拭厨房水槽和水龙头。；一个人在厨房水槽边用抹布清洗水龙头和水槽。；一个人在厨房水槽中清洗排水口盖子和抹布。；一个人在厨房水槽中清洗一块布料。；一个人在厨房水槽中用抹布清洗水槽，然后用清水冲洗抹布。；一个人在厨房水槽中用抹布擦拭水槽和排水口。；一个人在厨房水槽旁用毛巾擦拭水槽边缘。",
+        "preview": "outputs/demo_20260917/previews/sample_05.jpg",
+        "report": "outputs/demo_20260917/reports/sample_05.json"
+      },
+      "repeat": {
+        "exit_code": 0,
+        "wall_seconds": 627.77,
+        "metrics": {
+          "windows": 14,
+          "parsed_windows": 14,
+          "segments": 90,
+          "vocabulary_valid": 90,
+          "schema_complete": 90,
+          "time_and_reference_valid": 44,
+          "validated_interval_coverage_s": 209.988,
+          "validated_interval_coverage_ratio": 0.49038937584655384,
+          "errors": [
+            {
+              "window": 0,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 0.0,
+                "end_s": 2.0,
+                "canonical_action": "Grasp",
+                "raw_action": "用手握住锅盖",
+                "object": "锅盖",
+                "confidence": 0.95,
+                "evidence_times": [
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 2.0,
+                "end_s": 6.0,
+                "canonical_action": "Lift",
+                "raw_action": "抬起锅盖",
+                "object": "锅盖",
+                "confidence": 0.95,
+                "evidence_times": [
+                  2.0,
+                  5.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 6.0,
+                "end_s": 10.0,
+                "canonical_action": "Clean",
+                "raw_action": "用海绵清洗锅盖",
+                "object": "锅盖",
+                "confidence": 0.9,
+                "evidence_times": [
+                  6.0,
+                  9.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 10.0,
+                "end_s": 12.0,
+                "canonical_action": "Place",
+                "raw_action": "将锅盖放在灶台上",
+                "object": "锅盖",
+                "confidence": 0.85,
+                "evidence_times": [
+                  10.0,
+                  11.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 12.0,
+                "end_s": 14.0,
+                "canonical_action": "Move",
+                "raw_action": "移动到水槽另一侧",
+                "object": "清洁海绵",
+                "confidence": 0.8,
+                "evidence_times": [
+                  12.0,
+                  13.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 14.0,
+                "end_s": 18.0,
+                "canonical_action": "Clean",
+                "raw_action": "用海绵清洗水槽",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  14.0,
+                  17.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 18.0,
+                "end_s": 24.0,
+                "canonical_action": "Rub",
+                "raw_action": "用海绵擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.8,
+                "evidence_times": [
+                  18.0,
+                  23.0
+                ]
+              }
+            },
+            {
+              "window": 0,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 24.0,
+                "end_s": 30.0,
+                "canonical_action": "Clean",
+                "raw_action": "用海绵清洗水槽排水口",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  24.0,
+                  29.0
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 64.03,
+                "end_s": 68.028,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭金属容器",
+                "object": "金属容器",
+                "confidence": 0.95,
+                "evidence_times": [
+                  64.03,
+                  65.028,
+                  66.028,
+                  67.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 68.028,
+                "end_s": 72.028,
+                "canonical_action": "Rub",
+                "raw_action": "用钢丝球擦拭水槽内壁",
+                "object": "水槽",
+                "confidence": 0.9,
+                "evidence_times": [
+                  68.028,
+                  69.028,
+                  70.028,
+                  71.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 72.028,
+                "end_s": 76.028,
+                "canonical_action": "Hold",
+                "raw_action": "用手握住金属容器",
+                "object": "金属容器",
+                "confidence": 0.9,
+                "evidence_times": [
+                  72.028,
+                  73.028,
+                  74.028,
+                  75.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 76.028,
+                "end_s": 80.028,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  76.028,
+                  77.028,
+                  78.028,
+                  79.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 80.028,
+                "end_s": 84.028,
+                "canonical_action": "Rub",
+                "raw_action": "用钢丝球擦拭水槽内壁",
+                "object": "水槽",
+                "confidence": 0.9,
+                "evidence_times": [
+                  80.028,
+                  81.028,
+                  82.028,
+                  83.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 84.028,
+                "end_s": 88.028,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭金属容器",
+                "object": "金属容器",
+                "confidence": 0.9,
+                "evidence_times": [
+                  84.028,
+                  85.028,
+                  86.028,
+                  87.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 88.028,
+                "end_s": 92.027,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭金属容器",
+                "object": "金属容器",
+                "confidence": 0.9,
+                "evidence_times": [
+                  88.028,
+                  89.028,
+                  90.028,
+                  91.028
+                ]
+              }
+            },
+            {
+              "window": 2,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 92.027,
+                "end_s": 94.027,
+                "canonical_action": "Rub",
+                "raw_action": "用钢丝球擦拭水槽内壁",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  92.027,
+                  93.027,
+                  94.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 96.027,
+                "end_s": 100.027,
+                "canonical_action": "Grasp",
+                "raw_action": "双手握住钢丝球",
+                "object": "钢丝球",
+                "confidence": 0.95,
+                "evidence_times": [
+                  96.027,
+                  97.027,
+                  98.027,
+                  99.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 100.027,
+                "end_s": 104.027,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球从台面移到水槽中",
+                "object": "钢丝球",
+                "confidence": 0.9,
+                "evidence_times": [
+                  100.027,
+                  101.027,
+                  102.027,
+                  103.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 104.027,
+                "end_s": 112.027,
+                "canonical_action": "Scrub",
+                "raw_action": "用钢丝球擦拭水槽排水口",
+                "object": "排水口",
+                "confidence": 0.92,
+                "evidence_times": [
+                  104.027,
+                  105.027,
+                  106.027,
+                  107.027,
+                  108.027,
+                  109.027,
+                  110.027,
+                  111.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 112.027,
+                "end_s": 114.027,
+                "canonical_action": "Hold",
+                "raw_action": "用手握住排水口盖",
+                "object": "排水口盖",
+                "confidence": 0.85,
+                "evidence_times": [
+                  112.027,
+                  113.027,
+                  114.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 114.027,
+                "end_s": 116.027,
+                "canonical_action": "Place",
+                "raw_action": "将排水口盖放在水槽边缘",
+                "object": "排水口盖",
+                "confidence": 0.88,
+                "evidence_times": [
+                  114.027,
+                  115.027,
+                  116.027
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 116.027,
+                "end_s": 126.027,
+                "canonical_action": "Scrub",
+                "raw_action": "继续用钢丝球擦拭排水口",
+                "object": "排水口",
+                "confidence": 0.9,
+                "evidence_times": [
+                  116.027,
+                  117.027,
+                  118.027,
+                  119.027,
+                  120.027,
+                  121.027,
+                  122.027,
+                  123.027,
+                  124.027,
+                  125.027,
+                  126.027
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 160.023,
+                "end_s": 162.023,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  160.023,
+                  161.023,
+                  162.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 162.023,
+                "end_s": 164.023,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  162.023,
+                  163.023,
+                  164.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 164.023,
+                "end_s": 166.023,
+                "canonical_action": "Hold",
+                "raw_action": "用手握住水槽边缘",
+                "object": "水槽",
+                "confidence": 0.8,
+                "evidence_times": [
+                  164.023,
+                  165.023,
+                  166.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 166.023,
+                "end_s": 168.023,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  166.023,
+                  167.023,
+                  168.023
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 168.023,
+                "end_s": 170.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  168.023,
+                  169.023,
+                  170.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 170.022,
+                "end_s": 172.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  170.022,
+                  171.022,
+                  172.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 172.022,
+                "end_s": 174.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  172.022,
+                  173.022,
+                  174.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 174.022,
+                "end_s": 176.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  174.022,
+                  175.022,
+                  176.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 8,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 176.022,
+                "end_s": 178.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  176.022,
+                  177.022,
+                  178.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 9,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 178.022,
+                "end_s": 180.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  178.022,
+                  179.022,
+                  180.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 10,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 180.022,
+                "end_s": 182.022,
+                "canonical_action": "Move",
+                "raw_action": "将钢丝球移至水槽边缘",
+                "object": "钢丝球",
+                "confidence": 0.85,
+                "evidence_times": [
+                  180.022,
+                  181.022,
+                  182.022
+                ]
+              }
+            },
+            {
+              "window": 5,
+              "segment": 11,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 182.022,
+                "end_s": 184.022,
+                "canonical_action": "Clean",
+                "raw_action": "用钢丝球清洁水槽",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  182.022,
+                  183.022,
+                  184.022
+                ]
+              }
+            },
+            {
+              "window": 6,
+              "segment": 7,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 222.018,
+                "end_s": 222.018,
+                "canonical_action": "Stop",
+                "raw_action": "停止擦拭",
+                "object": "水槽",
+                "confidence": 0.85,
+                "evidence_times": [
+                  222.018
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 320.013,
+                "end_s": 326.012,
+                "canonical_action": "Clean",
+                "raw_action": "用双手在水槽中搓洗布料",
+                "object": "布料",
+                "confidence": 0.95,
+                "evidence_times": [
+                  320.013,
+                  321.013,
+                  322.013,
+                  323.013,
+                  324.013,
+                  325.013,
+                  326.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 326.012,
+                "end_s": 330.012,
+                "canonical_action": "Rub",
+                "raw_action": "用双手揉搓布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  326.012,
+                  327.012,
+                  328.012,
+                  329.012,
+                  330.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 330.012,
+                "end_s": 334.012,
+                "canonical_action": "Clean",
+                "raw_action": "在水槽中清洗布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  330.012,
+                  331.012,
+                  332.012,
+                  333.012,
+                  334.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 334.012,
+                "end_s": 342.012,
+                "canonical_action": "Rub",
+                "raw_action": "用双手揉搓布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  334.012,
+                  335.012,
+                  336.012,
+                  337.012,
+                  338.012,
+                  339.012,
+                  340.012,
+                  341.012,
+                  342.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 342.012,
+                "end_s": 348.012,
+                "canonical_action": "Clean",
+                "raw_action": "在水槽中清洗布料",
+                "object": "布料",
+                "confidence": 0.9,
+                "evidence_times": [
+                  342.012,
+                  343.012,
+                  344.012,
+                  345.012,
+                  346.012,
+                  347.012,
+                  348.012
+                ]
+              }
+            },
+            {
+              "window": 10,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 348.012,
+                "end_s": 350.012,
+                "canonical_action": "Release",
+                "raw_action": "松开布料",
+                "object": "布料",
+                "confidence": 0.85,
+                "evidence_times": [
+                  348.012,
+                  349.012,
+                  350.012
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 416.007,
+                "end_s": 418.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  416.007,
+                  417.007,
+                  418.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 418.007,
+                "end_s": 420.007,
+                "canonical_action": "Wipe",
+                "raw_action": "继续用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  418.007,
+                  419.007,
+                  420.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 420.007,
+                "end_s": 422.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  420.007,
+                  421.007,
+                  422.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 422.007,
+                "end_s": 424.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  422.007,
+                  423.007,
+                  424.007
+                ]
+              }
+            },
+            {
+              "window": 13,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 424.007,
+                "end_s": 426.007,
+                "canonical_action": "Wipe",
+                "raw_action": "用毛巾擦拭水槽边缘",
+                "object": "水槽",
+                "confidence": 0.95,
+                "evidence_times": [
+                  424.007,
+                  425.007,
+                  426.007
+                ]
+              }
+            }
+          ],
+          "level": "中",
+          "N": 63,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一个人在厨房水槽中清洗锅盖和清洁海绵。；一个人在厨房水槽中用钢丝球清洁排水口。；一个人在厨房水槽中用钢丝球清洗一个金属容器。；一个人在厨房水槽中用钢丝球清洁排水口。；一个人用钢丝球清洁厨房水槽的排水口。；一个人在厨房水槽中用钢丝球和抹布清洁水槽。；一个人正在用抹布清洗厨房水槽。；一个人用抹布擦拭厨房水槽和水龙头。；一个人在厨房水槽边用抹布清洗水龙头和水槽。；一个人在厨房水槽中清洗排水口盖子和抹布。；一个人在厨房水槽中清洗一块布料。；一个人在厨房水槽中用抹布清洗水槽，然后用清水冲洗抹布。；一个人在厨房水槽中用抹布擦拭水槽和排水口。；一个人在厨房水槽旁用毛巾擦拭水槽边缘。",
+        "preview": "outputs/demo_20260917/previews/sample_05_repeat.jpg",
+        "report": "outputs/demo_20260917/reports/sample_05_repeat.json"
+      },
+      "review": {
+        "task_assessment": "主任务与源文字一致，末段动作错误",
+        "conclusion": "清洁水槽主题正确；90段动作合并后N=63，证据时间44/90合规；末段把拿起展开毛巾误写成擦水槽。",
+        "visual_evidence": "总览0–428秒持续清洁双槽、水龙头和抹布；部分窗称水槽为金属容器。424–426秒手持展开毛巾再移开，未见接触水槽擦拭。",
+        "reference_label": "居家生活 / 清洁厨房水槽",
+        "reference_agreement": true,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "supported",
+            "reason": "0–2秒双手握住并移起锅盖。"
+          },
+          {
+            "segment_index": 45,
+            "verdict": "supported",
+            "reason": "176–178秒钢丝球从水槽内移向两槽之间的边缘。"
+          },
+          {
+            "segment_index": 89,
+            "verdict": "unsupported",
+            "reason": "424–426秒拿起展开毛巾并移开，画面不支持所称擦拭水槽边缘。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 14,
+        "parsed_windows": 14,
+        "segments": 90,
+        "vocabulary_valid": 90,
+        "schema_complete": 90,
+        "time_and_reference_valid": 44,
+        "validated_interval_coverage_s": 209.988,
+        "validated_interval_coverage_ratio": 0.49038937584655384,
+        "errors": [
+          {
+            "window": 0,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 0.0,
+              "end_s": 2.0,
+              "canonical_action": "Grasp",
+              "raw_action": "用手握住锅盖",
+              "object": "锅盖",
+              "confidence": 0.95,
+              "evidence_times": [
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 2.0,
+              "end_s": 6.0,
+              "canonical_action": "Lift",
+              "raw_action": "抬起锅盖",
+              "object": "锅盖",
+              "confidence": 0.95,
+              "evidence_times": [
+                2.0,
+                5.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 6.0,
+              "end_s": 10.0,
+              "canonical_action": "Clean",
+              "raw_action": "用海绵清洗锅盖",
+              "object": "锅盖",
+              "confidence": 0.9,
+              "evidence_times": [
+                6.0,
+                9.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 10.0,
+              "end_s": 12.0,
+              "canonical_action": "Place",
+              "raw_action": "将锅盖放在灶台上",
+              "object": "锅盖",
+              "confidence": 0.85,
+              "evidence_times": [
+                10.0,
+                11.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 12.0,
+              "end_s": 14.0,
+              "canonical_action": "Move",
+              "raw_action": "移动到水槽另一侧",
+              "object": "清洁海绵",
+              "confidence": 0.8,
+              "evidence_times": [
+                12.0,
+                13.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 14.0,
+              "end_s": 18.0,
+              "canonical_action": "Clean",
+              "raw_action": "用海绵清洗水槽",
+              "object": "水槽",
+              "confidence": 0.85,
+              "evidence_times": [
+                14.0,
+                17.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 6,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 18.0,
+              "end_s": 24.0,
+              "canonical_action": "Rub",
+              "raw_action": "用海绵擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.8,
+              "evidence_times": [
+                18.0,
+                23.0
+              ]
+            }
+          },
+          {
+            "window": 0,
+            "segment": 7,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 24.0,
+              "end_s": 30.0,
+              "canonical_action": "Clean",
+              "raw_action": "用海绵清洗水槽排水口",
+              "object": "水槽",
+              "confidence": 0.85,
+              "evidence_times": [
+                24.0,
+                29.0
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 64.03,
+              "end_s": 68.028,
+              "canonical_action": "Scrub",
+              "raw_action": "用钢丝球擦拭金属容器",
+              "object": "金属容器",
+              "confidence": 0.95,
+              "evidence_times": [
+                64.03,
+                65.028,
+                66.028,
+                67.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 68.028,
+              "end_s": 72.028,
+              "canonical_action": "Rub",
+              "raw_action": "用钢丝球擦拭水槽内壁",
+              "object": "水槽",
+              "confidence": 0.9,
+              "evidence_times": [
+                68.028,
+                69.028,
+                70.028,
+                71.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 72.028,
+              "end_s": 76.028,
+              "canonical_action": "Hold",
+              "raw_action": "用手握住金属容器",
+              "object": "金属容器",
+              "confidence": 0.9,
+              "evidence_times": [
+                72.028,
+                73.028,
+                74.028,
+                75.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 76.028,
+              "end_s": 80.028,
+              "canonical_action": "Scrub",
+              "raw_action": "用钢丝球擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.85,
+              "evidence_times": [
+                76.028,
+                77.028,
+                78.028,
+                79.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 80.028,
+              "end_s": 84.028,
+              "canonical_action": "Rub",
+              "raw_action": "用钢丝球擦拭水槽内壁",
+              "object": "水槽",
+              "confidence": 0.9,
+              "evidence_times": [
+                80.028,
+                81.028,
+                82.028,
+                83.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 84.028,
+              "end_s": 88.028,
+              "canonical_action": "Scrub",
+              "raw_action": "用钢丝球擦拭金属容器",
+              "object": "金属容器",
+              "confidence": 0.9,
+              "evidence_times": [
+                84.028,
+                85.028,
+                86.028,
+                87.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 6,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 88.028,
+              "end_s": 92.027,
+              "canonical_action": "Scrub",
+              "raw_action": "用钢丝球擦拭金属容器",
+              "object": "金属容器",
+              "confidence": 0.9,
+              "evidence_times": [
+                88.028,
+                89.028,
+                90.028,
+                91.028
+              ]
+            }
+          },
+          {
+            "window": 2,
+            "segment": 7,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 92.027,
+              "end_s": 94.027,
+              "canonical_action": "Rub",
+              "raw_action": "用钢丝球擦拭水槽内壁",
+              "object": "水槽",
+              "confidence": 0.85,
+              "evidence_times": [
+                92.027,
+                93.027,
+                94.027
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 96.027,
+              "end_s": 100.027,
+              "canonical_action": "Grasp",
+              "raw_action": "双手握住钢丝球",
+              "object": "钢丝球",
+              "confidence": 0.95,
+              "evidence_times": [
+                96.027,
+                97.027,
+                98.027,
+                99.027
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 100.027,
+              "end_s": 104.027,
+              "canonical_action": "Move",
+              "raw_action": "将钢丝球从台面移到水槽中",
+              "object": "钢丝球",
+              "confidence": 0.9,
+              "evidence_times": [
+                100.027,
+                101.027,
+                102.027,
+                103.027
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 104.027,
+              "end_s": 112.027,
+              "canonical_action": "Scrub",
+              "raw_action": "用钢丝球擦拭水槽排水口",
+              "object": "排水口",
+              "confidence": 0.92,
+              "evidence_times": [
+                104.027,
+                105.027,
+                106.027,
+                107.027,
+                108.027,
+                109.027,
+                110.027,
+                111.027
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 112.027,
+              "end_s": 114.027,
+              "canonical_action": "Hold",
+              "raw_action": "用手握住排水口盖",
+              "object": "排水口盖",
+              "confidence": 0.85,
+              "evidence_times": [
+                112.027,
+                113.027,
+                114.027
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 114.027,
+              "end_s": 116.027,
+              "canonical_action": "Place",
+              "raw_action": "将排水口盖放在水槽边缘",
+              "object": "排水口盖",
+              "confidence": 0.88,
+              "evidence_times": [
+                114.027,
+                115.027,
+                116.027
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 116.027,
+              "end_s": 126.027,
+              "canonical_action": "Scrub",
+              "raw_action": "继续用钢丝球擦拭排水口",
+              "object": "排水口",
+              "confidence": 0.9,
+              "evidence_times": [
+                116.027,
+                117.027,
+                118.027,
+                119.027,
+                120.027,
+                121.027,
+                122.027,
+                123.027,
+                124.027,
+                125.027,
+                126.027
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 160.023,
+              "end_s": 162.023,
+              "canonical_action": "Clean",
+              "raw_action": "用钢丝球清洁水槽",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                160.023,
+                161.023,
+                162.023
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 162.023,
+              "end_s": 164.023,
+              "canonical_action": "Move",
+              "raw_action": "将钢丝球移至水槽边缘",
+              "object": "钢丝球",
+              "confidence": 0.85,
+              "evidence_times": [
+                162.023,
+                163.023,
+                164.023
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 164.023,
+              "end_s": 166.023,
+              "canonical_action": "Hold",
+              "raw_action": "用手握住水槽边缘",
+              "object": "水槽",
+              "confidence": 0.8,
+              "evidence_times": [
+                164.023,
+                165.023,
+                166.023
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 166.023,
+              "end_s": 168.023,
+              "canonical_action": "Clean",
+              "raw_action": "用钢丝球清洁水槽",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                166.023,
+                167.023,
+                168.023
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 168.023,
+              "end_s": 170.022,
+              "canonical_action": "Move",
+              "raw_action": "将钢丝球移至水槽边缘",
+              "object": "钢丝球",
+              "confidence": 0.85,
+              "evidence_times": [
+                168.023,
+                169.023,
+                170.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 170.022,
+              "end_s": 172.022,
+              "canonical_action": "Clean",
+              "raw_action": "用钢丝球清洁水槽",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                170.022,
+                171.022,
+                172.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 6,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 172.022,
+              "end_s": 174.022,
+              "canonical_action": "Move",
+              "raw_action": "将钢丝球移至水槽边缘",
+              "object": "钢丝球",
+              "confidence": 0.85,
+              "evidence_times": [
+                172.022,
+                173.022,
+                174.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 7,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 174.022,
+              "end_s": 176.022,
+              "canonical_action": "Clean",
+              "raw_action": "用钢丝球清洁水槽",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                174.022,
+                175.022,
+                176.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 8,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 176.022,
+              "end_s": 178.022,
+              "canonical_action": "Move",
+              "raw_action": "将钢丝球移至水槽边缘",
+              "object": "钢丝球",
+              "confidence": 0.85,
+              "evidence_times": [
+                176.022,
+                177.022,
+                178.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 9,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 178.022,
+              "end_s": 180.022,
+              "canonical_action": "Clean",
+              "raw_action": "用钢丝球清洁水槽",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                178.022,
+                179.022,
+                180.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 10,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 180.022,
+              "end_s": 182.022,
+              "canonical_action": "Move",
+              "raw_action": "将钢丝球移至水槽边缘",
+              "object": "钢丝球",
+              "confidence": 0.85,
+              "evidence_times": [
+                180.022,
+                181.022,
+                182.022
+              ]
+            }
+          },
+          {
+            "window": 5,
+            "segment": 11,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 182.022,
+              "end_s": 184.022,
+              "canonical_action": "Clean",
+              "raw_action": "用钢丝球清洁水槽",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                182.022,
+                183.022,
+                184.022
+              ]
+            }
+          },
+          {
+            "window": 6,
+            "segment": 7,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 222.018,
+              "end_s": 222.018,
+              "canonical_action": "Stop",
+              "raw_action": "停止擦拭",
+              "object": "水槽",
+              "confidence": 0.85,
+              "evidence_times": [
+                222.018
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 320.013,
+              "end_s": 326.012,
+              "canonical_action": "Clean",
+              "raw_action": "用双手在水槽中搓洗布料",
+              "object": "布料",
+              "confidence": 0.95,
+              "evidence_times": [
+                320.013,
+                321.013,
+                322.013,
+                323.013,
+                324.013,
+                325.013,
+                326.012
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 326.012,
+              "end_s": 330.012,
+              "canonical_action": "Rub",
+              "raw_action": "用双手揉搓布料",
+              "object": "布料",
+              "confidence": 0.9,
+              "evidence_times": [
+                326.012,
+                327.012,
+                328.012,
+                329.012,
+                330.012
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 330.012,
+              "end_s": 334.012,
+              "canonical_action": "Clean",
+              "raw_action": "在水槽中清洗布料",
+              "object": "布料",
+              "confidence": 0.9,
+              "evidence_times": [
+                330.012,
+                331.012,
+                332.012,
+                333.012,
+                334.012
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 334.012,
+              "end_s": 342.012,
+              "canonical_action": "Rub",
+              "raw_action": "用双手揉搓布料",
+              "object": "布料",
+              "confidence": 0.9,
+              "evidence_times": [
+                334.012,
+                335.012,
+                336.012,
+                337.012,
+                338.012,
+                339.012,
+                340.012,
+                341.012,
+                342.012
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 342.012,
+              "end_s": 348.012,
+              "canonical_action": "Clean",
+              "raw_action": "在水槽中清洗布料",
+              "object": "布料",
+              "confidence": 0.9,
+              "evidence_times": [
+                342.012,
+                343.012,
+                344.012,
+                345.012,
+                346.012,
+                347.012,
+                348.012
+              ]
+            }
+          },
+          {
+            "window": 10,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 348.012,
+              "end_s": 350.012,
+              "canonical_action": "Release",
+              "raw_action": "松开布料",
+              "object": "布料",
+              "confidence": 0.85,
+              "evidence_times": [
+                348.012,
+                349.012,
+                350.012
+              ]
+            }
+          },
+          {
+            "window": 13,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 416.007,
+              "end_s": 418.007,
+              "canonical_action": "Wipe",
+              "raw_action": "用毛巾擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                416.007,
+                417.007,
+                418.007
+              ]
+            }
+          },
+          {
+            "window": 13,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 418.007,
+              "end_s": 420.007,
+              "canonical_action": "Wipe",
+              "raw_action": "继续用毛巾擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                418.007,
+                419.007,
+                420.007
+              ]
+            }
+          },
+          {
+            "window": 13,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 420.007,
+              "end_s": 422.007,
+              "canonical_action": "Wipe",
+              "raw_action": "用毛巾擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                420.007,
+                421.007,
+                422.007
+              ]
+            }
+          },
+          {
+            "window": 13,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 422.007,
+              "end_s": 424.007,
+              "canonical_action": "Wipe",
+              "raw_action": "用毛巾擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                422.007,
+                423.007,
+                424.007
+              ]
+            }
+          },
+          {
+            "window": 13,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 424.007,
+              "end_s": 426.007,
+              "canonical_action": "Wipe",
+              "raw_action": "用毛巾擦拭水槽边缘",
+              "object": "水槽",
+              "confidence": 0.95,
+              "evidence_times": [
+                424.007,
+                425.007,
+                426.007
+              ]
+            }
+          }
+        ],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/补天石ego数据10小时/potentia_10hours_part02/d8b4jo765vas73fkfocg/video.mp4",
+      "source": "补天石ego数据10小时",
+      "duration_s": 124.52666666666667,
+      "fps": 59.99518175491193,
+      "width": 1920,
+      "height": 1440,
+      "codec": "hevc",
+      "eligible": true,
+      "id": "sample_06",
+      "oss_uri": "oss://ccm-ego/补天石ego数据10小时/potentia_10hours_part02/d8b4jo765vas73fkfocg/video.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_06.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 205.83,
+        "metrics": {
+          "windows": 4,
+          "parsed_windows": 4,
+          "segments": 30,
+          "vocabulary_valid": 30,
+          "schema_complete": 30,
+          "time_and_reference_valid": 23,
+          "validated_interval_coverage_s": 88.005,
+          "validated_interval_coverage_ratio": 0.7067160982921997,
+          "errors": [
+            {
+              "window": 3,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 96.008,
+                "end_s": 100.008,
+                "canonical_action": "Grasp",
+                "raw_action": "双手抓住纸箱",
+                "object": "纸箱",
+                "confidence": 0.95,
+                "evidence_times": [
+                  96.008,
+                  97.008,
+                  98.008,
+                  99.008
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 1,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 100.008,
+                "end_s": 104.008,
+                "canonical_action": "Grasp",
+                "raw_action": "用手指捏住胶带",
+                "object": "胶带",
+                "confidence": 0.9,
+                "evidence_times": [
+                  100.008,
+                  101.008,
+                  102.008,
+                  103.008
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 2,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 104.008,
+                "end_s": 110.008,
+                "canonical_action": "Wrap",
+                "raw_action": "用胶带缠绕纸箱",
+                "object": "纸箱",
+                "confidence": 0.92,
+                "evidence_times": [
+                  104.008,
+                  105.008,
+                  106.008,
+                  107.008,
+                  108.008,
+                  109.008
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 3,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 110.008,
+                "end_s": 114.008,
+                "canonical_action": "Press",
+                "raw_action": "按压胶带使其粘牢",
+                "object": "胶带",
+                "confidence": 0.85,
+                "evidence_times": [
+                  110.008,
+                  111.008,
+                  112.008,
+                  113.008
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 4,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 114.008,
+                "end_s": 118.008,
+                "canonical_action": "Place",
+                "raw_action": "将纸箱放在地上",
+                "object": "纸箱",
+                "confidence": 0.9,
+                "evidence_times": [
+                  114.008,
+                  115.008,
+                  116.008,
+                  117.008
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 5,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 118.008,
+                "end_s": 120.008,
+                "canonical_action": "Grasp",
+                "raw_action": "双手抓住纸箱",
+                "object": "纸箱",
+                "confidence": 0.9,
+                "evidence_times": [
+                  118.008,
+                  119.008
+                ]
+              }
+            },
+            {
+              "window": 3,
+              "segment": 6,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 120.008,
+                "end_s": 124.008,
+                "canonical_action": "Place",
+                "raw_action": "将纸箱放在地上",
+                "object": "纸箱",
+                "confidence": 0.9,
+                "evidence_times": [
+                  120.008,
+                  121.008,
+                  122.008,
+                  123.008
+                ]
+              }
+            }
+          ],
+          "level": "中",
+          "N": 23,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "两人在地面上整理和包装物品，包括一个毛绒玩具、气泡膜和充电线。；两人正在用气泡膜包装一个毛绒玩具，过程中有调整和整理动作。；一个人正在拆开一个用气泡膜包裹的物品并将其放入纸箱中。；一个人正在用透明胶带封箱，然后将箱子放在地上。",
+        "preview": "outputs/demo_20260917/previews/sample_06.jpg",
+        "report": "outputs/demo_20260917/reports/sample_06.json"
+      },
+      "review": {
+        "task_assessment": "打包主流程一致，部分动作方向及物品类别存疑",
+        "conclusion": "识别整理→包裹→装箱→封箱；第三窗却描述为拆开包装，和整体包裹过程冲突；物品被称毛绒玩具尚不能确认。",
+        "visual_evidence": "总览显示充电线等物品整理、包气泡膜及气柱袋、装纸箱、贴胶带封箱；棕色物体可见但材料类别不清。",
+        "reference_label": "物流快递 / 包裹封箱与打包",
+        "reference_agreement": true,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "supported",
+            "reason": "2–4秒双手接触并拿起盘绕的白色充电线。"
+          },
+          {
+            "segment_index": 15,
+            "verdict": "partial",
+            "reason": "54–56秒继续包覆物品有支持，但仅凭画面无法确认内部是毛绒玩具。"
+          },
+          {
+            "segment_index": 29,
+            "verdict": "supported",
+            "reason": "120–124秒转动纸箱后放回地面。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 4,
+        "parsed_windows": 4,
+        "segments": 30,
+        "vocabulary_valid": 30,
+        "schema_complete": 30,
+        "time_and_reference_valid": 23,
+        "validated_interval_coverage_s": 88.005,
+        "validated_interval_coverage_ratio": 0.7067160982921997,
+        "errors": [
+          {
+            "window": 3,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 96.008,
+              "end_s": 100.008,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓住纸箱",
+              "object": "纸箱",
+              "confidence": 0.95,
+              "evidence_times": [
+                96.008,
+                97.008,
+                98.008,
+                99.008
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 1,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 100.008,
+              "end_s": 104.008,
+              "canonical_action": "Grasp",
+              "raw_action": "用手指捏住胶带",
+              "object": "胶带",
+              "confidence": 0.9,
+              "evidence_times": [
+                100.008,
+                101.008,
+                102.008,
+                103.008
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 2,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 104.008,
+              "end_s": 110.008,
+              "canonical_action": "Wrap",
+              "raw_action": "用胶带缠绕纸箱",
+              "object": "纸箱",
+              "confidence": 0.92,
+              "evidence_times": [
+                104.008,
+                105.008,
+                106.008,
+                107.008,
+                108.008,
+                109.008
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 3,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 110.008,
+              "end_s": 114.008,
+              "canonical_action": "Press",
+              "raw_action": "按压胶带使其粘牢",
+              "object": "胶带",
+              "confidence": 0.85,
+              "evidence_times": [
+                110.008,
+                111.008,
+                112.008,
+                113.008
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 4,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 114.008,
+              "end_s": 118.008,
+              "canonical_action": "Place",
+              "raw_action": "将纸箱放在地上",
+              "object": "纸箱",
+              "confidence": 0.9,
+              "evidence_times": [
+                114.008,
+                115.008,
+                116.008,
+                117.008
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 5,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 118.008,
+              "end_s": 120.008,
+              "canonical_action": "Grasp",
+              "raw_action": "双手抓住纸箱",
+              "object": "纸箱",
+              "confidence": 0.9,
+              "evidence_times": [
+                118.008,
+                119.008
+              ]
+            }
+          },
+          {
+            "window": 3,
+            "segment": 6,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 120.008,
+              "end_s": 124.008,
+              "canonical_action": "Place",
+              "raw_action": "将纸箱放在地上",
+              "object": "纸箱",
+              "confidence": 0.9,
+              "evidence_times": [
+                120.008,
+                121.008,
+                122.008,
+                123.008
+              ]
+            }
+          }
+        ],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/astribot/sample_data/家具-打包装箱/videos/chunk-000/observation.images.head_camera/episode_000003.mp4",
+      "source": "astribot",
+      "duration_s": 54.666666666666664,
+      "fps": 30.0,
+      "width": 1280,
+      "height": 720,
+      "codec": "h264",
+      "eligible": true,
+      "id": "sample_07",
+      "oss_uri": "oss://ccm-ego/astribot/sample_data/家具-打包装箱/videos/chunk-000/observation.images.head_camera/episode_000003.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_07.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 48.24,
+        "metrics": {
+          "windows": 2,
+          "parsed_windows": 2,
+          "segments": 13,
+          "vocabulary_valid": 13,
+          "schema_complete": 13,
+          "time_and_reference_valid": 13,
+          "validated_interval_coverage_s": 48.0,
+          "validated_interval_coverage_ratio": 0.8780487804878049,
+          "errors": [],
+          "level": "中",
+          "N": 13,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "两个机械臂在白色桌面上协作，将散落的物品放入一个纸箱中。；机器人手臂依次拾取并放入不同工具到纸箱中。",
+        "preview": "outputs/demo_20260917/previews/sample_07.jpg",
+        "report": "outputs/demo_20260917/reports/sample_07.json"
+      },
+      "repeat": {
+        "exit_code": 0,
+        "wall_seconds": 48.41,
+        "metrics": {
+          "windows": 2,
+          "parsed_windows": 2,
+          "segments": 13,
+          "vocabulary_valid": 13,
+          "schema_complete": 13,
+          "time_and_reference_valid": 13,
+          "validated_interval_coverage_s": 48.0,
+          "validated_interval_coverage_ratio": 0.8780487804878049,
+          "errors": [],
+          "level": "中",
+          "N": 13,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "两个机械臂在白色桌面上协作，将散落的物品放入一个纸箱中。；机器人手臂依次拾取并放入不同工具到纸箱中。",
+        "preview": "outputs/demo_20260917/previews/sample_07_repeat.jpg",
+        "report": "outputs/demo_20260917/reports/sample_07_repeat.json"
+      },
+      "review": {
+        "task_assessment": "装箱主题与源文字一致，小物体类别和边界仍有偏差",
+        "conclusion": "机器人逐件装箱识别正确；彩色物体被称橡皮擦且动作边界偏早；H=0，未把普通双臂场景直接判高。",
+        "visual_evidence": "总览可见机械臂把红盒、工具、彩色小物体和胶带依次放进纸箱。主要由左侧臂执行，可见两臂不等于已确认协作。",
+        "reference_label": "打包装箱；依次将桌面上的物品放入纸箱中，直至桌面干净",
+        "reference_agreement": true,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "supported",
+            "reason": "0–4秒左侧夹爪接近并抓住红白盒，6秒已举起。"
+          },
+          {
+            "segment_index": 6,
+            "verdict": "partial",
+            "reason": "24–26秒仍在放前一件黑色工具，28秒才接近彩色物体；彩色橡皮擦的类别未获充分支持。"
+          },
+          {
+            "segment_index": 12,
+            "verdict": "supported",
+            "reason": "48秒夹住胶带，50–52秒放进纸箱，54秒夹爪收回。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 2,
+        "parsed_windows": 2,
+        "segments": 13,
+        "vocabulary_valid": 13,
+        "schema_complete": 13,
+        "time_and_reference_valid": 13,
+        "validated_interval_coverage_s": 48.0,
+        "validated_interval_coverage_ratio": 0.8780487804878049,
+        "errors": [],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/youtube/-fI-ogq9OC8.mp4",
+      "source": "youtube",
+      "duration_s": 145.8457,
+      "fps": 29.97002997002997,
+      "width": 640,
+      "height": 360,
+      "codec": "h264",
+      "eligible": true,
+      "id": "sample_08",
+      "oss_uri": "oss://ccm-ego/youtube/-fI-ogq9OC8.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_08.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 85.91,
+        "metrics": {
+          "windows": 5,
+          "parsed_windows": 5,
+          "segments": 28,
+          "vocabulary_valid": 28,
+          "schema_complete": 28,
+          "time_and_reference_valid": 27,
+          "validated_interval_coverage_s": 116.002,
+          "validated_interval_coverage_ratio": 0.7953748379280295,
+          "errors": [
+            {
+              "window": 4,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 128.028,
+                "end_s": 144.011,
+                "canonical_action": "Hold",
+                "raw_action": "记者手持麦克风并讲话",
+                "object": "麦克风",
+                "confidence": 0.95,
+                "evidence_times": [
+                  128.028,
+                  129.028,
+                  130.03,
+                  131.032,
+                  132.032,
+                  133.001,
+                  134.003,
+                  135.005,
+                  136.007,
+                  137.009,
+                  138.011,
+                  139.013,
+                  140.015,
+                  141.017,
+                  142.019,
+                  143.021
+                ]
+              }
+            }
+          ],
+          "level": "中",
+          "N": 18,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "新闻主播介绍水供应增加的新闻，随后切换到现场记者报道降雨帮助水库蓄水的情况。；新闻报道展示雨水补给水库的情况，包括记者现场报道、钓鱼者垂钓、专家访谈以及水库和河流的自然景观。；雨夜城市街道与水库水位变化的对比报道。；视频展示了水库的自然风光，随后转为新闻记者在公园现场报道降雨对水库的补给作用。；新闻记者在夜晚的公园入口处报道降雨对水库的补给作用。",
+        "preview": "outputs/demo_20260917/previews/sample_08.jpg",
+        "report": "outputs/demo_20260917/reports/sample_08.json"
+      },
+      "review": {
+        "task_assessment": "识别新闻主题，但不适用操作任务难度",
+        "conclusion": "抽到新闻视频，仍输出中难/N=18；缺少非操作视频过滤；采访被写成等待，证据引用也有虚构时间。",
+        "visual_evidence": "新闻字幕和镜头支持雨水补给水库报道主题；74–76秒为持麦采访，78秒已切交通画面。该视频不构成连续ego操作任务。",
+        "reference_label": null,
+        "reference_agreement": null,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "partial",
+            "reason": "字幕支持主持人身份且可见演播室，但静帧未验证两人对话。"
+          },
+          {
+            "segment_index": 14,
+            "verdict": "unsupported",
+            "reason": "74–76秒可见持麦采访，78秒已切道路车辆，不支持整段在雨中等待。"
+          },
+          {
+            "segment_index": 27,
+            "verdict": "partial",
+            "reason": "持麦克风可见，讲话音轨未核查；语音内容不能从抽帧确证。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 5,
+        "parsed_windows": 5,
+        "segments": 28,
+        "vocabulary_valid": 28,
+        "schema_complete": 28,
+        "time_and_reference_valid": 27,
+        "validated_interval_coverage_s": 116.002,
+        "validated_interval_coverage_ratio": 0.7953748379280295,
+        "errors": [
+          {
+            "window": 4,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 128.028,
+              "end_s": 144.011,
+              "canonical_action": "Hold",
+              "raw_action": "记者手持麦克风并讲话",
+              "object": "麦克风",
+              "confidence": 0.95,
+              "evidence_times": [
+                128.028,
+                129.028,
+                130.03,
+                131.032,
+                132.032,
+                133.001,
+                134.003,
+                135.005,
+                136.007,
+                137.009,
+                138.011,
+                139.013,
+                140.015,
+                141.017,
+                142.019,
+                143.021
+              ]
+            }
+          }
+        ],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/astribot/sample_data/家具-插充电器/videos/chunk-000/observation.images.head_camera/episode_000001.mp4",
+      "source": "astribot",
+      "duration_s": 22.033333333333335,
+      "fps": 30.0,
+      "width": 1280,
+      "height": 720,
+      "codec": "h264",
+      "eligible": true,
+      "id": "sample_09",
+      "oss_uri": "oss://ccm-ego/astribot/sample_data/家具-插充电器/videos/chunk-000/observation.images.head_camera/episode_000001.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_09.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 25.42,
+        "metrics": {
+          "windows": 1,
+          "parsed_windows": 1,
+          "segments": 5,
+          "vocabulary_valid": 5,
+          "schema_complete": 5,
+          "time_and_reference_valid": 5,
+          "validated_interval_coverage_s": 20.0,
+          "validated_interval_coverage_ratio": 0.9077155824508321,
+          "errors": [],
+          "level": "中",
+          "N": 4,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "两个机械臂协作将电源插头插入插座。",
+        "preview": "outputs/demo_20260917/previews/sample_09.jpg",
+        "report": "outputs/demo_20260917/reports/sample_09.json"
+      },
+      "review": {
+        "task_assessment": "插充电器主任务一致，但手臂交接与插入阶段混淆",
+        "conclusion": "插充电器主题正确；把8–10秒两臂交接误写成已插入，把后续靠近/插入及收回过程写成等待。",
+        "visual_evidence": "0–6秒左夹爪取插头，8–12秒两臂交接，14–18秒右爪在排插处操作，20秒已放开。",
+        "reference_label": "插充电器；拿起插头，插入插座",
+        "reference_agreement": true,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "supported",
+            "reason": "0–4秒左爪接近抓住插头，6秒已经举起。"
+          },
+          {
+            "segment_index": 2,
+            "verdict": "unsupported",
+            "reason": "8–10秒插头还在两爪之间交接，尚未位于排插插孔中；把交接写成插入。"
+          },
+          {
+            "segment_index": 4,
+            "verdict": "unsupported",
+            "reason": "14–20秒右爪在排插处完成操作并撤回，不是两臂持续等待。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 1,
+        "parsed_windows": 1,
+        "segments": 5,
+        "vocabulary_valid": 5,
+        "schema_complete": 5,
+        "time_and_reference_valid": 5,
+        "validated_interval_coverage_s": 20.0,
+        "validated_interval_coverage_ratio": 0.9077155824508321,
+        "errors": [],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    },
+    {
+      "video": "/mnt/oss/Deepreach/dr-egoview-teaser-slam/clips/aec5beea-3f7e-4a2c-b623-2e2e0eb2b730_grp002_p01of01/source.mp4",
+      "source": "Deepreach",
+      "duration_s": 82.41566666666667,
+      "fps": 29.97002997002997,
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "eligible": true,
+      "id": "sample_10",
+      "oss_uri": "oss://ccm-ego/Deepreach/dr-egoview-teaser-slam/clips/aec5beea-3f7e-4a2c-b623-2e2e0eb2b730_grp002_p01of01/source.mp4",
+      "status": "complete",
+      "report": "outputs/demo_20260917/reports/sample_10.json",
+      "result": {
+        "exit_code": 0,
+        "wall_seconds": 128.57,
+        "metrics": {
+          "windows": 3,
+          "parsed_windows": 3,
+          "segments": 26,
+          "vocabulary_valid": 26,
+          "schema_complete": 26,
+          "time_and_reference_valid": 25,
+          "validated_interval_coverage_s": 54.021,
+          "validated_interval_coverage_ratio": 0.6554700360368377,
+          "errors": [
+            {
+              "window": 2,
+              "segment": 0,
+              "reason": "invalid_time_or_frame_reference",
+              "segment_data": {
+                "start_s": 64.031,
+                "end_s": 75.009,
+                "canonical_action": "Place",
+                "raw_action": "将彩色塑料玩具放入透明塑料袋中",
+                "object": "彩色塑料玩具",
+                "confidence": 0.95,
+                "evidence_times": [
+                  64.031,
+                  66.033,
+                  68.001,
+                  70.003,
+                  72.005,
+                  74.007,
+                  76.009
+                ]
+              }
+            }
+          ],
+          "level": "中",
+          "N": 26,
+          "H": 0,
+          "review_status": "candidate",
+          "pipeline_status": "candidate_semantics",
+          "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+        },
+        "summary": "一个人正在将彩色塑料玩具放入透明塑料袋中。；一个人正在将彩色塑料玩具部件放入透明塑料袋中。；一个人正在将彩色塑料玩具装入透明塑料袋中。",
+        "preview": "outputs/demo_20260917/previews/sample_10.jpg",
+        "report": "outputs/demo_20260917/reports/sample_10.json"
+      },
+      "review": {
+        "task_assessment": "包装主任务与源文字一致，零件身份及具体装袋时点仍需核对",
+        "conclusion": "识别彩色塑料部件装袋，和源任务包装目标一致；未细分扇叶/手柄，部分Place时点证据不足；N=26。",
+        "visual_evidence": "总览为从混合塑料部件中选取零件并装透明袋，最后将袋子放到已包装品上；选取与入袋动作在2秒抽帧下可能混淆。",
+        "reference_label": "Select a fan blade and handle from the bulk parts, then pack them into a clear ziplock bag to complete the packaging.",
+        "reference_agreement": true,
+        "audited_actions": [
+          {
+            "segment_index": 0,
+            "verdict": "supported",
+            "reason": "2秒双手在右侧袋堆处抓持并分离透明袋。"
+          },
+          {
+            "segment_index": 13,
+            "verdict": "insufficient",
+            "reason": "34–36秒主要可见左手持零件、右手持袋，未清楚显示入袋状态改变，不能确认所称Place。"
+          },
+          {
+            "segment_index": 25,
+            "verdict": "supported",
+            "reason": "76–82秒将装好部件的袋子移到左侧成品堆并放下。"
+          }
+        ]
+      },
+      "window_checks": {
+        "windows": 3,
+        "parsed_windows": 3,
+        "segments": 26,
+        "vocabulary_valid": 26,
+        "schema_complete": 26,
+        "time_and_reference_valid": 25,
+        "validated_interval_coverage_s": 54.021,
+        "validated_interval_coverage_ratio": 0.6554700360368377,
+        "errors": [
+          {
+            "window": 2,
+            "segment": 0,
+            "reason": "invalid_time_or_frame_reference",
+            "segment_data": {
+              "start_s": 64.031,
+              "end_s": 75.009,
+              "canonical_action": "Place",
+              "raw_action": "将彩色塑料玩具放入透明塑料袋中",
+              "object": "彩色塑料玩具",
+              "confidence": 0.95,
+              "evidence_times": [
+                64.031,
+                66.033,
+                68.001,
+                70.003,
+                72.005,
+                74.007,
+                76.009
+              ]
+            }
+          }
+        ],
+        "level": null,
+        "N": null,
+        "H": null,
+        "review_status": null,
+        "pipeline_status": null,
+        "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+      }
+    }
+  ],
+  "priority_plan": [
+    {
+      "priority": "P0-1",
+      "solution": "模型输出后用 JSON Schema/Pydantic 校验并类型归一化：objects 只接受字符串；非法窗口标 partial，保留 raw_output；聚合前禁止对未知类型直接 set 去重。",
+      "difficulty": "中",
+      "benefit": "消除字段格式导致的整条任务崩溃",
+      "acceptance": "sample_02 不再因 unhashable dict 崩溃；失败窗口仍有可追踪报告"
+    },
+    {
+      "priority": "P0-2",
+      "solution": "模型只返回输入 frame_id；程序根据 frame_id 映射时间，拒绝不存在的 frame_id。动作起止区间和证据帧分开保存。",
+      "difficulty": "中",
+      "benefit": "保证证据可回放，修复虚构时间",
+      "acceptance": "时间/帧引用合规率达到 100% 或明确标 invalid"
+    },
+    {
+      "priority": "P0-3",
+      "solution": "canonical_action 在程序端做枚举校验；未知动作转 others，保留 raw_action，不把 Speak/Gesture 静默写入正式词表。",
+      "difficulty": "低",
+      "benefit": "保证下游标注接口稳定",
+      "acceptance": "词表外动作全部被拦截并有计数"
+    },
+    {
+      "priority": "P0-4",
+      "solution": "增加视频适用性分类：ego 操作、非操作内容、混合剪辑、视角不合格；非操作内容只输出摘要，level 标为不适用。",
+      "difficulty": "中",
+      "benefit": "避免新闻等数据污染任务难度统计",
+      "acceptance": "sample_08 不再输出任务 level/N"
+    },
+    {
+      "priority": "P1-1",
+      "solution": "保留 2 秒基础抽帧；在手物接触、抓取、放置、插入、切换等变化区间自适应加密到 0.5–1 秒，并强制纳入首尾帧。",
+      "difficulty": "中",
+      "benefit": "减少短动作和尾部状态遗漏",
+      "acceptance": "4 秒样本不再只有两帧；关键动作有前后状态帧"
+    },
+    {
+      "priority": "P1-2",
+      "solution": "将 16 帧窗口改为带重叠窗口（建议 8 帧重叠），并传递上一窗口的对象状态、任务阶段和未完成动作。",
+      "difficulty": "高",
+      "benefit": "保持跨窗口动作链连续",
+      "acceptance": "跨窗离开/返回、交接/插入等阶段可串成一条链"
+    },
+    {
+      "priority": "P1-3",
+      "solution": "统一使用 frame_id 表示证据；用时间戳只作估计区间，并允许动作边界落在抽帧点之间。",
+      "difficulty": "中",
+      "benefit": "减少时间边界假精确",
+      "acceptance": "报告同时给出可回放证据和估计区间"
+    },
+    {
+      "priority": "P1-4",
+      "solution": "建立对象状态机：未持有→抓取→持有→交接→接近目标→插入/放置→释放；只在状态变化满足时生成对应动作。",
+      "difficulty": "高",
+      "benefit": "修复交接/插入/等待混淆",
+      "acceptance": "sample_09 的交接不再判 Insert，实际插入有状态证据"
+    },
+    {
+      "priority": "P1-5",
+      "solution": "分离 atomic_action_count 与 task_step_count；先识别阶段和重复动作，再以对象、目标和状态变化合并任务步骤。",
+      "difficulty": "中",
+      "benefit": "避免讲解手势和重复动作抬高 N",
+      "acceptance": "sample_03 的 N 不再等于大量手势数量"
+    },
+    {
+      "priority": "P1-6",
+      "solution": "为对象建立稳定 object_id，跨窗口合并同一对象；类别不确定时输出 unknown_object，不猜具体物品。",
+      "difficulty": "高",
+      "benefit": "降低水槽/容器、玩具/包装物等对象混淆",
+      "acceptance": "对象类别可追溯，未知类别不产生高置信度猜测"
+    },
+    {
+      "priority": "P1-7",
+      "solution": "增加 occluded、out_of_view、insufficient_evidence 状态；遮挡或出画时禁止强行生成动作。",
+      "difficulty": "中",
+      "benefit": "把不可见区间与模型错误分开",
+      "acceptance": "证据不足动作进入 unknown 队列，不计为正确动作"
+    },
+    {
+      "priority": "P1-8",
+      "solution": "将 model_candidate、rule_passed、human_confirmed 三层状态分开；H=0 只表示未确认，不表示没有高难事件。",
+      "difficulty": "中",
+      "benefit": "避免 level 规则把候选当真值",
+      "acceptance": "所有 level 结果带确认状态和证据链"
+    },
+    {
+      "priority": "P1-9",
+      "solution": "在 recording 级建立阶段图，跟踪目标切换、条件决策、返回恢复和双任务协调；跨窗口汇总后再计算 H/level。",
+      "difficulty": "高",
+      "benefit": "覆盖超市样本的擦拭→收银→返回工作链",
+      "acceptance": "关键阶段顺序、切换和恢复都有证据区间"
+    },
+    {
+      "priority": "P1-10",
+      "solution": "由两名标注者独立标注任务阶段、高难事件、level 和证据区间，分歧仲裁后形成 gold set。",
+      "difficulty": "高",
+      "benefit": "首次获得可计算的 level 真值",
+      "acceptance": "输出 level confusion matrix、precision、recall"
+    },
+    {
+      "priority": "P2-1",
+      "solution": "基于 gold set 计算任务命中率、动作/对象准确率、遗漏率、时间 IoU、高难 precision/recall 和 level 混淆矩阵。",
+      "difficulty": "高",
+      "benefit": "把主观抽查升级为正式准确率",
+      "acceptance": "评估报告包含置信区间和按数据源分层结果"
+    },
+    {
+      "priority": "P2-2",
+      "solution": "固定本批 10 条样本和失败样本作为回归集；每次修改自动比较 schema、证据、动作和 level 指标。",
+      "difficulty": "中",
+      "benefit": "防止修复一处又破坏另一处",
+      "acceptance": "CI/批处理报告显示新旧版本差异"
+    },
+    {
+      "priority": "P2-3",
+      "solution": "改为常驻推理进程，一次加载模型，连续处理多个视频；窗口推理可批量化。",
+      "difficulty": "中",
+      "benefit": "减少短视频约 8 秒的重复启动开销",
+      "acceptance": "单分钟耗时和启动耗时分别可测，并降低短片比例"
+    },
+    {
+      "priority": "P2-4",
+      "solution": "日志拆分 OSS 读取、抽帧、模型加载、单窗口推理、聚合和报告生成耗时，并记录显存/失败原因。",
+      "difficulty": "低",
+      "benefit": "可以定位性能瓶颈和偶发失败",
+      "acceptance": "每条报告有阶段耗时，能计算秒/视频分钟"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 4.0,
+      "canonical_action": "Grasp",
+      "raw_action": "双手抓取充电线",
+      "object": "充电线",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.0,
+        4.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_06_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0,
+      6.0
+    ]
+  },
+  {
+    "segment_index": 15,
+    "claim": {
+      "start_s": 54.005,
+      "end_s": 56.005,
+      "canonical_action": "Wrap",
+      "raw_action": "用气泡膜包裹毛绒玩具",
+      "object": "毛绒玩具",
+      "confidence": 0.95,
+      "evidence_times": [
+        54.005
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_06_action_015.jpg",
+    "checked_times": [
+      52.005,
+      54.005,
+      56.005,
+      58.005
+    ]
+  },
+  {
+    "segment_index": 29,
+    "claim": {
+      "start_s": 120.008,
+      "end_s": 124.008,
+      "canonical_action": "Place",
+      "raw_action": "将纸箱放在地上",
+      "object": "纸箱",
+      "confidence": 0.9,
+      "evidence_times": [
+        120.008,
+        121.008,
+        122.008,
+        123.008
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_06_action_029.jpg",
+    "checked_times": [
+      118.01,
+      120.01,
+      122.01,
+      124.01
+    ]
+  }
+]

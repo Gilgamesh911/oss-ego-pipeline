@@ -1,0 +1,49 @@
+{
+  "windows": 5,
+  "parsed_windows": 5,
+  "segments": 28,
+  "vocabulary_valid": 28,
+  "schema_complete": 28,
+  "time_and_reference_valid": 27,
+  "validated_interval_coverage_s": 116.002,
+  "validated_interval_coverage_ratio": 0.7953748379280295,
+  "errors": [
+    {
+      "window": 4,
+      "segment": 0,
+      "reason": "invalid_time_or_frame_reference",
+      "segment_data": {
+        "start_s": 128.028,
+        "end_s": 144.011,
+        "canonical_action": "Hold",
+        "raw_action": "记者手持麦克风并讲话",
+        "object": "麦克风",
+        "confidence": 0.95,
+        "evidence_times": [
+          128.028,
+          129.028,
+          130.03,
+          131.032,
+          132.032,
+          133.001,
+          134.003,
+          135.005,
+          136.007,
+          137.009,
+          138.011,
+          139.013,
+          140.015,
+          141.017,
+          142.019,
+          143.021
+        ]
+      }
+    }
+  ],
+  "level": null,
+  "N": null,
+  "H": null,
+  "review_status": null,
+  "pipeline_status": null,
+  "note": "Schema/time checks are engineering checks, not semantic accuracy. Model H=0 is not proof of absence."
+}

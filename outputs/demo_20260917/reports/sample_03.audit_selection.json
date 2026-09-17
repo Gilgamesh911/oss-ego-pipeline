@@ -1,0 +1,67 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 2.0,
+      "canonical_action": "Move",
+      "raw_action": "男子挥手并说话",
+      "object": "男子",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_03_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0
+    ]
+  },
+  {
+    "segment_index": 31,
+    "claim": {
+      "start_s": 138.0,
+      "end_s": 140.0,
+      "canonical_action": "Hold",
+      "raw_action": "手持相机展示",
+      "object": "运动相机",
+      "confidence": 0.92,
+      "evidence_times": [
+        138.0,
+        139.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_03_action_031.jpg",
+    "checked_times": [
+      136.0,
+      138.0,
+      140.0,
+      142.0
+    ]
+  },
+  {
+    "segment_index": 62,
+    "claim": {
+      "start_s": 358.0,
+      "end_s": 360.0,
+      "canonical_action": "Move",
+      "raw_action": "男子挥手",
+      "object": "男子",
+      "confidence": 0.95,
+      "evidence_times": [
+        358.0,
+        359.0,
+        360.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_03_action_062.jpg",
+    "checked_times": [
+      356.0,
+      358.0,
+      360.0
+    ]
+  }
+]

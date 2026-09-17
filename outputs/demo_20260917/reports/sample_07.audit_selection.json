@@ -1,0 +1,71 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 4.0,
+      "canonical_action": "Grasp",
+      "raw_action": "机械臂1抓取红色盒子",
+      "object": "红色盒子",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.0,
+        4.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_07_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0,
+      6.0
+    ]
+  },
+  {
+    "segment_index": 6,
+    "claim": {
+      "start_s": 24.0,
+      "end_s": 28.0,
+      "canonical_action": "Grasp",
+      "raw_action": "机械臂1抓取彩色橡皮擦",
+      "object": "彩色橡皮擦",
+      "confidence": 0.8,
+      "evidence_times": [
+        24.0,
+        26.0,
+        28.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_07_action_006.jpg",
+    "checked_times": [
+      22.0,
+      24.0,
+      26.0,
+      28.0,
+      30.0
+    ]
+  },
+  {
+    "segment_index": 12,
+    "claim": {
+      "start_s": 50.0,
+      "end_s": 54.0,
+      "canonical_action": "Place",
+      "raw_action": "将胶带放入纸箱",
+      "object": "胶带",
+      "confidence": 0.94,
+      "evidence_times": [
+        50.0,
+        54.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_07_action_012.jpg",
+    "checked_times": [
+      48.0,
+      50.0,
+      52.0,
+      54.0
+    ]
+  }
+]

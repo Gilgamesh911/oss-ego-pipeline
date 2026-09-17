@@ -1,0 +1,2291 @@
+{
+  "video": "/mnt/oss/shushuogushi/cc_20260824_02_simple/nD9JbhaH3eM.mp4",
+  "model": "/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master",
+  "frame_count": 181,
+  "timestamps_s": [
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0,
+    10.0,
+    12.0,
+    14.0,
+    16.0,
+    18.0,
+    20.0,
+    22.0,
+    24.0,
+    26.0,
+    28.0,
+    30.0,
+    32.0,
+    34.0,
+    36.0,
+    38.0,
+    40.0,
+    42.0,
+    44.0,
+    46.0,
+    48.0,
+    50.0,
+    52.0,
+    54.0,
+    56.0,
+    58.0,
+    60.0,
+    62.0,
+    64.0,
+    66.0,
+    68.0,
+    70.0,
+    72.0,
+    74.0,
+    76.0,
+    78.0,
+    80.0,
+    82.0,
+    84.0,
+    86.0,
+    88.0,
+    90.0,
+    92.0,
+    94.0,
+    96.0,
+    98.0,
+    100.0,
+    102.0,
+    104.0,
+    106.0,
+    108.0,
+    110.0,
+    112.0,
+    114.0,
+    116.0,
+    118.0,
+    120.0,
+    122.0,
+    124.0,
+    126.0,
+    128.0,
+    130.0,
+    132.0,
+    134.0,
+    136.0,
+    138.0,
+    140.0,
+    142.0,
+    144.0,
+    146.0,
+    148.0,
+    150.0,
+    152.0,
+    154.0,
+    156.0,
+    158.0,
+    160.0,
+    162.0,
+    164.0,
+    166.0,
+    168.0,
+    170.0,
+    172.0,
+    174.0,
+    176.0,
+    178.0,
+    180.0,
+    182.0,
+    184.0,
+    186.0,
+    188.0,
+    190.0,
+    192.0,
+    194.0,
+    196.0,
+    198.0,
+    200.0,
+    202.0,
+    204.0,
+    206.0,
+    208.0,
+    210.0,
+    212.0,
+    214.0,
+    216.0,
+    218.0,
+    220.0,
+    222.0,
+    224.0,
+    226.0,
+    228.0,
+    230.0,
+    232.0,
+    234.0,
+    236.0,
+    238.0,
+    240.0,
+    242.0,
+    244.0,
+    246.0,
+    248.0,
+    250.0,
+    252.0,
+    254.0,
+    256.0,
+    258.0,
+    260.0,
+    262.0,
+    264.0,
+    266.0,
+    268.0,
+    270.0,
+    272.0,
+    274.0,
+    276.0,
+    278.0,
+    280.0,
+    282.0,
+    284.0,
+    286.0,
+    288.0,
+    290.0,
+    292.0,
+    294.0,
+    296.0,
+    298.0,
+    300.0,
+    302.0,
+    304.0,
+    306.0,
+    308.0,
+    310.0,
+    312.0,
+    314.0,
+    316.0,
+    318.0,
+    320.0,
+    322.0,
+    324.0,
+    326.0,
+    328.0,
+    330.0,
+    332.0,
+    334.0,
+    336.0,
+    338.0,
+    340.0,
+    342.0,
+    344.0,
+    346.0,
+    348.0,
+    350.0,
+    352.0,
+    354.0,
+    356.0,
+    358.0,
+    360.0
+  ],
+  "semantic": {
+    "summary": "一名男子在黑暗背景下展示并讲解一个头盔下巴支架。；男子在黑暗背景下展示并安装摩托车头盔的配件。；男子在黑暗背景下展示并操作一个黑色摩托车头盔，包括旋转、打开和调整部件。；男子在黑暗背景下展示并操作一个摩托车头盔及其配件。；男子在黑暗背景下安装运动相机到头盔上并进行演示。；男子在室内展示摩托车头盔和运动相机，随后切换到第一人称视角骑行摩托车，最后回到室内继续讲解。；男子演示如何将运动相机安装在摩托车头盔上。；骑摩托车行驶在乡村公路上，中途切换到展示安装在头盔上的运动相机。；第一视角骑行摩托车，随后切换到一名男子手持相机讲解。；一名男子在黑暗背景下对着镜头说话，同时用手势辅助表达。；一名男子手持安装了运动相机的头盔，一边说话一边用手势辅助说明。；一名男子在黑暗背景下手持相机，边说话边做手势，最后挥手告别并展示订阅按钮。",
+    "scene": "黑暗背景下的室内环境",
+    "objects": [
+      "卡车",
+      "头盔",
+      "头盔下巴支架",
+      "头盔配件",
+      "安装支架",
+      "摩托车",
+      "摩托车头盔",
+      "男子",
+      "相机",
+      "相机支架",
+      "红色胶带",
+      "订阅按钮",
+      "运动相机",
+      "银色配件",
+      "骑手",
+      "黑色头盔",
+      "黑色设备",
+      "黑色配件"
+    ],
+    "action_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "canonical_action": "Move",
+        "raw_action": "男子挥手并说话",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          2.0
+        ]
+      },
+      {
+        "start_s": 2.0,
+        "end_s": 4.0,
+        "canonical_action": "Grasp",
+        "raw_action": "男子用双手拿起头盔下巴支架",
+        "object": "头盔下巴支架",
+        "confidence": 0.95,
+        "evidence_times": [
+          2.0,
+          4.0
+        ]
+      },
+      {
+        "start_s": 4.0,
+        "end_s": 10.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子用右手持头盔下巴支架并展示",
+        "object": "头盔下巴支架",
+        "confidence": 0.95,
+        "evidence_times": [
+          4.0,
+          10.0
+        ]
+      },
+      {
+        "start_s": 10.0,
+        "end_s": 14.0,
+        "canonical_action": "Release",
+        "raw_action": "男子松开头盔下巴支架",
+        "object": "头盔下巴支架",
+        "confidence": 0.95,
+        "evidence_times": [
+          10.0,
+          14.0
+        ]
+      },
+      {
+        "start_s": 14.0,
+        "end_s": 18.0,
+        "canonical_action": "Move",
+        "raw_action": "男子用手势继续讲解",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          14.0,
+          18.0
+        ]
+      },
+      {
+        "start_s": 18.0,
+        "end_s": 22.0,
+        "canonical_action": "Move",
+        "raw_action": "男子继续讲解并展示头盔下巴支架",
+        "object": "头盔下巴支架",
+        "confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          22.0
+        ]
+      },
+      {
+        "start_s": 22.0,
+        "end_s": 24.0,
+        "canonical_action": "Stop",
+        "raw_action": "男子停止动作",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          22.0,
+          24.0
+        ]
+      },
+      {
+        "start_s": 24.0,
+        "end_s": 30.0,
+        "canonical_action": "Grasp",
+        "raw_action": "男子再次拿起头盔下巴支架",
+        "object": "头盔下巴支架",
+        "confidence": 0.95,
+        "evidence_times": [
+          24.0,
+          30.0
+        ]
+      },
+      {
+        "start_s": 32.0,
+        "end_s": 38.0,
+        "canonical_action": "Attach",
+        "raw_action": "男子将黑色配件安装到头盔上",
+        "object": "黑色配件",
+        "confidence": 0.95,
+        "evidence_times": [
+          32.0,
+          34.0,
+          36.0,
+          38.0
+        ]
+      },
+      {
+        "start_s": 40.0,
+        "end_s": 44.0,
+        "canonical_action": "Attach",
+        "raw_action": "男子将红色胶带贴在黑色配件上",
+        "object": "红色胶带",
+        "confidence": 0.9,
+        "evidence_times": [
+          40.0,
+          42.0,
+          44.0
+        ]
+      },
+      {
+        "start_s": 46.0,
+        "end_s": 52.0,
+        "canonical_action": "Attach",
+        "raw_action": "男子将银色配件安装到头盔上",
+        "object": "银色配件",
+        "confidence": 0.85,
+        "evidence_times": [
+          46.0,
+          48.0,
+          50.0,
+          52.0
+        ]
+      },
+      {
+        "start_s": 54.0,
+        "end_s": 60.0,
+        "canonical_action": "Attach",
+        "raw_action": "男子将黑色配件安装到头盔上",
+        "object": "黑色配件",
+        "confidence": 0.9,
+        "evidence_times": [
+          54.0,
+          56.0,
+          58.0,
+          60.0
+        ]
+      },
+      {
+        "start_s": 64.0,
+        "end_s": 68.0,
+        "canonical_action": "Rotate",
+        "raw_action": "男子旋转头盔，展示其正面",
+        "object": "头盔",
+        "confidence": 0.95,
+        "evidence_times": [
+          64.0,
+          65.0,
+          66.0,
+          67.0,
+          68.0
+        ]
+      },
+      {
+        "start_s": 68.0,
+        "end_s": 72.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子用双手持头盔，展示其侧面",
+        "object": "头盔",
+        "confidence": 0.92,
+        "evidence_times": [
+          68.0,
+          69.0,
+          70.0,
+          71.0,
+          72.0
+        ]
+      },
+      {
+        "start_s": 72.0,
+        "end_s": 78.0,
+        "canonical_action": "Open",
+        "raw_action": "男子打开头盔的面罩",
+        "object": "头盔",
+        "confidence": 0.9,
+        "evidence_times": [
+          72.0,
+          73.0,
+          74.0,
+          75.0,
+          76.0,
+          77.0,
+          78.0
+        ]
+      },
+      {
+        "start_s": 78.0,
+        "end_s": 84.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子继续持头盔，展示其内部结构",
+        "object": "头盔",
+        "confidence": 0.88,
+        "evidence_times": [
+          78.0,
+          79.0,
+          80.0,
+          81.0,
+          82.0,
+          83.0,
+          84.0
+        ]
+      },
+      {
+        "start_s": 84.0,
+        "end_s": 88.0,
+        "canonical_action": "Rotate",
+        "raw_action": "男子旋转头盔，展示其背面",
+        "object": "头盔",
+        "confidence": 0.93,
+        "evidence_times": [
+          84.0,
+          85.0,
+          86.0,
+          87.0,
+          88.0
+        ]
+      },
+      {
+        "start_s": 88.0,
+        "end_s": 94.0,
+        "canonical_action": "Touch",
+        "raw_action": "男子用手指触摸头盔的调节部件",
+        "object": "头盔",
+        "confidence": 0.85,
+        "evidence_times": [
+          88.0,
+          89.0,
+          90.0,
+          91.0,
+          92.0,
+          93.0,
+          94.0
+        ]
+      },
+      {
+        "start_s": 96.0,
+        "end_s": 100.0,
+        "canonical_action": "Touch",
+        "raw_action": "男子用手指触摸头盔的部件",
+        "object": "头盔配件",
+        "confidence": 0.95,
+        "evidence_times": [
+          96.0,
+          97.0,
+          98.0,
+          99.0
+        ]
+      },
+      {
+        "start_s": 100.0,
+        "end_s": 104.0,
+        "canonical_action": "Grasp",
+        "raw_action": "男子握住头盔",
+        "object": "摩托车头盔",
+        "confidence": 0.92,
+        "evidence_times": [
+          100.0,
+          101.0,
+          102.0,
+          103.0
+        ]
+      },
+      {
+        "start_s": 104.0,
+        "end_s": 108.0,
+        "canonical_action": "Rotate",
+        "raw_action": "男子旋转头盔展示其侧面",
+        "object": "摩托车头盔",
+        "confidence": 0.88,
+        "evidence_times": [
+          104.0,
+          105.0,
+          106.0,
+          107.0
+        ]
+      },
+      {
+        "start_s": 108.0,
+        "end_s": 110.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子双手持头盔配件",
+        "object": "头盔配件",
+        "confidence": 0.9,
+        "evidence_times": [
+          108.0,
+          109.0
+        ]
+      },
+      {
+        "start_s": 110.0,
+        "end_s": 114.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子用手指捏住头盔配件",
+        "object": "头盔配件",
+        "confidence": 0.9,
+        "evidence_times": [
+          110.0,
+          111.0,
+          112.0,
+          113.0
+        ]
+      },
+      {
+        "start_s": 114.0,
+        "end_s": 118.0,
+        "canonical_action": "Grasp",
+        "raw_action": "男子用双手握住头盔配件",
+        "object": "头盔配件",
+        "confidence": 0.9,
+        "evidence_times": [
+          114.0,
+          115.0,
+          116.0
+        ]
+      },
+      {
+        "start_s": 118.0,
+        "end_s": 122.0,
+        "canonical_action": "Insert",
+        "raw_action": "男子将配件插入头盔",
+        "object": "头盔配件",
+        "confidence": 0.85,
+        "evidence_times": [
+          118.0,
+          119.0,
+          120.0,
+          121.0
+        ]
+      },
+      {
+        "start_s": 122.0,
+        "end_s": 126.0,
+        "canonical_action": "Attach",
+        "raw_action": "男子将配件固定在头盔上",
+        "object": "头盔配件",
+        "confidence": 0.88,
+        "evidence_times": [
+          122.0,
+          123.0,
+          124.0,
+          125.0
+        ]
+      },
+      {
+        "start_s": 128.0,
+        "end_s": 130.0,
+        "canonical_action": "Attach",
+        "raw_action": "将相机支架安装到头盔上",
+        "object": "相机支架",
+        "confidence": 0.95,
+        "evidence_times": [
+          128.0,
+          129.0
+        ]
+      },
+      {
+        "start_s": 130.0,
+        "end_s": 132.0,
+        "canonical_action": "Attach",
+        "raw_action": "将相机支架固定到头盔上",
+        "object": "相机支架",
+        "confidence": 0.9,
+        "evidence_times": [
+          130.0,
+          131.0
+        ]
+      },
+      {
+        "start_s": 132.0,
+        "end_s": 134.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持头盔",
+        "object": "头盔",
+        "confidence": 0.85,
+        "evidence_times": [
+          132.0,
+          133.0
+        ]
+      },
+      {
+        "start_s": 134.0,
+        "end_s": 136.0,
+        "canonical_action": "Grasp",
+        "raw_action": "抓取相机",
+        "object": "运动相机",
+        "confidence": 0.9,
+        "evidence_times": [
+          134.0,
+          135.0
+        ]
+      },
+      {
+        "start_s": 136.0,
+        "end_s": 138.0,
+        "canonical_action": "Attach",
+        "raw_action": "将相机安装到支架上",
+        "object": "运动相机",
+        "confidence": 0.88,
+        "evidence_times": [
+          136.0,
+          137.0
+        ]
+      },
+      {
+        "start_s": 138.0,
+        "end_s": 140.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持相机展示",
+        "object": "运动相机",
+        "confidence": 0.92,
+        "evidence_times": [
+          138.0,
+          139.0
+        ]
+      },
+      {
+        "start_s": 140.0,
+        "end_s": 142.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持相机和头盔",
+        "object": "运动相机",
+        "confidence": 0.87,
+        "evidence_times": [
+          140.0,
+          141.0
+        ]
+      },
+      {
+        "start_s": 142.0,
+        "end_s": 144.0,
+        "canonical_action": "Grasp",
+        "raw_action": "抓取相机支架",
+        "object": "相机支架",
+        "confidence": 0.85,
+        "evidence_times": [
+          142.0,
+          143.0
+        ]
+      },
+      {
+        "start_s": 144.0,
+        "end_s": 146.0,
+        "canonical_action": "Attach",
+        "raw_action": "将相机支架安装到头盔上",
+        "object": "相机支架",
+        "confidence": 0.9,
+        "evidence_times": [
+          144.0,
+          145.0
+        ]
+      },
+      {
+        "start_s": 146.0,
+        "end_s": 148.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持头盔和相机",
+        "object": "头盔",
+        "confidence": 0.88,
+        "evidence_times": [
+          146.0,
+          147.0
+        ]
+      },
+      {
+        "start_s": 148.0,
+        "end_s": 150.0,
+        "canonical_action": "Move",
+        "raw_action": "移动头盔展示安装位置",
+        "object": "头盔",
+        "confidence": 0.85,
+        "evidence_times": [
+          148.0,
+          149.0
+        ]
+      },
+      {
+        "start_s": 150.0,
+        "end_s": 152.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持头盔",
+        "object": "头盔",
+        "confidence": 0.9,
+        "evidence_times": [
+          150.0,
+          151.0
+        ]
+      },
+      {
+        "start_s": 160.0,
+        "end_s": 165.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子手持头盔和运动相机，展示给镜头",
+        "object": "头盔, 运动相机",
+        "confidence": 0.95,
+        "evidence_times": [
+          160.0,
+          161.0,
+          162.0,
+          163.0,
+          164.0
+        ]
+      },
+      {
+        "start_s": 166.0,
+        "end_s": 175.0,
+        "canonical_action": "Move",
+        "raw_action": "第一人称视角骑行摩托车，双手握把，仪表盘和后视镜可见",
+        "object": "摩托车",
+        "confidence": 0.98,
+        "evidence_times": [
+          166.0,
+          167.0,
+          168.0,
+          169.0,
+          170.0,
+          171.0,
+          172.0,
+          173.0,
+          174.0,
+          175.0
+        ]
+      },
+      {
+        "start_s": 176.0,
+        "end_s": 190.0,
+        "canonical_action": "Hold",
+        "raw_action": "男子再次手持头盔和运动相机，面向镜头讲解",
+        "object": "头盔, 运动相机",
+        "confidence": 0.95,
+        "evidence_times": [
+          176.0,
+          177.0,
+          178.0,
+          179.0,
+          180.0,
+          181.0,
+          182.0,
+          183.0,
+          184.0,
+          185.0,
+          186.0,
+          187.0,
+          188.0,
+          189.0,
+          190.0
+        ]
+      },
+      {
+        "start_s": 192.0,
+        "end_s": 198.0,
+        "canonical_action": "Attach",
+        "raw_action": "将相机支架固定在头盔上",
+        "object": "运动相机",
+        "confidence": 0.95,
+        "evidence_times": [
+          192.0,
+          194.0,
+          196.0
+        ]
+      },
+      {
+        "start_s": 198.0,
+        "end_s": 202.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持头盔并展示",
+        "object": "摩托车头盔",
+        "confidence": 0.9,
+        "evidence_times": [
+          198.0,
+          200.0,
+          202.0
+        ]
+      },
+      {
+        "start_s": 202.0,
+        "end_s": 206.0,
+        "canonical_action": "Move",
+        "raw_action": "移动头盔以展示相机安装位置",
+        "object": "摩托车头盔",
+        "confidence": 0.85,
+        "evidence_times": [
+          202.0,
+          204.0,
+          206.0
+        ]
+      },
+      {
+        "start_s": 206.0,
+        "end_s": 210.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持头盔并调整相机角度",
+        "object": "摩托车头盔",
+        "confidence": 0.9,
+        "evidence_times": [
+          206.0,
+          208.0,
+          210.0
+        ]
+      },
+      {
+        "start_s": 210.0,
+        "end_s": 214.0,
+        "canonical_action": "Move",
+        "raw_action": "移动头盔以展示相机安装效果",
+        "object": "摩托车头盔",
+        "confidence": 0.8,
+        "evidence_times": [
+          210.0,
+          212.0,
+          214.0
+        ]
+      },
+      {
+        "start_s": 214.0,
+        "end_s": 220.0,
+        "canonical_action": "Attach",
+        "raw_action": "再次将相机支架固定在头盔上",
+        "object": "运动相机",
+        "confidence": 0.9,
+        "evidence_times": [
+          214.0,
+          216.0,
+          218.0
+        ]
+      },
+      {
+        "start_s": 220.0,
+        "end_s": 222.0,
+        "canonical_action": "Hold",
+        "raw_action": "手持头盔并展示最终安装效果",
+        "object": "摩托车头盔",
+        "confidence": 0.9,
+        "evidence_times": [
+          220.0,
+          222.0
+        ]
+      },
+      {
+        "start_s": 224.0,
+        "end_s": 233.0,
+        "canonical_action": "Hold",
+        "raw_action": "骑手手持头盔并展示安装在上面的运动相机",
+        "object": "头盔",
+        "confidence": 0.95,
+        "evidence_times": [
+          224.0,
+          226.0,
+          228.0,
+          230.0,
+          232.0
+        ]
+      },
+      {
+        "start_s": 234.0,
+        "end_s": 254.0,
+        "canonical_action": "Move",
+        "raw_action": "骑手骑着摩托车在公路上行驶",
+        "object": "摩托车",
+        "confidence": 0.98,
+        "evidence_times": [
+          234.0,
+          236.0,
+          238.0,
+          240.0,
+          242.0,
+          244.0,
+          246.0,
+          248.0,
+          250.0,
+          252.0,
+          254.0
+        ]
+      },
+      {
+        "start_s": 256.0,
+        "end_s": 265.0,
+        "canonical_action": "Move",
+        "raw_action": "骑手骑着摩托车在公路上行驶",
+        "object": "摩托车",
+        "confidence": 0.95,
+        "evidence_times": [
+          256.0,
+          258.0,
+          260.0,
+          262.0,
+          264.0,
+          266.0
+        ]
+      },
+      {
+        "start_s": 266.0,
+        "end_s": 286.0,
+        "canonical_action": "Move",
+        "raw_action": "男子在室内移动手部，展示相机",
+        "object": "男子",
+        "confidence": 0.92,
+        "evidence_times": [
+          266.0,
+          268.0,
+          270.0,
+          272.0,
+          274.0,
+          276.0,
+          278.0,
+          280.0,
+          282.0,
+          284.0,
+          286.0
+        ]
+      },
+      {
+        "start_s": 288.0,
+        "end_s": 318.0,
+        "canonical_action": "Speak",
+        "raw_action": "说话",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          288.0,
+          290.0,
+          292.0,
+          294.0,
+          296.0,
+          298.0,
+          300.0,
+          302.0,
+          304.0,
+          306.0,
+          308.0,
+          310.0,
+          312.0,
+          314.0,
+          316.0,
+          318.0
+        ]
+      },
+      {
+        "start_s": 292.0,
+        "end_s": 318.0,
+        "canonical_action": "Gesture",
+        "raw_action": "用手势辅助说话",
+        "object": "男子",
+        "confidence": 0.9,
+        "evidence_times": [
+          292.0,
+          294.0,
+          296.0,
+          298.0,
+          300.0,
+          302.0,
+          304.0,
+          306.0,
+          308.0,
+          310.0,
+          312.0,
+          314.0,
+          316.0,
+          318.0
+        ]
+      },
+      {
+        "start_s": 320.0,
+        "end_s": 324.0,
+        "canonical_action": "Touch",
+        "raw_action": "用手指触摸头盔边缘",
+        "object": "头盔",
+        "confidence": 0.95,
+        "evidence_times": [
+          320.0,
+          321.0,
+          322.0,
+          323.0
+        ]
+      },
+      {
+        "start_s": 324.0,
+        "end_s": 330.0,
+        "canonical_action": "Move",
+        "raw_action": "手从头盔边缘移开并抬起",
+        "object": "手",
+        "confidence": 0.9,
+        "evidence_times": [
+          324.0,
+          325.0,
+          326.0,
+          327.0,
+          328.0
+        ]
+      },
+      {
+        "start_s": 330.0,
+        "end_s": 336.0,
+        "canonical_action": "Touch",
+        "raw_action": "手再次触摸头盔",
+        "object": "头盔",
+        "confidence": 0.9,
+        "evidence_times": [
+          330.0,
+          331.0,
+          332.0,
+          333.0,
+          334.0
+        ]
+      },
+      {
+        "start_s": 336.0,
+        "end_s": 342.0,
+        "canonical_action": "Move",
+        "raw_action": "手从头盔上移开并做出手势",
+        "object": "手",
+        "confidence": 0.85,
+        "evidence_times": [
+          336.0,
+          337.0,
+          338.0,
+          339.0,
+          340.0
+        ]
+      },
+      {
+        "start_s": 342.0,
+        "end_s": 350.0,
+        "canonical_action": "Move",
+        "raw_action": "手再次靠近头盔并做出手势",
+        "object": "手",
+        "confidence": 0.85,
+        "evidence_times": [
+          342.0,
+          343.0,
+          344.0,
+          345.0,
+          346.0,
+          347.0,
+          348.0,
+          349.0
+        ]
+      },
+      {
+        "start_s": 352.0,
+        "end_s": 354.0,
+        "canonical_action": "Move",
+        "raw_action": "男子移动右手做手势",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          352.0,
+          353.0,
+          354.0
+        ]
+      },
+      {
+        "start_s": 354.0,
+        "end_s": 356.0,
+        "canonical_action": "Move",
+        "raw_action": "男子移动右手",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          354.0,
+          355.0,
+          356.0
+        ]
+      },
+      {
+        "start_s": 356.0,
+        "end_s": 358.0,
+        "canonical_action": "Move",
+        "raw_action": "男子抬起右手",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          356.0,
+          357.0,
+          358.0
+        ]
+      },
+      {
+        "start_s": 358.0,
+        "end_s": 360.0,
+        "canonical_action": "Move",
+        "raw_action": "男子挥手",
+        "object": "男子",
+        "confidence": 0.95,
+        "evidence_times": [
+          358.0,
+          359.0,
+          360.0
+        ]
+      }
+    ],
+    "unknown": [],
+    "high_difficulty_candidates": [],
+    "windows": [
+      {
+        "window_index": 0,
+        "frame_start": 0,
+        "frame_end": 16,
+        "time_start": 0.0,
+        "time_end": 30.0,
+        "semantic": {
+          "summary": "一名男子在黑暗背景下展示并讲解一个头盔下巴支架。",
+          "scene": "黑暗背景下的室内环境",
+          "objects": [
+            "男子",
+            "头盔",
+            "头盔下巴支架"
+          ],
+          "action_segments": [
+            {
+              "start_s": 0.0,
+              "end_s": 2.0,
+              "canonical_action": "Move",
+              "raw_action": "男子挥手并说话",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                0.0,
+                2.0
+              ]
+            },
+            {
+              "start_s": 2.0,
+              "end_s": 4.0,
+              "canonical_action": "Grasp",
+              "raw_action": "男子用双手拿起头盔下巴支架",
+              "object": "头盔下巴支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                2.0,
+                4.0
+              ]
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 10.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子用右手持头盔下巴支架并展示",
+              "object": "头盔下巴支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                4.0,
+                10.0
+              ]
+            },
+            {
+              "start_s": 10.0,
+              "end_s": 14.0,
+              "canonical_action": "Release",
+              "raw_action": "男子松开头盔下巴支架",
+              "object": "头盔下巴支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                10.0,
+                14.0
+              ]
+            },
+            {
+              "start_s": 14.0,
+              "end_s": 18.0,
+              "canonical_action": "Move",
+              "raw_action": "男子用手势继续讲解",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                14.0,
+                18.0
+              ]
+            },
+            {
+              "start_s": 18.0,
+              "end_s": 22.0,
+              "canonical_action": "Move",
+              "raw_action": "男子继续讲解并展示头盔下巴支架",
+              "object": "头盔下巴支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                18.0,
+                22.0
+              ]
+            },
+            {
+              "start_s": 22.0,
+              "end_s": 24.0,
+              "canonical_action": "Stop",
+              "raw_action": "男子停止动作",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                22.0,
+                24.0
+              ]
+            },
+            {
+              "start_s": 24.0,
+              "end_s": 30.0,
+              "canonical_action": "Grasp",
+              "raw_action": "男子再次拿起头盔下巴支架",
+              "object": "头盔下巴支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                24.0,
+                30.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 1,
+        "frame_start": 16,
+        "frame_end": 32,
+        "time_start": 32.0,
+        "time_end": 62.0,
+        "semantic": {
+          "summary": "男子在黑暗背景下展示并安装摩托车头盔的配件。",
+          "scene": "黑暗背景",
+          "objects": [
+            "男子",
+            "黑色头盔",
+            "黑色配件",
+            "红色胶带",
+            "银色配件"
+          ],
+          "action_segments": [
+            {
+              "start_s": 32.0,
+              "end_s": 38.0,
+              "canonical_action": "Attach",
+              "raw_action": "男子将黑色配件安装到头盔上",
+              "object": "黑色配件",
+              "confidence": 0.95,
+              "evidence_times": [
+                32.0,
+                34.0,
+                36.0,
+                38.0
+              ]
+            },
+            {
+              "start_s": 40.0,
+              "end_s": 44.0,
+              "canonical_action": "Attach",
+              "raw_action": "男子将红色胶带贴在黑色配件上",
+              "object": "红色胶带",
+              "confidence": 0.9,
+              "evidence_times": [
+                40.0,
+                42.0,
+                44.0
+              ]
+            },
+            {
+              "start_s": 46.0,
+              "end_s": 52.0,
+              "canonical_action": "Attach",
+              "raw_action": "男子将银色配件安装到头盔上",
+              "object": "银色配件",
+              "confidence": 0.85,
+              "evidence_times": [
+                46.0,
+                48.0,
+                50.0,
+                52.0
+              ]
+            },
+            {
+              "start_s": 54.0,
+              "end_s": 60.0,
+              "canonical_action": "Attach",
+              "raw_action": "男子将黑色配件安装到头盔上",
+              "object": "黑色配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                54.0,
+                56.0,
+                58.0,
+                60.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 2,
+        "frame_start": 32,
+        "frame_end": 48,
+        "time_start": 64.0,
+        "time_end": 94.0,
+        "semantic": {
+          "summary": "男子在黑暗背景下展示并操作一个黑色摩托车头盔，包括旋转、打开和调整部件。",
+          "scene": "黑暗背景下的室内环境",
+          "objects": [
+            "男子",
+            "摩托车头盔"
+          ],
+          "action_segments": [
+            {
+              "start_s": 64.0,
+              "end_s": 68.0,
+              "canonical_action": "Rotate",
+              "raw_action": "男子旋转头盔，展示其正面",
+              "object": "头盔",
+              "confidence": 0.95,
+              "evidence_times": [
+                64.0,
+                65.0,
+                66.0,
+                67.0,
+                68.0
+              ]
+            },
+            {
+              "start_s": 68.0,
+              "end_s": 72.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子用双手持头盔，展示其侧面",
+              "object": "头盔",
+              "confidence": 0.92,
+              "evidence_times": [
+                68.0,
+                69.0,
+                70.0,
+                71.0,
+                72.0
+              ]
+            },
+            {
+              "start_s": 72.0,
+              "end_s": 78.0,
+              "canonical_action": "Open",
+              "raw_action": "男子打开头盔的面罩",
+              "object": "头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                72.0,
+                73.0,
+                74.0,
+                75.0,
+                76.0,
+                77.0,
+                78.0
+              ]
+            },
+            {
+              "start_s": 78.0,
+              "end_s": 84.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子继续持头盔，展示其内部结构",
+              "object": "头盔",
+              "confidence": 0.88,
+              "evidence_times": [
+                78.0,
+                79.0,
+                80.0,
+                81.0,
+                82.0,
+                83.0,
+                84.0
+              ]
+            },
+            {
+              "start_s": 84.0,
+              "end_s": 88.0,
+              "canonical_action": "Rotate",
+              "raw_action": "男子旋转头盔，展示其背面",
+              "object": "头盔",
+              "confidence": 0.93,
+              "evidence_times": [
+                84.0,
+                85.0,
+                86.0,
+                87.0,
+                88.0
+              ]
+            },
+            {
+              "start_s": 88.0,
+              "end_s": 94.0,
+              "canonical_action": "Touch",
+              "raw_action": "男子用手指触摸头盔的调节部件",
+              "object": "头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                88.0,
+                89.0,
+                90.0,
+                91.0,
+                92.0,
+                93.0,
+                94.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 3,
+        "frame_start": 48,
+        "frame_end": 64,
+        "time_start": 96.0,
+        "time_end": 126.0,
+        "semantic": {
+          "summary": "男子在黑暗背景下展示并操作一个摩托车头盔及其配件。",
+          "scene": "黑暗背景",
+          "objects": [
+            "男子",
+            "摩托车头盔",
+            "头盔配件"
+          ],
+          "action_segments": [
+            {
+              "start_s": 96.0,
+              "end_s": 100.0,
+              "canonical_action": "Touch",
+              "raw_action": "男子用手指触摸头盔的部件",
+              "object": "头盔配件",
+              "confidence": 0.95,
+              "evidence_times": [
+                96.0,
+                97.0,
+                98.0,
+                99.0
+              ]
+            },
+            {
+              "start_s": 100.0,
+              "end_s": 104.0,
+              "canonical_action": "Grasp",
+              "raw_action": "男子握住头盔",
+              "object": "摩托车头盔",
+              "confidence": 0.92,
+              "evidence_times": [
+                100.0,
+                101.0,
+                102.0,
+                103.0
+              ]
+            },
+            {
+              "start_s": 104.0,
+              "end_s": 108.0,
+              "canonical_action": "Rotate",
+              "raw_action": "男子旋转头盔展示其侧面",
+              "object": "摩托车头盔",
+              "confidence": 0.88,
+              "evidence_times": [
+                104.0,
+                105.0,
+                106.0,
+                107.0
+              ]
+            },
+            {
+              "start_s": 108.0,
+              "end_s": 110.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子双手持头盔配件",
+              "object": "头盔配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                108.0,
+                109.0
+              ]
+            },
+            {
+              "start_s": 110.0,
+              "end_s": 114.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子用手指捏住头盔配件",
+              "object": "头盔配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                110.0,
+                111.0,
+                112.0,
+                113.0
+              ]
+            },
+            {
+              "start_s": 114.0,
+              "end_s": 118.0,
+              "canonical_action": "Grasp",
+              "raw_action": "男子用双手握住头盔配件",
+              "object": "头盔配件",
+              "confidence": 0.9,
+              "evidence_times": [
+                114.0,
+                115.0,
+                116.0
+              ]
+            },
+            {
+              "start_s": 118.0,
+              "end_s": 122.0,
+              "canonical_action": "Insert",
+              "raw_action": "男子将配件插入头盔",
+              "object": "头盔配件",
+              "confidence": 0.85,
+              "evidence_times": [
+                118.0,
+                119.0,
+                120.0,
+                121.0
+              ]
+            },
+            {
+              "start_s": 122.0,
+              "end_s": 126.0,
+              "canonical_action": "Attach",
+              "raw_action": "男子将配件固定在头盔上",
+              "object": "头盔配件",
+              "confidence": 0.88,
+              "evidence_times": [
+                122.0,
+                123.0,
+                124.0,
+                125.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 4,
+        "frame_start": 64,
+        "frame_end": 80,
+        "time_start": 128.0,
+        "time_end": 158.0,
+        "semantic": {
+          "summary": "男子在黑暗背景下安装运动相机到头盔上并进行演示。",
+          "scene": "黑暗背景下的室内环境",
+          "objects": [
+            "男子",
+            "头盔",
+            "运动相机",
+            "相机支架"
+          ],
+          "action_segments": [
+            {
+              "start_s": 128.0,
+              "end_s": 130.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架安装到头盔上",
+              "object": "相机支架",
+              "confidence": 0.95,
+              "evidence_times": [
+                128.0,
+                129.0
+              ]
+            },
+            {
+              "start_s": 130.0,
+              "end_s": 132.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架固定到头盔上",
+              "object": "相机支架",
+              "confidence": 0.9,
+              "evidence_times": [
+                130.0,
+                131.0
+              ]
+            },
+            {
+              "start_s": 132.0,
+              "end_s": 134.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔",
+              "object": "头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                132.0,
+                133.0
+              ]
+            },
+            {
+              "start_s": 134.0,
+              "end_s": 136.0,
+              "canonical_action": "Grasp",
+              "raw_action": "抓取相机",
+              "object": "运动相机",
+              "confidence": 0.9,
+              "evidence_times": [
+                134.0,
+                135.0
+              ]
+            },
+            {
+              "start_s": 136.0,
+              "end_s": 138.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机安装到支架上",
+              "object": "运动相机",
+              "confidence": 0.88,
+              "evidence_times": [
+                136.0,
+                137.0
+              ]
+            },
+            {
+              "start_s": 138.0,
+              "end_s": 140.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持相机展示",
+              "object": "运动相机",
+              "confidence": 0.92,
+              "evidence_times": [
+                138.0,
+                139.0
+              ]
+            },
+            {
+              "start_s": 140.0,
+              "end_s": 142.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持相机和头盔",
+              "object": "运动相机",
+              "confidence": 0.87,
+              "evidence_times": [
+                140.0,
+                141.0
+              ]
+            },
+            {
+              "start_s": 142.0,
+              "end_s": 144.0,
+              "canonical_action": "Grasp",
+              "raw_action": "抓取相机支架",
+              "object": "相机支架",
+              "confidence": 0.85,
+              "evidence_times": [
+                142.0,
+                143.0
+              ]
+            },
+            {
+              "start_s": 144.0,
+              "end_s": 146.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架安装到头盔上",
+              "object": "相机支架",
+              "confidence": 0.9,
+              "evidence_times": [
+                144.0,
+                145.0
+              ]
+            },
+            {
+              "start_s": 146.0,
+              "end_s": 148.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔和相机",
+              "object": "头盔",
+              "confidence": 0.88,
+              "evidence_times": [
+                146.0,
+                147.0
+              ]
+            },
+            {
+              "start_s": 148.0,
+              "end_s": 150.0,
+              "canonical_action": "Move",
+              "raw_action": "移动头盔展示安装位置",
+              "object": "头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                148.0,
+                149.0
+              ]
+            },
+            {
+              "start_s": 150.0,
+              "end_s": 152.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔",
+              "object": "头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                150.0,
+                151.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 5,
+        "frame_start": 80,
+        "frame_end": 96,
+        "time_start": 160.0,
+        "time_end": 190.0,
+        "semantic": {
+          "summary": "男子在室内展示摩托车头盔和运动相机，随后切换到第一人称视角骑行摩托车，最后回到室内继续讲解。",
+          "scene": "室内和户外道路",
+          "objects": [
+            "男子",
+            "摩托车头盔",
+            "运动相机",
+            "摩托车"
+          ],
+          "action_segments": [
+            {
+              "start_s": 160.0,
+              "end_s": 165.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子手持头盔和运动相机，展示给镜头",
+              "object": "头盔, 运动相机",
+              "confidence": 0.95,
+              "evidence_times": [
+                160.0,
+                161.0,
+                162.0,
+                163.0,
+                164.0
+              ]
+            },
+            {
+              "start_s": 166.0,
+              "end_s": 175.0,
+              "canonical_action": "Move",
+              "raw_action": "第一人称视角骑行摩托车，双手握把，仪表盘和后视镜可见",
+              "object": "摩托车",
+              "confidence": 0.98,
+              "evidence_times": [
+                166.0,
+                167.0,
+                168.0,
+                169.0,
+                170.0,
+                171.0,
+                172.0,
+                173.0,
+                174.0,
+                175.0
+              ]
+            },
+            {
+              "start_s": 176.0,
+              "end_s": 190.0,
+              "canonical_action": "Hold",
+              "raw_action": "男子再次手持头盔和运动相机，面向镜头讲解",
+              "object": "头盔, 运动相机",
+              "confidence": 0.95,
+              "evidence_times": [
+                176.0,
+                177.0,
+                178.0,
+                179.0,
+                180.0,
+                181.0,
+                182.0,
+                183.0,
+                184.0,
+                185.0,
+                186.0,
+                187.0,
+                188.0,
+                189.0,
+                190.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 6,
+        "frame_start": 96,
+        "frame_end": 112,
+        "time_start": 192.0,
+        "time_end": 222.0,
+        "semantic": {
+          "summary": "男子演示如何将运动相机安装在摩托车头盔上。",
+          "scene": "室内，背景为黑色墙壁，男子穿着白色衬衫。",
+          "objects": [
+            "男子",
+            "摩托车头盔",
+            "运动相机",
+            "相机支架"
+          ],
+          "action_segments": [
+            {
+              "start_s": 192.0,
+              "end_s": 198.0,
+              "canonical_action": "Attach",
+              "raw_action": "将相机支架固定在头盔上",
+              "object": "运动相机",
+              "confidence": 0.95,
+              "evidence_times": [
+                192.0,
+                194.0,
+                196.0
+              ]
+            },
+            {
+              "start_s": 198.0,
+              "end_s": 202.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔并展示",
+              "object": "摩托车头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                198.0,
+                200.0,
+                202.0
+              ]
+            },
+            {
+              "start_s": 202.0,
+              "end_s": 206.0,
+              "canonical_action": "Move",
+              "raw_action": "移动头盔以展示相机安装位置",
+              "object": "摩托车头盔",
+              "confidence": 0.85,
+              "evidence_times": [
+                202.0,
+                204.0,
+                206.0
+              ]
+            },
+            {
+              "start_s": 206.0,
+              "end_s": 210.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔并调整相机角度",
+              "object": "摩托车头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                206.0,
+                208.0,
+                210.0
+              ]
+            },
+            {
+              "start_s": 210.0,
+              "end_s": 214.0,
+              "canonical_action": "Move",
+              "raw_action": "移动头盔以展示相机安装效果",
+              "object": "摩托车头盔",
+              "confidence": 0.8,
+              "evidence_times": [
+                210.0,
+                212.0,
+                214.0
+              ]
+            },
+            {
+              "start_s": 214.0,
+              "end_s": 220.0,
+              "canonical_action": "Attach",
+              "raw_action": "再次将相机支架固定在头盔上",
+              "object": "运动相机",
+              "confidence": 0.9,
+              "evidence_times": [
+                214.0,
+                216.0,
+                218.0
+              ]
+            },
+            {
+              "start_s": 220.0,
+              "end_s": 222.0,
+              "canonical_action": "Hold",
+              "raw_action": "手持头盔并展示最终安装效果",
+              "object": "摩托车头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                220.0,
+                222.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 7,
+        "frame_start": 112,
+        "frame_end": 128,
+        "time_start": 224.0,
+        "time_end": 254.0,
+        "semantic": {
+          "summary": "骑摩托车行驶在乡村公路上，中途切换到展示安装在头盔上的运动相机。",
+          "scene": "乡村公路",
+          "objects": [
+            "摩托车",
+            "骑手",
+            "头盔",
+            "运动相机",
+            "安装支架"
+          ],
+          "action_segments": [
+            {
+              "start_s": 224.0,
+              "end_s": 233.0,
+              "canonical_action": "Hold",
+              "raw_action": "骑手手持头盔并展示安装在上面的运动相机",
+              "object": "头盔",
+              "confidence": 0.95,
+              "evidence_times": [
+                224.0,
+                226.0,
+                228.0,
+                230.0,
+                232.0
+              ]
+            },
+            {
+              "start_s": 234.0,
+              "end_s": 254.0,
+              "canonical_action": "Move",
+              "raw_action": "骑手骑着摩托车在公路上行驶",
+              "object": "摩托车",
+              "confidence": 0.98,
+              "evidence_times": [
+                234.0,
+                236.0,
+                238.0,
+                240.0,
+                242.0,
+                244.0,
+                246.0,
+                248.0,
+                250.0,
+                252.0,
+                254.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 8,
+        "frame_start": 128,
+        "frame_end": 144,
+        "time_start": 256.0,
+        "time_end": 286.0,
+        "semantic": {
+          "summary": "第一视角骑行摩托车，随后切换到一名男子手持相机讲解。",
+          "scene": "户外道路和室内",
+          "objects": [
+            "摩托车",
+            "骑手",
+            "卡车",
+            "相机",
+            "男子",
+            "头盔"
+          ],
+          "action_segments": [
+            {
+              "start_s": 256.0,
+              "end_s": 265.0,
+              "canonical_action": "Move",
+              "raw_action": "骑手骑着摩托车在公路上行驶",
+              "object": "摩托车",
+              "confidence": 0.95,
+              "evidence_times": [
+                256.0,
+                258.0,
+                260.0,
+                262.0,
+                264.0,
+                266.0
+              ]
+            },
+            {
+              "start_s": 266.0,
+              "end_s": 286.0,
+              "canonical_action": "Move",
+              "raw_action": "男子在室内移动手部，展示相机",
+              "object": "男子",
+              "confidence": 0.92,
+              "evidence_times": [
+                266.0,
+                268.0,
+                270.0,
+                272.0,
+                274.0,
+                276.0,
+                278.0,
+                280.0,
+                282.0,
+                284.0,
+                286.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 9,
+        "frame_start": 144,
+        "frame_end": 160,
+        "time_start": 288.0,
+        "time_end": 318.0,
+        "semantic": {
+          "summary": "一名男子在黑暗背景下对着镜头说话，同时用手势辅助表达。",
+          "scene": "室内，背景为黑色，男子穿着白色衬衫，手持一个装有运动相机的设备。",
+          "objects": [
+            "男子",
+            "运动相机",
+            "黑色设备"
+          ],
+          "action_segments": [
+            {
+              "start_s": 288.0,
+              "end_s": 318.0,
+              "canonical_action": "Speak",
+              "raw_action": "说话",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                288.0,
+                290.0,
+                292.0,
+                294.0,
+                296.0,
+                298.0,
+                300.0,
+                302.0,
+                304.0,
+                306.0,
+                308.0,
+                310.0,
+                312.0,
+                314.0,
+                316.0,
+                318.0
+              ]
+            },
+            {
+              "start_s": 292.0,
+              "end_s": 318.0,
+              "canonical_action": "Gesture",
+              "raw_action": "用手势辅助说话",
+              "object": "男子",
+              "confidence": 0.9,
+              "evidence_times": [
+                292.0,
+                294.0,
+                296.0,
+                298.0,
+                300.0,
+                302.0,
+                304.0,
+                306.0,
+                308.0,
+                310.0,
+                312.0,
+                314.0,
+                316.0,
+                318.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 10,
+        "frame_start": 160,
+        "frame_end": 176,
+        "time_start": 320.0,
+        "time_end": 350.0,
+        "semantic": {
+          "summary": "一名男子手持安装了运动相机的头盔，一边说话一边用手势辅助说明。",
+          "scene": "室内，背景为黑色墙壁，男子穿着白色衬衫。",
+          "objects": [
+            "男子",
+            "头盔",
+            "运动相机"
+          ],
+          "action_segments": [
+            {
+              "start_s": 320.0,
+              "end_s": 324.0,
+              "canonical_action": "Touch",
+              "raw_action": "用手指触摸头盔边缘",
+              "object": "头盔",
+              "confidence": 0.95,
+              "evidence_times": [
+                320.0,
+                321.0,
+                322.0,
+                323.0
+              ]
+            },
+            {
+              "start_s": 324.0,
+              "end_s": 330.0,
+              "canonical_action": "Move",
+              "raw_action": "手从头盔边缘移开并抬起",
+              "object": "手",
+              "confidence": 0.9,
+              "evidence_times": [
+                324.0,
+                325.0,
+                326.0,
+                327.0,
+                328.0
+              ]
+            },
+            {
+              "start_s": 330.0,
+              "end_s": 336.0,
+              "canonical_action": "Touch",
+              "raw_action": "手再次触摸头盔",
+              "object": "头盔",
+              "confidence": 0.9,
+              "evidence_times": [
+                330.0,
+                331.0,
+                332.0,
+                333.0,
+                334.0
+              ]
+            },
+            {
+              "start_s": 336.0,
+              "end_s": 342.0,
+              "canonical_action": "Move",
+              "raw_action": "手从头盔上移开并做出手势",
+              "object": "手",
+              "confidence": 0.85,
+              "evidence_times": [
+                336.0,
+                337.0,
+                338.0,
+                339.0,
+                340.0
+              ]
+            },
+            {
+              "start_s": 342.0,
+              "end_s": 350.0,
+              "canonical_action": "Move",
+              "raw_action": "手再次靠近头盔并做出手势",
+              "object": "手",
+              "confidence": 0.85,
+              "evidence_times": [
+                342.0,
+                343.0,
+                344.0,
+                345.0,
+                346.0,
+                347.0,
+                348.0,
+                349.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      },
+      {
+        "window_index": 11,
+        "frame_start": 176,
+        "frame_end": 181,
+        "time_start": 352.0,
+        "time_end": 360.0,
+        "semantic": {
+          "summary": "一名男子在黑暗背景下手持相机，边说话边做手势，最后挥手告别并展示订阅按钮。",
+          "scene": "黑暗背景，男子手持相机",
+          "objects": [
+            "男子",
+            "相机",
+            "订阅按钮"
+          ],
+          "action_segments": [
+            {
+              "start_s": 352.0,
+              "end_s": 354.0,
+              "canonical_action": "Move",
+              "raw_action": "男子移动右手做手势",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                352.0,
+                353.0,
+                354.0
+              ]
+            },
+            {
+              "start_s": 354.0,
+              "end_s": 356.0,
+              "canonical_action": "Move",
+              "raw_action": "男子移动右手",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                354.0,
+                355.0,
+                356.0
+              ]
+            },
+            {
+              "start_s": 356.0,
+              "end_s": 358.0,
+              "canonical_action": "Move",
+              "raw_action": "男子抬起右手",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                356.0,
+                357.0,
+                358.0
+              ]
+            },
+            {
+              "start_s": 358.0,
+              "end_s": 360.0,
+              "canonical_action": "Move",
+              "raw_action": "男子挥手",
+              "object": "男子",
+              "confidence": 0.95,
+              "evidence_times": [
+                358.0,
+                359.0,
+                360.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      }
+    ],
+    "difficulty": {
+      "T": 361.367,
+      "N": 55,
+      "H": 0,
+      "H_type": [],
+      "level": "中",
+      "confidence": "待人工复核",
+      "review_status": "candidate",
+      "evidence_intervals": [],
+      "unknown_duration": 0,
+      "merged_action_count": 55,
+      "reason": "未确认高难事件"
+    }
+  },
+  "status": "candidate_semantics",
+  "review_queue": [
+    {
+      "reason": "recording_level_merge_and_task_boundary_review_required"
+    }
+  ],
+  "elapsed_s": 369.17
+}

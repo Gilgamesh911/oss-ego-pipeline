@@ -1,0 +1,208 @@
+{
+  "video": "/mnt/oss/astribot/sample_data/家具-插充电器/videos/chunk-000/observation.images.head_camera/episode_000001.mp4",
+  "model": "/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master",
+  "frame_count": 12,
+  "timestamps_s": [
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0,
+    10.0,
+    12.0,
+    14.0,
+    16.0,
+    18.0,
+    20.0,
+    22.0
+  ],
+  "semantic": {
+    "summary": "两个机械臂协作将电源插头插入插座。",
+    "scene": "室内办公桌，有电源插座和插头",
+    "objects": [
+      "机械臂1",
+      "机械臂2",
+      "电源插头",
+      "电源插座",
+      "电线"
+    ],
+    "action_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 4.0,
+        "canonical_action": "Grasp",
+        "raw_action": "机械臂1抓取电源插头",
+        "object": "电源插头",
+        "confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          2.0,
+          4.0
+        ]
+      },
+      {
+        "start_s": 4.0,
+        "end_s": 8.0,
+        "canonical_action": "Move",
+        "raw_action": "机械臂1移动插头靠近插座",
+        "object": "电源插头",
+        "confidence": 0.9,
+        "evidence_times": [
+          4.0,
+          6.0,
+          8.0
+        ]
+      },
+      {
+        "start_s": 8.0,
+        "end_s": 10.0,
+        "canonical_action": "Insert",
+        "raw_action": "机械臂1将插头插入插座",
+        "object": "电源插座",
+        "confidence": 0.9,
+        "evidence_times": [
+          8.0,
+          10.0
+        ]
+      },
+      {
+        "start_s": 10.0,
+        "end_s": 14.0,
+        "canonical_action": "Release",
+        "raw_action": "机械臂1松开插头",
+        "object": "电源插头",
+        "confidence": 0.85,
+        "evidence_times": [
+          10.0,
+          12.0,
+          14.0
+        ]
+      },
+      {
+        "start_s": 14.0,
+        "end_s": 20.0,
+        "canonical_action": "Wait",
+        "raw_action": "机械臂1和机械臂2等待",
+        "object": "机械臂1, 机械臂2",
+        "confidence": 0.8,
+        "evidence_times": [
+          14.0,
+          16.0,
+          18.0,
+          20.0
+        ]
+      }
+    ],
+    "unknown": [],
+    "high_difficulty_candidates": [],
+    "windows": [
+      {
+        "window_index": 0,
+        "frame_start": 0,
+        "frame_end": 12,
+        "time_start": 0.0,
+        "time_end": 22.0,
+        "semantic": {
+          "summary": "两个机械臂协作将电源插头插入插座。",
+          "scene": "室内办公桌，有电源插座和插头",
+          "objects": [
+            "机械臂1",
+            "机械臂2",
+            "电源插座",
+            "电源插头",
+            "电线"
+          ],
+          "action_segments": [
+            {
+              "start_s": 0.0,
+              "end_s": 4.0,
+              "canonical_action": "Grasp",
+              "raw_action": "机械臂1抓取电源插头",
+              "object": "电源插头",
+              "confidence": 0.95,
+              "evidence_times": [
+                0.0,
+                2.0,
+                4.0
+              ]
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 8.0,
+              "canonical_action": "Move",
+              "raw_action": "机械臂1移动插头靠近插座",
+              "object": "电源插头",
+              "confidence": 0.9,
+              "evidence_times": [
+                4.0,
+                6.0,
+                8.0
+              ]
+            },
+            {
+              "start_s": 8.0,
+              "end_s": 10.0,
+              "canonical_action": "Insert",
+              "raw_action": "机械臂1将插头插入插座",
+              "object": "电源插座",
+              "confidence": 0.9,
+              "evidence_times": [
+                8.0,
+                10.0
+              ]
+            },
+            {
+              "start_s": 10.0,
+              "end_s": 14.0,
+              "canonical_action": "Release",
+              "raw_action": "机械臂1松开插头",
+              "object": "电源插头",
+              "confidence": 0.85,
+              "evidence_times": [
+                10.0,
+                12.0,
+                14.0
+              ]
+            },
+            {
+              "start_s": 14.0,
+              "end_s": 20.0,
+              "canonical_action": "Wait",
+              "raw_action": "机械臂1和机械臂2等待",
+              "object": "机械臂1, 机械臂2",
+              "confidence": 0.8,
+              "evidence_times": [
+                14.0,
+                16.0,
+                18.0,
+                20.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": []
+        }
+      }
+    ],
+    "difficulty": {
+      "T": 22.033,
+      "N": 4,
+      "H": 0,
+      "H_type": [],
+      "level": "中",
+      "confidence": "待人工复核",
+      "review_status": "candidate",
+      "evidence_intervals": [],
+      "unknown_duration": 0,
+      "merged_action_count": 4,
+      "reason": "未确认高难事件"
+    }
+  },
+  "status": "candidate_semantics",
+  "review_queue": [
+    {
+      "reason": "recording_level_merge_and_task_boundary_review_required"
+    }
+  ],
+  "elapsed_s": 17.53
+}

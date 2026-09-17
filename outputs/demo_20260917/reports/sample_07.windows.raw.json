@@ -1,0 +1,215 @@
+[
+  {
+    "window_index": 0,
+    "frame_start": 0,
+    "frame_end": 16,
+    "time_start": 0.0,
+    "time_end": 30.0,
+    "semantic": {
+      "summary": "两个机械臂在白色桌面上协作，将散落的物品放入一个纸箱中。",
+      "scene": "室内，白色桌面，背景为浅色瓷砖墙。",
+      "objects": [
+        "机械臂1",
+        "机械臂2",
+        "纸箱",
+        "红色盒子",
+        "黄色胶带",
+        "螺丝刀",
+        "彩色橡皮擦",
+        "黑色笔状物",
+        "金属小零件"
+      ],
+      "action_segments": [
+        {
+          "start_s": 0.0,
+          "end_s": 4.0,
+          "canonical_action": "Grasp",
+          "raw_action": "机械臂1抓取红色盒子",
+          "object": "红色盒子",
+          "confidence": 0.95,
+          "evidence_times": [
+            0.0,
+            2.0,
+            4.0
+          ]
+        },
+        {
+          "start_s": 4.0,
+          "end_s": 8.0,
+          "canonical_action": "Place",
+          "raw_action": "机械臂1将红色盒子放入纸箱",
+          "object": "红色盒子",
+          "confidence": 0.95,
+          "evidence_times": [
+            4.0,
+            6.0,
+            8.0
+          ]
+        },
+        {
+          "start_s": 8.0,
+          "end_s": 12.0,
+          "canonical_action": "Grasp",
+          "raw_action": "机械臂1抓取金属小零件",
+          "object": "金属小零件",
+          "confidence": 0.9,
+          "evidence_times": [
+            8.0,
+            10.0,
+            12.0
+          ]
+        },
+        {
+          "start_s": 12.0,
+          "end_s": 16.0,
+          "canonical_action": "Place",
+          "raw_action": "机械臂1将金属小零件放入纸箱",
+          "object": "金属小零件",
+          "confidence": 0.9,
+          "evidence_times": [
+            12.0,
+            14.0,
+            16.0
+          ]
+        },
+        {
+          "start_s": 16.0,
+          "end_s": 20.0,
+          "canonical_action": "Grasp",
+          "raw_action": "机械臂1抓取黑色笔状物",
+          "object": "黑色笔状物",
+          "confidence": 0.85,
+          "evidence_times": [
+            16.0,
+            18.0,
+            20.0
+          ]
+        },
+        {
+          "start_s": 20.0,
+          "end_s": 24.0,
+          "canonical_action": "Place",
+          "raw_action": "机械臂1将黑色笔状物放入纸箱",
+          "object": "黑色笔状物",
+          "confidence": 0.85,
+          "evidence_times": [
+            20.0,
+            22.0,
+            24.0
+          ]
+        },
+        {
+          "start_s": 24.0,
+          "end_s": 28.0,
+          "canonical_action": "Grasp",
+          "raw_action": "机械臂1抓取彩色橡皮擦",
+          "object": "彩色橡皮擦",
+          "confidence": 0.8,
+          "evidence_times": [
+            24.0,
+            26.0,
+            28.0
+          ]
+        },
+        {
+          "start_s": 28.0,
+          "end_s": 30.0,
+          "canonical_action": "Place",
+          "raw_action": "机械臂1将彩色橡皮擦放入纸箱",
+          "object": "彩色橡皮擦",
+          "confidence": 0.8,
+          "evidence_times": [
+            28.0,
+            30.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 1,
+    "frame_start": 16,
+    "frame_end": 28,
+    "time_start": 32.0,
+    "time_end": 54.0,
+    "semantic": {
+      "summary": "机器人手臂依次拾取并放入不同工具到纸箱中。",
+      "scene": "室内工作台，有纸箱和工具",
+      "objects": [
+        "机器人手臂",
+        "纸箱",
+        "螺丝刀",
+        "胶带",
+        "彩色物体",
+        "小盒子",
+        "金属零件"
+      ],
+      "action_segments": [
+        {
+          "start_s": 32.0,
+          "end_s": 34.0,
+          "canonical_action": "Place",
+          "raw_action": "将彩色物体放入纸箱",
+          "object": "彩色物体",
+          "confidence": 0.95,
+          "evidence_times": [
+            32.0,
+            34.0
+          ]
+        },
+        {
+          "start_s": 36.0,
+          "end_s": 40.0,
+          "canonical_action": "Pick",
+          "raw_action": "拾取螺丝刀",
+          "object": "螺丝刀",
+          "confidence": 0.92,
+          "evidence_times": [
+            36.0,
+            40.0
+          ]
+        },
+        {
+          "start_s": 40.0,
+          "end_s": 44.0,
+          "canonical_action": "Place",
+          "raw_action": "将螺丝刀放入纸箱",
+          "object": "螺丝刀",
+          "confidence": 0.93,
+          "evidence_times": [
+            40.0,
+            44.0
+          ]
+        },
+        {
+          "start_s": 46.0,
+          "end_s": 50.0,
+          "canonical_action": "Pick",
+          "raw_action": "拾取胶带",
+          "object": "胶带",
+          "confidence": 0.91,
+          "evidence_times": [
+            46.0,
+            50.0
+          ]
+        },
+        {
+          "start_s": 50.0,
+          "end_s": 54.0,
+          "canonical_action": "Place",
+          "raw_action": "将胶带放入纸箱",
+          "object": "胶带",
+          "confidence": 0.94,
+          "evidence_times": [
+            50.0,
+            54.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  }
+]

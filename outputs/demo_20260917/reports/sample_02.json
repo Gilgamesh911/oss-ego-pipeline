@@ -1,0 +1,12 @@
+{
+  "status": "failed",
+  "error": "exit_code_1",
+  "video": "/mnt/oss/scene_example_测试样例/双目商超2   2.48h/cam0.mp4",
+  "semantic": {},
+  "review_queue": [
+    {
+      "reason": "pipeline_failed",
+      "log": "outputs/demo_20260917/logs/sample_02.log"
+    }
+  ]
+}

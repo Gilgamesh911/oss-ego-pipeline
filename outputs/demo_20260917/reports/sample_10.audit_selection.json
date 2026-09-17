@@ -1,0 +1,68 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 2.002,
+      "canonical_action": "Grasp",
+      "raw_action": "双手抓取一个透明塑料袋",
+      "object": "透明塑料袋",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.002
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_10_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.002,
+      4.004
+    ]
+  },
+  {
+    "segment_index": 13,
+    "claim": {
+      "start_s": 34.001,
+      "end_s": 36.003,
+      "canonical_action": "Place",
+      "raw_action": "将玩具部件放入透明塑料袋中",
+      "object": "透明塑料袋",
+      "confidence": 0.92,
+      "evidence_times": [
+        34.001
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_10_action_013.jpg",
+    "checked_times": [
+      32.032,
+      34.001,
+      36.003,
+      38.005
+    ]
+  },
+  {
+    "segment_index": 25,
+    "claim": {
+      "start_s": 76.009,
+      "end_s": 82.015,
+      "canonical_action": "Place",
+      "raw_action": "将装满玩具的塑料袋放在桌子上",
+      "object": "透明塑料袋",
+      "confidence": 0.92,
+      "evidence_times": [
+        76.009,
+        78.011,
+        80.013,
+        82.015
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_10_action_025.jpg",
+    "checked_times": [
+      74.007,
+      76.009,
+      78.011,
+      82.015
+    ]
+  }
+]

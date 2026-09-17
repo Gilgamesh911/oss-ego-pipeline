@@ -1,0 +1,183 @@
+[
+  {
+    "window_index": 0,
+    "frame_start": 0,
+    "frame_end": 16,
+    "time_start": 0.0,
+    "time_end": 30.0,
+    "semantic": {
+      "summary": "一个人用抹布擦拭餐桌，整理餐具。",
+      "scene": "餐厅",
+      "objects": [
+        "人",
+        "抹布",
+        "餐桌",
+        "碗",
+        "盘子",
+        "筷子",
+        "纸巾盒"
+      ],
+      "action_segments": [
+        {
+          "start_s": 0.0,
+          "end_s": 4.0,
+          "canonical_action": "Move",
+          "raw_action": "人从门口走向餐桌",
+          "object": "人",
+          "confidence": 0.95,
+          "evidence_times": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "start_s": 4.0,
+          "end_s": 6.0,
+          "canonical_action": "Grasp",
+          "raw_action": "人用双手拿起抹布",
+          "object": "抹布",
+          "confidence": 0.9,
+          "evidence_times": [
+            4.0,
+            6.0
+          ]
+        },
+        {
+          "start_s": 6.0,
+          "end_s": 10.0,
+          "canonical_action": "Place",
+          "raw_action": "人将抹布放在餐桌上",
+          "object": "抹布",
+          "confidence": 0.9,
+          "evidence_times": [
+            6.0,
+            10.0
+          ]
+        },
+        {
+          "start_s": 10.0,
+          "end_s": 14.0,
+          "canonical_action": "Wipe",
+          "raw_action": "人用抹布擦拭餐桌",
+          "object": "餐桌",
+          "confidence": 0.9,
+          "evidence_times": [
+            10.0,
+            14.0
+          ]
+        },
+        {
+          "start_s": 14.0,
+          "end_s": 18.0,
+          "canonical_action": "Move",
+          "raw_action": "人移动餐具",
+          "object": "碗",
+          "confidence": 0.85,
+          "evidence_times": [
+            14.0,
+            18.0
+          ]
+        },
+        {
+          "start_s": 18.0,
+          "end_s": 22.0,
+          "canonical_action": "Wipe",
+          "raw_action": "人用抹布擦拭餐桌",
+          "object": "餐桌",
+          "confidence": 0.9,
+          "evidence_times": [
+            18.0,
+            22.0
+          ]
+        },
+        {
+          "start_s": 22.0,
+          "end_s": 26.0,
+          "canonical_action": "Move",
+          "raw_action": "人移动餐具",
+          "object": "盘子",
+          "confidence": 0.85,
+          "evidence_times": [
+            22.0,
+            26.0
+          ]
+        },
+        {
+          "start_s": 26.0,
+          "end_s": 30.0,
+          "canonical_action": "Wipe",
+          "raw_action": "人用抹布擦拭餐桌",
+          "object": "餐桌",
+          "confidence": 0.9,
+          "evidence_times": [
+            26.0,
+            30.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  },
+  {
+    "window_index": 1,
+    "frame_start": 16,
+    "frame_end": 22,
+    "time_start": 32.0,
+    "time_end": 42.0,
+    "semantic": {
+      "summary": "服务员用抹布擦拭餐桌上的碗碟。",
+      "scene": "餐厅餐桌",
+      "objects": [
+        "服务员",
+        "抹布",
+        "碗",
+        "盘子",
+        "筷子",
+        "桌子"
+      ],
+      "action_segments": [
+        {
+          "start_s": 32.0,
+          "end_s": 38.0,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭碗",
+          "object": "碗",
+          "confidence": 0.95,
+          "evidence_times": [
+            32.0,
+            34.0,
+            36.0,
+            38.0
+          ]
+        },
+        {
+          "start_s": 38.0,
+          "end_s": 40.0,
+          "canonical_action": "Place",
+          "raw_action": "将碗放回原位",
+          "object": "碗",
+          "confidence": 0.9,
+          "evidence_times": [
+            38.0,
+            40.0
+          ]
+        },
+        {
+          "start_s": 40.0,
+          "end_s": 42.0,
+          "canonical_action": "Wipe",
+          "raw_action": "用抹布擦拭桌面",
+          "object": "桌子",
+          "confidence": 0.85,
+          "evidence_times": [
+            40.0,
+            42.0
+          ]
+        }
+      ],
+      "unknown": [],
+      "high_difficulty_candidates": []
+    }
+  }
+]

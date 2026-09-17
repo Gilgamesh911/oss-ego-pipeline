@@ -1,0 +1,22 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 2.0,
+      "canonical_action": "Move",
+      "raw_action": "手从桌子右侧向左移动",
+      "object": "手",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_04_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0
+    ]
+  }
+]

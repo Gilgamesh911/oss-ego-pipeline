@@ -1,0 +1,83 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 2.002,
+      "canonical_action": "others",
+      "raw_action": "新闻主播和女主持人在演播室对话",
+      "object": "Allen Martin, Veronica De La Cruz",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.002
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_08_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.002,
+      4.004
+    ]
+  },
+  {
+    "segment_index": 14,
+    "claim": {
+      "start_s": 74.007,
+      "end_s": 78.011,
+      "canonical_action": "Wait",
+      "raw_action": "记者与采访者在雨中等待",
+      "object": "记者, 采访者",
+      "confidence": 0.7,
+      "evidence_times": [
+        74.007,
+        76.009,
+        78.011
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_08_action_014.jpg",
+    "checked_times": [
+      72.005,
+      74.007,
+      76.009,
+      78.011,
+      80.013
+    ]
+  },
+  {
+    "segment_index": 27,
+    "claim": {
+      "start_s": 128.028,
+      "end_s": 144.011,
+      "canonical_action": "Hold",
+      "raw_action": "记者手持麦克风并讲话",
+      "object": "麦克风",
+      "confidence": 0.95,
+      "evidence_times": [
+        128.028,
+        129.028,
+        130.03,
+        131.032,
+        132.032,
+        133.001,
+        134.003,
+        135.005,
+        136.007,
+        137.009,
+        138.011,
+        139.013,
+        140.015,
+        141.017,
+        142.019,
+        143.021
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_08_action_027.jpg",
+    "checked_times": [
+      126.026,
+      128.028,
+      136.003,
+      144.011
+    ]
+  }
+]

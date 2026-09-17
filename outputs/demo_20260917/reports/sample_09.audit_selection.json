@@ -1,0 +1,72 @@
+[
+  {
+    "segment_index": 0,
+    "claim": {
+      "start_s": 0.0,
+      "end_s": 4.0,
+      "canonical_action": "Grasp",
+      "raw_action": "机械臂1抓取电源插头",
+      "object": "电源插头",
+      "confidence": 0.95,
+      "evidence_times": [
+        0.0,
+        2.0,
+        4.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_09_action_000.jpg",
+    "checked_times": [
+      0.0,
+      2.0,
+      4.0,
+      6.0
+    ]
+  },
+  {
+    "segment_index": 2,
+    "claim": {
+      "start_s": 8.0,
+      "end_s": 10.0,
+      "canonical_action": "Insert",
+      "raw_action": "机械臂1将插头插入插座",
+      "object": "电源插座",
+      "confidence": 0.9,
+      "evidence_times": [
+        8.0,
+        10.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_09_action_002.jpg",
+    "checked_times": [
+      6.0,
+      8.0,
+      10.0,
+      12.0
+    ]
+  },
+  {
+    "segment_index": 4,
+    "claim": {
+      "start_s": 14.0,
+      "end_s": 20.0,
+      "canonical_action": "Wait",
+      "raw_action": "机械臂1和机械臂2等待",
+      "object": "机械臂1, 机械臂2",
+      "confidence": 0.8,
+      "evidence_times": [
+        14.0,
+        16.0,
+        18.0,
+        20.0
+      ]
+    },
+    "evidence_panel": "outputs/demo_20260917/previews/sample_09_action_004.jpg",
+    "checked_times": [
+      12.0,
+      14.0,
+      16.0,
+      20.0,
+      22.0
+    ]
+  }
+]
