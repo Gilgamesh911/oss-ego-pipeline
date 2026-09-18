@@ -41,8 +41,168 @@ IGNORED_FOR_N = {"Wait", "等待", "观察", "未知"}
 H_TYPES = {"interaction", "conditional_decision", "multi_thread_coordination",
            "交互", "条件决策", "多线程协调"}
 
+APPLICABILITY_VALUES = {"ego_task", "non_task", "mixed", "unknown"}
+APPLICABILITY_ALIASES = {
+    "ego": "ego_task", "ego_task": "ego_task", "操作任务": "ego_task", "第一视角操作": "ego_task",
+    "non_task": "non_task", "非操作": "non_task", "新闻": "non_task", "讲解": "non_task",
+    "mixed": "mixed", "混合": "mixed", "混合视频": "mixed",
+    "unknown": "unknown", "未知": "unknown", "不确定": "unknown",
+}
+
+
+def _string_value(value, *, field, issues, allow_empty=False):
+    """Return a safe scalar string without letting nested model JSON break aggregation."""
+    if isinstance(value, str):
+        if value or allow_empty:
+            return value
+        issues.append({"field": field, "reason": "empty_string"})
+        return ""
+    if isinstance(value, dict):
+        for key in ("name", "label", "object", "text", "value"):
+            candidate = value.get(key)
+            if isinstance(candidate, str) and candidate:
+                issues.append({"field": field, "reason": "dict_coerced", "key": key})
+                return candidate
+        issues.append({"field": field, "reason": "dict_rejected"})
+        return "unknown"
+    if value is None and allow_empty:
+        return ""
+    issues.append({"field": field, "reason": "expected_string", "type": type(value).__name__})
+    return str(value) if value is not None else "unknown"
+
+
+def normalize_applicability(value, issues=None):
+    issues = issues if issues is not None else []
+    if isinstance(value, dict):
+        value = value.get("category") or value.get("type") or value.get("label")
+    if not isinstance(value, str):
+        if value is not None:
+            issues.append({"field": "task_applicability", "reason": "expected_string"})
+        return "unknown"
+    normalized = APPLICABILITY_ALIASES.get(value.strip().lower(), APPLICABILITY_ALIASES.get(value.strip(), "unknown"))
+    if normalized == "unknown" and value.strip().lower() not in {"unknown", "未知", "不确定"}:
+        issues.append({"field": "task_applicability", "reason": "unknown_value", "value": value})
+    return normalized
+
+
+def _nearest_frame_id(value, frame_ids, timestamps, tolerance=0.05):
+    if not isinstance(value, (int, float)) or not timestamps:
+        return None
+    index = min(range(len(timestamps)), key=lambda i: abs(float(timestamps[i]) - float(value)))
+    return frame_ids[index] if abs(float(timestamps[index]) - float(value)) <= tolerance else None
+
+
+def normalize_semantic(raw, frame_ids, timestamps, duration_s):
+    """Validate one model window before it can be merged into recording output.
+
+    Evidence is represented by real input frame IDs. Legacy evidence_times are
+    accepted only when they exactly map to an input timestamp within 50 ms.
+    Invalid fields are retained in ``validation_issues`` and never crash the
+    recording-level aggregation.
+    """
+    issues = []
+    if not isinstance(raw, dict):
+        issues.append({"field": "semantic", "reason": "expected_object"})
+        raw = {"raw_output": str(raw)}
+    result = {
+        "summary": _string_value(raw.get("summary", ""), field="summary", issues=issues, allow_empty=True),
+        "scene": _string_value(raw.get("scene", ""), field="scene", issues=issues, allow_empty=True),
+        "objects": [], "action_segments": [], "unknown": [],
+        "high_difficulty_candidates": [],
+        "task_applicability": normalize_applicability(raw.get("task_applicability"), issues),
+    }
+    if "raw_output" in raw:
+        result["raw_output"] = raw["raw_output"]
+
+    objects = raw.get("objects", [])
+    if not isinstance(objects, list):
+        issues.append({"field": "objects", "reason": "expected_array", "type": type(objects).__name__})
+        objects = []
+    for i, value in enumerate(objects):
+        text = _string_value(value, field=f"objects[{i}]", issues=issues)
+        if text and text not in result["objects"]:
+            result["objects"].append(text)
+
+    actions = raw.get("action_segments", [])
+    if not isinstance(actions, list):
+        issues.append({"field": "action_segments", "reason": "expected_array", "type": type(actions).__name__})
+        actions = []
+    for i, item in enumerate(actions):
+        if not isinstance(item, dict):
+            issues.append({"field": f"action_segments[{i}]", "reason": "expected_object"})
+            continue
+        action = dict(item)
+        canonical = action.get("canonical_action", action.get("action", "others"))
+        if canonical not in ATOMIC_ACTIONS:
+            issues.append({"field": f"action_segments[{i}].canonical_action", "reason": "outside_vocabulary", "value": canonical})
+            action["canonical_action"] = "others"
+        else:
+            action["canonical_action"] = canonical
+        action["raw_action"] = _string_value(action.get("raw_action", ""), field=f"action_segments[{i}].raw_action", issues=issues, allow_empty=True)
+        action["object"] = _string_value(action.get("object", "unknown"), field=f"action_segments[{i}].object", issues=issues)
+        # Only accept numeric finite values. Range and ordering are checked in the report validator.
+        for key in ("start_s", "end_s", "confidence"):
+            if not isinstance(action.get(key), (int, float)) or isinstance(action.get(key), bool):
+                issues.append({"field": f"action_segments[{i}].{key}", "reason": "expected_number"})
+                action[key] = None
+        evidence_ids = action.get("evidence_frame_ids")
+        if not isinstance(evidence_ids, list):
+            evidence_ids = []
+            if action.get("evidence_times") is not None:
+                old_times = action.get("evidence_times") if isinstance(action.get("evidence_times"), list) else []
+                for value in old_times:
+                    frame_id = _nearest_frame_id(value, frame_ids, timestamps)
+                    if frame_id is None:
+                        issues.append({"field": f"action_segments[{i}].evidence_times", "reason": "no_matching_input_frame", "value": value})
+                    else:
+                        evidence_ids.append(frame_id)
+        valid_ids = [x for x in evidence_ids if x in frame_ids]
+        if len(valid_ids) != len(evidence_ids):
+            issues.append({"field": f"action_segments[{i}].evidence_frame_ids", "reason": "unknown_frame_id"})
+        action["evidence_frame_ids"] = list(dict.fromkeys(valid_ids))
+        action["evidence_times"] = [timestamps[frame_ids.index(x)] for x in action["evidence_frame_ids"]]
+        result["action_segments"].append(action)
+
+    for field in ("unknown", "high_difficulty_candidates"):
+        values = raw.get(field, [])
+        if not isinstance(values, list):
+            issues.append({"field": field, "reason": "expected_array"})
+            values = []
+        result[field] = [x for x in values if isinstance(x, dict)]
+        if len(result[field]) != len(values):
+            issues.append({"field": field, "reason": "non_object_items_dropped"})
+    # High-difficulty candidates use the same grounded evidence contract.
+    for i, candidate in enumerate(result["high_difficulty_candidates"]):
+        evidence_ids = candidate.get("evidence_frame_ids")
+        if not isinstance(evidence_ids, list):
+            evidence_ids = []
+            old_times = candidate.get("evidence_times", [])
+            if isinstance(old_times, list):
+                for value in old_times:
+                    frame_id = _nearest_frame_id(value, frame_ids, timestamps)
+                    if frame_id is None:
+                        issues.append({"field": f"high_difficulty_candidates[{i}].evidence_times",
+                                       "reason": "no_matching_input_frame", "value": value})
+                    else:
+                        evidence_ids.append(frame_id)
+        valid_ids = [x for x in evidence_ids if x in frame_ids]
+        if len(valid_ids) != len(evidence_ids):
+            issues.append({"field": f"high_difficulty_candidates[{i}].evidence_frame_ids",
+                           "reason": "unknown_frame_id", "value": evidence_ids})
+        candidate["evidence_frame_ids"] = list(dict.fromkeys(valid_ids))
+        candidate["evidence_times"] = [timestamps[frame_ids.index(x)] for x in candidate["evidence_frame_ids"]]
+    if issues:
+        result["validation_issues"] = issues
+    return result
+
 def recording_difficulty(semantic: dict, duration_s: float) -> dict:
     """Conservative recording-level N/H/level calculation."""
+    applicability = normalize_applicability(semantic.get("task_applicability"))
+    if applicability == "non_task":
+        return {"T": round(duration_s, 3), "N": None, "H": None, "H_type": [],
+                "level": "不适用", "confidence": "规则判定", "review_status": "filtered",
+                "evidence_intervals": [], "unknown_duration": 0,
+                "merged_action_count": 0, "reason": "非操作任务视频，不参与ego任务难度评估"}
     segments = sorted((s for s in semantic.get("action_segments", [])
                        if isinstance(s, dict) and (s.get("canonical_action", s.get("action")) not in IGNORED_FOR_N)
                        and isinstance(s.get("start_s"), (int, float))
@@ -62,7 +222,7 @@ def recording_difficulty(semantic: dict, duration_s: float) -> dict:
     confirmed = []
     for c in candidates:
         typ = c.get("type") or c.get("H_type")
-        evidence = c.get("evidence_times") or c.get("evidence_intervals")
+        evidence = c.get("evidence_frame_ids") or c.get("evidence_times") or c.get("evidence_intervals")
         reason = str(c.get("reason", ""))
         # Ordinary contact, tool use, or two-handed assembly is not enough.
         # Require textual evidence of the corresponding causal signal until a
@@ -189,13 +349,15 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     instruction = (
         "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
         "summary（中文一句话）、scene（场景）、objects（对象数组）、"
+        "task_applicability（只能是 ego_task、non_task、mixed、unknown；判断是否存在连续的第一视角操作任务）、"
         "action_segments（最多12个主要阶段，每项含 start_s、end_s、canonical_action、raw_action、object、confidence、"
-        "evidence_times（对应实际帧时间的数组）），unknown（无法判断的区间及原因），"
-        "high_difficulty_candidates（候选事件数组，每项含 type、start_s、end_s、evidence_times、reason）。"
+        "evidence_frame_ids（只能从输入帧ID中选择的数组）），unknown（无法判断的区间及原因），"
+        "high_difficulty_candidates（候选事件数组，每项含 type、start_s、end_s、evidence_frame_ids、reason）。"
         "canonical_action 必须严格使用以下原子动作之一：" + ", ".join(ATOMIC_ACTIONS) + "。"
         "动作不在词表时使用 others，并在 raw_action 保留原始描述；不要创造新 canonical_action。"
         "只描述画面证据，不预设场景或任务。综合全程的前后状态识别动作。"
-        "时间必须使用所附帧时间，不能把帧序号当成秒，不能编造精确边界。"
+        "每张输入图前都有唯一Frame id；evidence_frame_ids只能复制这些ID，不能自行创造。"
+        "start_s/end_s是估计时间区间，可以落在相邻输入帧之间，但不能超出窗口。"
         "同阶段连续重复可以合并，跨阶段或目标变化分别保留。"
         "候选高难事件仅限有外部反馈与响应的交互、有条件证据的决策、"
         "有目标切换/恢复/协调证据的多线程协调；普通接触、双手操作或多个对象不等于确认高难。"
@@ -207,8 +369,8 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     for begin in range(0, len(frames), window_frames):
         end = min(begin + window_frames, len(frames))
         content = []
-        for image, timestamp in zip(frames[begin:end], timestamps[begin:end]):
-            content.extend([{"type": "text", "text": f"Frame timestamp: {timestamp} seconds."},
+        for offset, (image, timestamp) in enumerate(zip(frames[begin:end], timestamps[begin:end])):
+            content.extend([{"type": "text", "text": f"Frame id: {begin + offset}; timestamp: {timestamp} seconds."},
                             {"type": "image", "image": image}])
         content.append({"type": "text", "text": instruction})
         inputs = processor.apply_chat_template([{"role": "user", "content": content}], tokenize=True,
@@ -223,6 +385,12 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         except (ValueError, TypeError):
             parsed = {"raw_output": text}; status = 'partial_semantic_output'
             review_queue.append({'reason': 'invalid_or_truncated_window_json', 'window': [begin, end]})
+        parsed = normalize_semantic(parsed, list(range(begin, end)), timestamps[begin:end], duration_s)
+        if parsed.get("validation_issues"):
+            status = 'partial_semantic_output' if status == 'candidate_semantics' else status
+            review_queue.append({'reason': 'schema_or_evidence_validation_issue',
+                                 'window': [begin, end],
+                                 'issues': parsed['validation_issues']})
         window_reports.append({'window_index': len(window_reports), 'frame_start': begin,
                                'frame_end': end, 'time_start': timestamps[begin],
                                'time_end': timestamps[end-1], 'semantic': parsed})
@@ -232,12 +400,17 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     parsed = {
         'summary': '；'.join(x['semantic'].get('summary','') for x in window_reports if x['semantic'].get('summary')),
         'scene': next((x['semantic'].get('scene') for x in window_reports if x['semantic'].get('scene')), None),
-        'objects': sorted({o for x in window_reports for o in x['semantic'].get('objects', [])}),
+        'objects': sorted({o for x in window_reports for o in x['semantic'].get('objects', []) if isinstance(o, str)}),
         'action_segments': [s for x in window_reports for s in x['semantic'].get('action_segments', [])],
         'unknown': [u for x in window_reports for u in x['semantic'].get('unknown', [])],
         'high_difficulty_candidates': [h for x in window_reports for h in x['semantic'].get('high_difficulty_candidates', [])],
+        'task_applicability': 'unknown',
+        'validation_issues': [issue for x in window_reports for issue in x['semantic'].get('validation_issues', [])],
         'windows': window_reports,
     }
+    applicability = {x['semantic'].get('task_applicability', 'unknown') for x in window_reports}
+    applicability.discard('unknown')
+    parsed['task_applicability'] = next(iter(applicability)) if len(applicability) == 1 else ('mixed' if applicability else 'unknown')
     if parsed['high_difficulty_candidates']:
         review_queue.append({'reason': 'high_difficulty_candidates_require_evidence_review'})
     # A model's generated wording or confidence is never a confirmation of H.

@@ -1,0 +1,205 @@
+{
+  "video": "/mnt/oss/scene_example_测试样例/双目商超2   2.48h/cam0.mp4",
+  "model": "/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master",
+  "frame_count": 8,
+  "timestamps_s": [
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0,
+    10.0,
+    12.0,
+    14.0
+  ],
+  "semantic": {
+    "summary": "一个人在超市饮料区用抹布擦拭可口可乐瓶并将其放回货架。",
+    "scene": "超市饮料区",
+    "objects": [
+      "可口可乐瓶",
+      "塑料桶",
+      "手",
+      "抹布",
+      "货架"
+    ],
+    "action_segments": [
+      {
+        "start_s": 0,
+        "end_s": 1,
+        "canonical_action": "Grasp",
+        "raw_action": "用手抓取抹布",
+        "object": "抹布",
+        "confidence": 0.95,
+        "evidence_frame_ids": [
+          0
+        ],
+        "evidence_times": [
+          0.0
+        ]
+      },
+      {
+        "start_s": 1,
+        "end_s": 2,
+        "canonical_action": "Pick",
+        "raw_action": "从桶中拿起一瓶可口可乐",
+        "object": "可口可乐瓶",
+        "confidence": 0.9,
+        "evidence_frame_ids": [
+          1
+        ],
+        "evidence_times": [
+          2.0
+        ]
+      },
+      {
+        "start_s": 2,
+        "end_s": 4,
+        "canonical_action": "Wipe",
+        "raw_action": "用抹布擦拭可口可乐瓶",
+        "object": "可口可乐瓶",
+        "confidence": 0.9,
+        "evidence_frame_ids": [
+          2,
+          3,
+          4
+        ],
+        "evidence_times": [
+          4.0,
+          6.0,
+          8.0
+        ]
+      },
+      {
+        "start_s": 4,
+        "end_s": 7,
+        "canonical_action": "Place",
+        "raw_action": "将擦拭好的可口可乐瓶放回货架",
+        "object": "可口可乐瓶",
+        "confidence": 0.85,
+        "evidence_frame_ids": [
+          5,
+          6,
+          7
+        ],
+        "evidence_times": [
+          10.0,
+          12.0,
+          14.0
+        ]
+      }
+    ],
+    "unknown": [],
+    "high_difficulty_candidates": [],
+    "task_applicability": "ego_task",
+    "validation_issues": [],
+    "windows": [
+      {
+        "window_index": 0,
+        "frame_start": 0,
+        "frame_end": 8,
+        "time_start": 0.0,
+        "time_end": 14.0,
+        "semantic": {
+          "summary": "一个人在超市饮料区用抹布擦拭可口可乐瓶并将其放回货架。",
+          "scene": "超市饮料区",
+          "objects": [
+            "手",
+            "抹布",
+            "可口可乐瓶",
+            "货架",
+            "塑料桶"
+          ],
+          "action_segments": [
+            {
+              "start_s": 0,
+              "end_s": 1,
+              "canonical_action": "Grasp",
+              "raw_action": "用手抓取抹布",
+              "object": "抹布",
+              "confidence": 0.95,
+              "evidence_frame_ids": [
+                0
+              ],
+              "evidence_times": [
+                0.0
+              ]
+            },
+            {
+              "start_s": 1,
+              "end_s": 2,
+              "canonical_action": "Pick",
+              "raw_action": "从桶中拿起一瓶可口可乐",
+              "object": "可口可乐瓶",
+              "confidence": 0.9,
+              "evidence_frame_ids": [
+                1
+              ],
+              "evidence_times": [
+                2.0
+              ]
+            },
+            {
+              "start_s": 2,
+              "end_s": 4,
+              "canonical_action": "Wipe",
+              "raw_action": "用抹布擦拭可口可乐瓶",
+              "object": "可口可乐瓶",
+              "confidence": 0.9,
+              "evidence_frame_ids": [
+                2,
+                3,
+                4
+              ],
+              "evidence_times": [
+                4.0,
+                6.0,
+                8.0
+              ]
+            },
+            {
+              "start_s": 4,
+              "end_s": 7,
+              "canonical_action": "Place",
+              "raw_action": "将擦拭好的可口可乐瓶放回货架",
+              "object": "可口可乐瓶",
+              "confidence": 0.85,
+              "evidence_frame_ids": [
+                5,
+                6,
+                7
+              ],
+              "evidence_times": [
+                10.0,
+                12.0,
+                14.0
+              ]
+            }
+          ],
+          "unknown": [],
+          "high_difficulty_candidates": [],
+          "task_applicability": "ego_task"
+        }
+      }
+    ],
+    "difficulty": {
+      "T": 15.233,
+      "N": 4,
+      "H": 0,
+      "H_type": [],
+      "level": "中",
+      "confidence": "待人工复核",
+      "review_status": "candidate",
+      "evidence_intervals": [],
+      "unknown_duration": 0,
+      "merged_action_count": 4,
+      "reason": "未确认高难事件"
+    }
+  },
+  "status": "candidate_semantics",
+  "review_queue": [
+    {
+      "reason": "recording_level_merge_and_task_boundary_review_required"
+    }
+  ],
+  "elapsed_s": 17.48
+}

@@ -1,0 +1,74 @@
+{
+  "pipeline_commit_before_fix": "162cb43983c0dec171218c844096d433c777fe88",
+  "pipeline_commit_under_test": "162cb43983c0dec171218c844096d433c777fe88",
+  "model": "Qwen3-VL-4B-Instruct local snapshot",
+  "tests": {
+    "fast_regression": "PASS: scripts/test_p0_regressions.py",
+    "sample_02_before": "exit_code=1; TypeError: unhashable type: dict in objects aggregation",
+    "sample_02_after": {
+      "process_status": "candidate_semantics",
+      "task_applicability": "ego_task",
+      "object_types": [
+        "str"
+      ],
+      "action_count": 4,
+      "validation_issue_count": 0,
+      "difficulty": {
+        "T": 15.233,
+        "N": 4,
+        "H": 0,
+        "H_type": [],
+        "level": "中",
+        "confidence": "待人工复核",
+        "review_status": "candidate",
+        "evidence_intervals": [],
+        "unknown_duration": 0,
+        "merged_action_count": 4,
+        "reason": "未确认高难事件"
+      }
+    },
+    "sample_08_before": "level=中, N=18; Speak was kept as vocabulary output",
+    "sample_08_after": {
+      "process_status": "partial_semantic_output",
+      "task_applicability": "non_task",
+      "difficulty": {
+        "T": 145.846,
+        "N": null,
+        "H": null,
+        "H_type": [],
+        "level": "不适用",
+        "confidence": "规则判定",
+        "review_status": "filtered",
+        "evidence_intervals": [],
+        "unknown_duration": 0,
+        "merged_action_count": 0,
+        "reason": "非操作任务视频，不参与ego任务难度评估"
+      },
+      "validation_issue_count": 22,
+      "validation_issue_reasons": {
+        "unknown_frame_id": 18,
+        "dict_rejected": 4
+      },
+      "speak_or_gesture_normalized": [
+        "others"
+      ],
+      "review_queue_reasons": [
+        "schema_or_evidence_validation_issue",
+        "schema_or_evidence_validation_issue",
+        "schema_or_evidence_validation_issue",
+        "schema_or_evidence_validation_issue",
+        "recording_level_merge_and_task_boundary_review_required"
+      ]
+    }
+  },
+  "p0_status": {
+    "P0-1_schema_boundary": "fixed: invalid nested fields normalize to safe strings/partial output and aggregation filters types",
+    "P0-2_frame_grounding": "fixed as fail-closed: only real frame IDs/times within 50ms are accepted; invalid model IDs are reported",
+    "P0-3_vocabulary": "fixed: out-of-vocabulary canonical actions normalize to others and are counted as validation issues",
+    "P0-4_applicability": "fixed: non_task/mixed/unknown is explicit; non_task receives level 不适用 and N/H are not computed"
+  },
+  "limitations": [
+    "The model still occasionally emits invalid evidence IDs; the fix prevents silent acceptance and preserves the partial result, but does not make the model semantically correct.",
+    "sample_08 is a non-task news video; its actions are retained for audit but excluded from ego level calculation."
+  ]
+}
