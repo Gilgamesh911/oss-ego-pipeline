@@ -111,6 +111,11 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
         "high_difficulty_candidates": [],
         "task_applicability": normalize_applicability(raw.get("task_applicability"), issues),
     }
+    coverage_complete = raw.get("coverage_complete")
+    if coverage_complete is not None and not isinstance(coverage_complete, bool):
+        issues.append({"field": "coverage_complete", "reason": "expected_boolean"})
+        coverage_complete = None
+    result["coverage_complete"] = coverage_complete
     if "raw_output" in raw:
         result["raw_output"] = raw["raw_output"]
 
@@ -140,6 +145,9 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
             action["canonical_action"] = canonical
         action["raw_action"] = _string_value(action.get("raw_action", ""), field=f"action_segments[{i}].raw_action", issues=issues, allow_empty=True)
         action["object"] = _string_value(action.get("object", "unknown"), field=f"action_segments[{i}].object", issues=issues)
+        action["task_stage"] = _string_value(action.get("task_stage", ""), field=f"action_segments[{i}].task_stage", issues=issues, allow_empty=True)
+        action["state_before"] = _string_value(action.get("state_before", ""), field=f"action_segments[{i}].state_before", issues=issues, allow_empty=True)
+        action["state_after"] = _string_value(action.get("state_after", ""), field=f"action_segments[{i}].state_after", issues=issues, allow_empty=True)
         # Only accept numeric finite values. Range and ordering are checked in the report validator.
         for key in ("start_s", "end_s", "confidence"):
             if not isinstance(action.get(key), (int, float)) or isinstance(action.get(key), bool):
@@ -191,6 +199,13 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
                            "reason": "unknown_frame_id", "value": evidence_ids})
         candidate["evidence_frame_ids"] = list(dict.fromkeys(valid_ids))
         candidate["evidence_times"] = [timestamps[frame_ids.index(x)] for x in candidate["evidence_frame_ids"]]
+        for key in ("start_s", "end_s"):
+            if not isinstance(candidate.get(key), (int, float)) or isinstance(candidate.get(key), bool):
+                issues.append({"field": f"high_difficulty_candidates[{i}].{key}", "reason": "expected_number"})
+                candidate[key] = None
+        if candidate.get("start_s") is not None and candidate.get("end_s") is not None:
+            if not (0 <= candidate["start_s"] < candidate["end_s"] <= duration_s):
+                issues.append({"field": f"high_difficulty_candidates[{i}]", "reason": "invalid_interval"})
     if issues:
         result["validation_issues"] = issues
     return result
@@ -208,6 +223,7 @@ def recording_difficulty(semantic: dict, duration_s: float) -> dict:
                        and isinstance(s.get("start_s"), (int, float))
                        and isinstance(s.get("end_s"), (int, float))),
                       key=lambda s: s["start_s"])
+    atomic_action_count = len(segments)
     merged = []
     for s in segments:
         key = (s.get("canonical_action", s.get("action")), s.get("object"))
@@ -217,9 +233,27 @@ def recording_difficulty(semantic: dict, duration_s: float) -> dict:
         else:
             merged.append({"key": key, "start_s": s["start_s"], "end_s": s["end_s"],
                            "evidence_times": list(s.get("evidence_times", []))})
-    n = len(merged) if merged else None
+    atomic_stage_keys = []
+    all_segments_have_stage = bool(segments)
+    for s in segments:
+        stage = s.get("task_stage")
+        if isinstance(stage, str) and stage.strip():
+            key = stage.strip()
+            if not atomic_stage_keys or atomic_stage_keys[-1] != key:
+                atomic_stage_keys.append(key)
+        else:
+            all_segments_have_stage = False
+    if atomic_stage_keys and all_segments_have_stage:
+        # A stage label is the model's task-level grouping; preserve atomic
+        # action count separately rather than silently conflating the two.
+        n = len(atomic_stage_keys)
+        n_method = "task_stage"
+    else:
+        n = len(merged) if merged else None
+        n_method = "action_object_fallback"
     candidates = semantic.get("high_difficulty_candidates", [])
-    confirmed = []
+    rule_passed = []
+    human_confirmed = []
     for c in candidates:
         typ = c.get("type") or c.get("H_type")
         evidence = c.get("evidence_frame_ids") or c.get("evidence_times") or c.get("evidence_intervals")
@@ -230,43 +264,117 @@ def recording_difficulty(semantic: dict, duration_s: float) -> dict:
         causal = ((typ in {"interaction", "交互"} and any(x in reason for x in ("反馈", "响应", "调整", "feedback", "response"))) or
                   (typ in {"conditional_decision", "条件决策"} and any(x in reason for x in ("条件", "判断", "决定", "condition", "decision"))) or
                   (typ in {"multi_thread_coordination", "多线程协调"} and any(x in reason for x in ("切换", "恢复", "协调", "返回", "switch", "recover"))))
-        if causal and c.get("start_s") is not None and c.get("end_s") is not None and evidence:
-            confirmed.append(c)
+        interval_ok = (isinstance(c.get("start_s"), (int, float)) and
+                       isinstance(c.get("end_s"), (int, float)) and
+                       0 <= c["start_s"] < c["end_s"] <= duration_s)
+        if causal and interval_ok and evidence:
+            rule_passed.append(c)
+            if c.get("human_confirmed") is True:
+                human_confirmed.append(c)
     unknown_duration = sum(max(0, float(u.get("end_s", 0)) - float(u.get("start_s", 0)))
                          for u in semantic.get("unknown", []) if isinstance(u, dict))
-    complete = not semantic.get("unknown") and bool(segments)
-    if confirmed:
+    complete = semantic.get("coverage_complete") is True and not semantic.get("unknown") and bool(segments)
+    if human_confirmed:
         level, review = "高", "confirmed"
+    elif rule_passed:
+        level, review = "待判定", "candidate_high"
     elif not complete or not n:
         level, review = "待判定", "pending"
     elif n <= 3:
         level, review = "低", "candidate"
     else:
         level, review = "中", "candidate"
-    return {"T": round(duration_s, 3), "N": n, "H": len(confirmed),
-            "H_type": [c.get("type") or c.get("H_type") for c in confirmed],
-            "level": level, "confidence": "规则判定" if review == "confirmed" else "待人工复核",
+    return {"T": round(duration_s, 3), "N": n, "H": len(human_confirmed),
+            "H_type": [c.get("type") or c.get("H_type") for c in human_confirmed],
+            "atomic_action_count": atomic_action_count,
+            "task_stage_count": len(atomic_stage_keys) if atomic_stage_keys else None,
+            "n_method": n_method,
+            "model_candidate_count": len(candidates),
+            "rule_passed_count": len(rule_passed),
+            "human_confirmed_count": len(human_confirmed),
+            "level": level, "confidence": "人工确认" if review == "confirmed" else "待人工复核",
             "review_status": review,
             "evidence_intervals": [{"start_s": c["start_s"], "end_s": c["end_s"],
-                                     "evidence_times": c.get("evidence_times", [])} for c in confirmed],
+                                     "evidence_times": c.get("evidence_times", [])} for c in human_confirmed],
             "unknown_duration": round(unknown_duration, 3),
             "merged_action_count": n,
-            "reason": "存在有时间区间和证据帧的确认高难事件" if confirmed else
-                      ("动作链不完整或证据不足" if review == "pending" else "未确认高难事件")}
+            "reason": "存在人工确认的高难事件" if human_confirmed else
+                      ("存在规则通过但尚未人工确认的高难候选" if rule_passed else
+                       ("动作链不完整或证据不足" if review == "pending" else "未确认高难事件"))}
 
-def sample_video(video: str, interval: float, max_frames: int, frames_cache=None):
+def merge_action_segments(segments, tolerance=0.5):
+    """Merge duplicate actions produced by overlapping VLM windows.
+
+    Actions with different task stages are never merged. For unlabelled
+    actions, the canonical action/object and overlapping time/evidence are
+    required, so adjacent but distinct task steps remain separate.
+    """
+    merged = []
+    for source in sorted((s for s in segments if isinstance(s, dict)), key=lambda s: (s.get("start_s", float("inf")), s.get("end_s", float("inf")))):
+        if not isinstance(source.get("start_s"), (int, float)) or not isinstance(source.get("end_s"), (int, float)):
+            merged.append(source); continue
+        source_stage = source.get("task_stage", "")
+        source_key = (source.get("canonical_action", source.get("action")), source.get("object"), source_stage)
+        found = None
+        for current in reversed(merged):
+            current_key = (current.get("canonical_action", current.get("action")), current.get("object"), current.get("task_stage", ""))
+            if current_key != source_key:
+                continue
+            overlap = min(current.get("end_s", -float("inf")), source["end_s"]) - max(current.get("start_s", float("inf")), source["start_s"])
+            evidence_overlap = set(current.get("evidence_frame_ids", [])) & set(source.get("evidence_frame_ids", []))
+            if overlap >= -tolerance or evidence_overlap:
+                found = current; break
+        if found is None:
+            merged.append(dict(source)); continue
+        found["start_s"] = min(found["start_s"], source["start_s"])
+        found["end_s"] = max(found["end_s"], source["end_s"])
+        for field in ("evidence_frame_ids", "evidence_times"):
+            found[field] = list(dict.fromkeys(found.get(field, []) + source.get(field, [])))
+        for field in ("state_before", "state_after", "raw_action"):
+            if not found.get(field) and source.get(field): found[field] = source[field]
+    return merged
+
+def merge_high_difficulty_candidates(candidates, tolerance=0.5):
+    """Deduplicate candidate events repeated in overlapping windows."""
+    merged = []
+    for source in candidates:
+        if not isinstance(source, dict):
+            continue
+        source_key = source.get("type") or source.get("H_type")
+        found = None
+        for current in reversed(merged):
+            if (current.get("type") or current.get("H_type")) != source_key:
+                continue
+            if not all(isinstance(current.get(k), (int, float)) and isinstance(source.get(k), (int, float)) for k in ("start_s", "end_s")):
+                continue
+            overlap = min(current["end_s"], source["end_s"]) - max(current["start_s"], source["start_s"])
+            evidence_overlap = set(current.get("evidence_frame_ids", [])) & set(source.get("evidence_frame_ids", []))
+            if overlap >= -tolerance or evidence_overlap:
+                found = current
+                break
+        if found is None:
+            merged.append(dict(source))
+            continue
+        found["start_s"] = min(found["start_s"], source["start_s"])
+        found["end_s"] = max(found["end_s"], source["end_s"])
+        for field in ("evidence_frame_ids", "evidence_times"):
+            found[field] = list(dict.fromkeys(found.get(field, []) + source.get(field, [])))
+    return merged
+
+def sample_video(video: str, interval: float, max_frames: int, frames_cache=None, min_frames: int = 4):
     import av
     import math
     from PIL import Image
     # FFmpeg decoder threads must not call back into Python during codec
     # destruction. PyAV's logging callback can deadlock while holding the GIL.
     av.logging.restore_default_callback()
-    if interval <= 0 or max_frames <= 0:
-        raise ValueError('interval and max_frames must be positive')
+    if interval <= 0 or max_frames <= 0 or min_frames <= 0:
+        raise ValueError('interval, max_frames, and min_frames must be positive')
+    min_frames = min(min_frames, max_frames)
     cache = Path(frames_cache) if frames_cache else None
     signature = {'video': str(Path(video).resolve()), 'size': Path(video).stat().st_size,
                  'mtime_ns': Path(video).stat().st_mtime_ns,
-                 'interval': interval, 'max_frames': max_frames, 'version': 2}
+                 'interval': interval, 'max_frames': max_frames, 'min_frames': min_frames, 'version': 3}
     if cache:
         cache.mkdir(parents=True, exist_ok=True)
         index_path = cache / 'frames.json'
@@ -301,9 +409,17 @@ def sample_video(video: str, interval: float, max_frames: int, frames_cache=None
             print(f'Sampled {len(frames)} frames, latest {timestamp:.3f}s', flush=True)
     if duration:
         last_time = max(0, duration - 1 / fps)
-        count = math.ceil(duration / interval)
-        targets = [i * interval for i in range(count)] if count <= max_frames else [
-            i * last_time / max(1, max_frames-1) for i in range(max_frames)]
+        # Short clips need enough temporal coverage to expose start, middle,
+        # and tail states; long clips remain capped by the recording budget.
+        natural_count = max(1, math.ceil(duration / interval))
+        count = min(max_frames, max(min_frames, natural_count))
+        if count > natural_count:
+            # The minimum-frame rule is active: distribute extra samples over
+            # the full clip rather than seeking past its end.
+            targets = [i * last_time / max(1, count - 1) for i in range(count)]
+        else:
+            # Preserve the requested interval while always including the tail.
+            targets = [i * interval for i in range(max(0, count - 1))] + [last_time]
         for target in targets:
             container.seek(int(target / float(stream.time_base)), stream=stream, backward=True)
             for frame in container.decode(stream):
@@ -325,7 +441,8 @@ def sample_video(video: str, interval: float, max_frames: int, frames_cache=None
     return frames, timestamps
 
 def analyze(video: str, model_id: str, interval: float, max_frames: int, window_frames: int = 16,
-            frames_cache=None, max_duration: float = 600.0) -> dict:
+            frames_cache=None, max_duration: float = 600.0, min_frames: int = 4,
+            window_overlap: int = 2) -> dict:
     started = time.monotonic()
     import av
     with av.open(video) as probe:
@@ -338,7 +455,7 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
                                   "duration_s": duration_s, "max_duration_s": max_duration}],
                 "elapsed_s": round(time.monotonic()-started, 2)}
     print('Sampling video...', flush=True)
-    frames, timestamps = sample_video(video, interval, max_frames, frames_cache)
+    frames, timestamps = sample_video(video, interval, max_frames, frames_cache, min_frames)
     if not frames:
         raise ValueError('No video frames decoded')
     print(f'Sampled {len(frames)} frames, {timestamps[0]}–{timestamps[-1]} seconds', flush=True)
@@ -350,14 +467,15 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
         "summary（中文一句话）、scene（场景）、objects（对象数组）、"
         "task_applicability（只能是 ego_task、non_task、mixed、unknown；判断是否存在连续的第一视角操作任务）、"
-        "action_segments（最多12个主要阶段，每项含 start_s、end_s、canonical_action、raw_action、object、confidence、"
+        "action_segments（最多12个主要阶段，每项含 start_s、end_s、task_stage、canonical_action、raw_action、object、state_before、state_after、confidence、"
         "evidence_frame_ids（只能从输入帧ID中选择的数组）），unknown（无法判断的区间及原因），"
         "high_difficulty_candidates（候选事件数组，每项含 type、start_s、end_s、evidence_frame_ids、reason）。"
         "canonical_action 必须严格使用以下原子动作之一：" + ", ".join(ATOMIC_ACTIONS) + "。"
         "动作不在词表时使用 others，并在 raw_action 保留原始描述；不要创造新 canonical_action。"
         "只描述画面证据，不预设场景或任务。综合全程的前后状态识别动作。"
         "每张输入图前都有唯一Frame id；evidence_frame_ids只能复制这些ID，不能自行创造。"
-        "start_s/end_s是估计时间区间，可以落在相邻输入帧之间，但不能超出窗口。"
+        "start_s/end_s是估计时间区间，可以落在相邻输入帧之间，但不能超出窗口。task_stage用于把连续原子动作归并为一个任务阶段；state_before/state_after描述可见状态变化。"
+        "coverage_complete只能在视频从开头到结尾均有足够证据时为true，否则为false。"
         "同阶段连续重复可以合并，跨阶段或目标变化分别保留。"
         "候选高难事件仅限有外部反馈与响应的交互、有条件证据的决策、"
         "有目标切换/恢复/协调证据的多线程协调；普通接触、双手操作或多个对象不等于确认高难。"
@@ -366,7 +484,8 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     )
     review_queue = []
     status = 'candidate_semantics'; window_reports = []
-    for begin in range(0, len(frames), window_frames):
+    step = max(1, window_frames - max(0, min(window_overlap, window_frames - 1)))
+    for begin in range(0, len(frames), step):
         end = min(begin + window_frames, len(frames))
         content = []
         for offset, (image, timestamp) in enumerate(zip(frames[begin:end], timestamps[begin:end])):
@@ -397,17 +516,25 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         print(f'Window {len(window_reports)} complete: {timestamps[begin]:.3f}–{timestamps[end-1]:.3f}s', flush=True)
         if frames_cache:
             (Path(frames_cache) / 'windows.json').write_text(json.dumps(window_reports, ensure_ascii=False, indent=2))
+        if end >= len(frames):
+            break
+    flattened_actions = merge_action_segments(
+        [s for x in window_reports for s in x['semantic'].get('action_segments', [])])
+    flattened_candidates = merge_high_difficulty_candidates(
+        [h for x in window_reports for h in x['semantic'].get('high_difficulty_candidates', [])])
     parsed = {
         'summary': '；'.join(x['semantic'].get('summary','') for x in window_reports if x['semantic'].get('summary')),
         'scene': next((x['semantic'].get('scene') for x in window_reports if x['semantic'].get('scene')), None),
         'objects': sorted({o for x in window_reports for o in x['semantic'].get('objects', []) if isinstance(o, str)}),
-        'action_segments': [s for x in window_reports for s in x['semantic'].get('action_segments', [])],
+        'action_segments': flattened_actions,
         'unknown': [u for x in window_reports for u in x['semantic'].get('unknown', [])],
-        'high_difficulty_candidates': [h for x in window_reports for h in x['semantic'].get('high_difficulty_candidates', [])],
+        'high_difficulty_candidates': flattened_candidates,
         'task_applicability': 'unknown',
         'validation_issues': [issue for x in window_reports for issue in x['semantic'].get('validation_issues', [])],
         'windows': window_reports,
     }
+    coverage_values = [x['semantic'].get('coverage_complete') for x in window_reports]
+    parsed['coverage_complete'] = True if coverage_values and all(x is True for x in coverage_values) else False
     applicability = {x['semantic'].get('task_applicability', 'unknown') for x in window_reports}
     applicability.discard('unknown')
     parsed['task_applicability'] = next(iter(applicability)) if len(applicability) == 1 else ('mixed' if applicability else 'unknown')
@@ -431,11 +558,16 @@ def main():
     ap.add_argument("--max-frames", type=int, default=300)
     ap.add_argument("--window-frames", type=int, default=16,
                     help='frames per VLM window; windows are merged at recording level')
+    ap.add_argument("--window-overlap", type=int, default=2,
+                    help='overlap frames between adjacent VLM windows (default: 2)')
+    ap.add_argument("--min-frames", type=int, default=4,
+                    help='minimum evenly distributed frames for short recordings (default: 4)')
     ap.add_argument('--frames-cache', help='cache selected frames and window outputs; never caches the original video')
     ap.add_argument('--max-duration', type=float, default=600.0,
                     help='skip recordings longer than this many seconds (default: 600)')
     args = ap.parse_args()
-    report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames, args.frames_cache, args.max_duration)
+    report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames,
+                     args.frames_cache, args.max_duration, args.min_frames, args.window_overlap)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2))
     print(json.dumps({"status": report['status'], "out": args.out,

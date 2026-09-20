@@ -60,7 +60,7 @@
   ],
   "samples": [
     {
-      "video": "/mnt/oss/scene_example_测试样例/双目餐饮1.03h/cam0.mp4",
+      "video": "/mnt/ego/scene_example_测试样例/双目餐饮1.03h/cam0.mp4",
       "source": "scene_example_测试样例",
       "duration_s": 42.766666666666666,
       "fps": 30.0,
@@ -163,7 +163,7 @@
       }
     },
     {
-      "video": "/mnt/oss/scene_example_测试样例/双目商超2   2.48h/cam0.mp4",
+      "video": "/mnt/ego/scene_example_测试样例/双目商超2   2.48h/cam0.mp4",
       "source": "scene_example_测试样例",
       "duration_s": 15.233333333333333,
       "fps": 30.0,
@@ -242,7 +242,7 @@
       }
     },
     {
-      "video": "/mnt/oss/shushuogushi/cc_20260824_02_simple/nD9JbhaH3eM.mp4",
+      "video": "/mnt/ego/shushuogushi/cc_20260824_02_simple/nD9JbhaH3eM.mp4",
       "source": "shushuogushi",
       "duration_s": 361.3666666666667,
       "fps": 30.0,
@@ -1821,7 +1821,7 @@
       }
     },
     {
-      "video": "/mnt/oss/擎羽/Hugging_face/category__small_object_storage_sorting/task_002__empty_all_sachets_from_box_onto_table/episode_0001_episode_000145_u12_aligned_attempt_clips_20260706_episode_000065/videos/left_cam_left.mp4",
+      "video": "/mnt/ego/擎羽/Hugging_face/category__small_object_storage_sorting/task_002__empty_all_sachets_from_box_onto_table/episode_0001_episode_000145_u12_aligned_attempt_clips_20260706_episode_000065/videos/left_cam_left.mp4",
       "source": "擎羽",
       "duration_s": 4.0,
       "fps": 30.0,
@@ -1890,7 +1890,7 @@
       }
     },
     {
-      "video": "/mnt/oss/补天石ego数据10小时/potentia_10hours_part01/d8jv4tf65vas73e3id80/video.mp4",
+      "video": "/mnt/ego/补天石ego数据10小时/potentia_10hours_part01/d8jv4tf65vas73e3id80/video.mp4",
       "source": "补天石ego数据10小时",
       "duration_s": 428.20666666666665,
       "fps": 30.001868256760755,
@@ -4570,7 +4570,7 @@
       }
     },
     {
-      "video": "/mnt/oss/补天石ego数据10小时/potentia_10hours_part02/d8b4jo765vas73fkfocg/video.mp4",
+      "video": "/mnt/ego/补天石ego数据10小时/potentia_10hours_part02/d8b4jo765vas73fkfocg/video.mp4",
       "source": "补天石ego数据10小时",
       "duration_s": 124.52666666666667,
       "fps": 59.99518175491193,
@@ -4917,7 +4917,7 @@
       }
     },
     {
-      "video": "/mnt/oss/astribot/sample_data/家具-打包装箱/videos/chunk-000/observation.images.head_camera/episode_000003.mp4",
+      "video": "/mnt/ego/astribot/sample_data/家具-打包装箱/videos/chunk-000/observation.images.head_camera/episode_000003.mp4",
       "source": "astribot",
       "duration_s": 54.666666666666664,
       "fps": 30.0,
@@ -5020,7 +5020,7 @@
       }
     },
     {
-      "video": "/mnt/oss/youtube/-fI-ogq9OC8.mp4",
+      "video": "/mnt/ego/youtube/-fI-ogq9OC8.mp4",
       "source": "youtube",
       "duration_s": 145.8457,
       "fps": 29.97002997002997,
@@ -5163,7 +5163,7 @@
       }
     },
     {
-      "video": "/mnt/oss/astribot/sample_data/家具-插充电器/videos/chunk-000/observation.images.head_camera/episode_000001.mp4",
+      "video": "/mnt/ego/astribot/sample_data/家具-插充电器/videos/chunk-000/observation.images.head_camera/episode_000001.mp4",
       "source": "astribot",
       "duration_s": 22.033333333333335,
       "fps": 30.0,
@@ -5242,7 +5242,7 @@
       }
     },
     {
-      "video": "/mnt/oss/Deepreach/dr-egoview-teaser-slam/clips/aec5beea-3f7e-4a2c-b623-2e2e0eb2b730_grp002_p01of01/source.mp4",
+      "video": "/mnt/ego/Deepreach/dr-egoview-teaser-slam/clips/aec5beea-3f7e-4a2c-b623-2e2e0eb2b730_grp002_p01of01/source.mp4",
       "source": "Deepreach",
       "duration_s": 82.41566666666667,
       "fps": 29.97002997002997,

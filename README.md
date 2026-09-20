@@ -30,7 +30,7 @@ python3 ego_pipeline_mvp.py \
 ```bash
 python3 qwen_vl_pipeline.py \
   --model /mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master \
-  --video /mnt/oss/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4 \
+  --video /mnt/ego/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4 \
   --out outputs/qwen3_vl_sample.json \
   --interval 2 --max-frames 300 --frames-cache work/potentia_frames
 ```
@@ -46,7 +46,7 @@ python3 qwen_vl_pipeline.py \
 level规则输出只是初判：现有动作合并不能可靠区分同阶段重复和任务依赖，也不能仅凭模型文字确认高难因果证据。历史商超报告的 `confirmed` 不能作为已核验结论，需结合证据帧和完整性检查复核。JSON解析失败会记录在 `review_queue`。
 
 ```bash
-HF_HUB_DISABLE_XET=1 python3 qwen_vl_pipeline.py --video /mnt/oss/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4 --out outputs/qwen3_vl_sample.json --max-frames 300
+HF_HUB_DISABLE_XET=1 python3 qwen_vl_pipeline.py --video /mnt/ego/补天石ego数据10小时/potentia_10hours_part01/d8a0h3v65vas73cq8vhg/video.mp4 --out outputs/qwen3_vl_sample.json --max-frames 300
 ```
 
 manifest 格式：
