@@ -36,6 +36,7 @@
 6. 合并所有窗口的摘要、对象、动作段、unknown 和高难候选。
 7. 对重叠窗口的重复动作做 recording 级合并；若模型提供 `task_stage`，同时区分任务阶段数 `N` 与原子动作数。
 8. 将无效 JSON、无效时间、候选高难事件和聚合待复核事项写入 `review_queue`。
+9. 输出 `stage_timings_s`、逐窗口耗时、显存快照和失败原因，便于定位性能瓶颈。
 
 运行示例：
 
@@ -45,6 +46,15 @@ python3 qwen_vl_pipeline.py \
   --video /mnt/ego/Deepreach/dr-3camera-deliverable/lerobot_v2/compose_flashlight/videos/chunk-000/observation.images.head/episode_000000.mp4 \
   --out outputs/flashlight.json \
   --interval 2 --max-frames 300 --window-frames 16
+```
+
+批量处理时使用 `scripts/run_qwen_batch.py`；它只加载一次模型，并在每条结果中记录共享模型加载耗时：
+
+```bash
+python3 scripts/run_qwen_batch.py \
+  --manifest demo_sample_list.json \
+  --model /mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master \
+  --out outputs/qwen_batch.json
 ```
 
 参数：
@@ -122,7 +132,7 @@ python3 qwen_vl_pipeline.py \
 2. 窗口重叠和动作去重已接入，但 recording 级动作合并仍是启发式。
 3. `task_stage` 依赖模型和人工校准；缺少阶段标签时 N 使用动作+对象回退算法。
 4. VLM 能够生成候选语义，但不能替代外部反馈、状态变化和任务边界证据。
-5. 同一 recording 的多机位融合、YOLO/ByteTrack、自适应变化检测、OSS 短时签名 URL 和 Markdown/HTML 自动报告仍未完整接入。
+5. 同一 recording 的多机位融合、YOLO/ByteTrack、OSS 短时签名 URL 和 HTML 报告仍未接入；P2 的评测、回归对比、常驻批处理和耗时/显存观测已提供脚本/API。
 
 ## 7. 推荐后续工作
 
@@ -130,3 +140,15 @@ python3 qwen_vl_pipeline.py \
 2. 读取 episode manifest 的任务边界和原始时间戳作为独立证据。
 4. 接入 YOLO/ByteTrack，提供对象轨迹和变化帧。
 5. 用人工标注样本校准 N/H 和低中高比例，再将规则用于正式验收。
+
+## 8. P2 评测与回归
+
+准备独立 gold set 后，可计算动作/对象匹配、时间 IoU、遗漏率、高难 precision/recall、level 混淆矩阵、bootstrap 置信区间及来源分层指标：
+
+```bash
+python3 scripts/evaluate_gold.py \
+  --gold gold_set.json --predictions predictions.json \
+  --out outputs/gold_eval.json
+```
+
+固定回归集的新旧结果可用 `scripts/compare_regression.py` 对比 schema、证据、失败状态和关键难度字段；它会在工程指标退化时返回非零退出码。

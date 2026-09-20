@@ -39,7 +39,7 @@ python3 qwen_vl_pipeline.py \
 
 本机已将权重下载到 `/mnt/workspace/modelscope/models/Qwen--Qwen3-VL-4B-Instruct/snapshots/master`，也可以直接使用该目录。长 recording 会在预算内覆盖全程，不再只读取开头。
 
-当前 Qwen 脚本以每 2 秒抽帧为目标、每 16 帧一个 VLM 窗口，并在 recording 级汇总窗口结果。超过300帧预算的长视频目前采用全程均匀粗采样，尚未接入自适应变化筛选。时间seek后会解码到目标时间，不直接把前置关键帧当作目标帧。
+当前 Qwen 脚本以每 2 秒抽帧为目标、短视频至少 4 帧并包含尾帧、每 16 帧一个默认重叠 2 帧的 VLM 窗口，并在 recording 级汇总窗口结果。超过300帧预算的长视频采用全程均匀粗采样，尚未接入 YOLO/ByteTrack 变化筛选。单视频输出包含阶段耗时、窗口耗时、显存快照和失败原因；批量入口 `scripts/run_qwen_batch.py` 会复用一次加载的模型。
 
 `--frames-cache` 仅保存选定帧和逐窗推理检查点，不保存原视频；源文件及采样参数匹配时可复用完整抽帧缓存。PyAV使用FFmpeg原生日志回调，避免多线程解码器析构时Python日志回调死锁。每20帧和每个推理窗口均打印进度。
 

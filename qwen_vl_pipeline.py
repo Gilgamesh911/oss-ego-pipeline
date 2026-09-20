@@ -50,6 +50,29 @@ APPLICABILITY_ALIASES = {
 }
 
 
+def load_vlm(model_id):
+    """Load the VLM once so batch callers can reuse it across recordings."""
+    started = time.monotonic()
+    model = Qwen3VLForConditionalGeneration.from_pretrained(
+        model_id, dtype=torch.bfloat16, device_map="auto"
+    ).eval()
+    processor = AutoProcessor.from_pretrained(model_id)
+    return model, processor, time.monotonic() - started
+
+
+def resource_snapshot():
+    """Return lightweight resource data without requiring a monitoring daemon."""
+    result = {"cuda_available": bool(torch.cuda.is_available())}
+    if result["cuda_available"]:
+        result["cuda_device_count"] = torch.cuda.device_count()
+        result["cuda_allocated_bytes"] = int(torch.cuda.memory_allocated())
+        result["cuda_reserved_bytes"] = int(torch.cuda.memory_reserved())
+        free, total = torch.cuda.mem_get_info()
+        result["cuda_free_bytes"] = int(free)
+        result["cuda_total_bytes"] = int(total)
+    return result
+
+
 def _string_value(value, *, field, issues, allow_empty=False):
     """Return a safe scalar string without letting nested model JSON break aggregation."""
     if isinstance(value, str):
@@ -442,27 +465,36 @@ def sample_video(video: str, interval: float, max_frames: int, frames_cache=None
 
 def analyze(video: str, model_id: str, interval: float, max_frames: int, window_frames: int = 16,
             frames_cache=None, max_duration: float = 600.0, min_frames: int = 4,
-            window_overlap: int = 2) -> dict:
+            window_overlap: int = 2, model=None, processor=None) -> dict:
     started = time.monotonic()
+    stage_timings = {}
+    stage_started = time.monotonic()
     import av
     with av.open(video) as probe:
         duration_s = float(probe.streams.video[0].duration * probe.streams.video[0].time_base)
+    stage_timings["probe_s"] = round(time.monotonic() - stage_started, 4)
     if duration_s > max_duration:
         return {"video": video, "model": model_id, "frame_count": 0,
                 "timestamps_s": [], "status": "skipped_too_long",
                 "semantic": {"difficulty": {"level": "待处理", "T": round(duration_s, 3)}},
                 "review_queue": [{"reason": "recording_exceeds_max_duration",
                                   "duration_s": duration_s, "max_duration_s": max_duration}],
+                "stage_timings_s": stage_timings,
+                "resource_usage": resource_snapshot(),
                 "elapsed_s": round(time.monotonic()-started, 2)}
     print('Sampling video...', flush=True)
+    stage_started = time.monotonic()
     frames, timestamps = sample_video(video, interval, max_frames, frames_cache, min_frames)
+    stage_timings["sampling_s"] = round(time.monotonic() - stage_started, 4)
     if not frames:
         raise ValueError('No video frames decoded')
     print(f'Sampled {len(frames)} frames, {timestamps[0]}–{timestamps[-1]} seconds', flush=True)
-    model = Qwen3VLForConditionalGeneration.from_pretrained(
-        model_id, dtype=torch.bfloat16, device_map="auto"
-    ).eval()
-    processor = AutoProcessor.from_pretrained(model_id)
+    model_reused = model is not None and processor is not None
+    if not model_reused:
+        model, processor, model_load_s = load_vlm(model_id)
+        stage_timings["model_load_s"] = round(model_load_s, 4)
+    else:
+        stage_timings["model_load_s"] = 0.0
     instruction = (
         "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
         "summary（中文一句话）、scene（场景）、objects（对象数组）、"
@@ -483,6 +515,7 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         "无法判断时使用unknown并说明原因，不要猜测。"
     )
     review_queue = []
+    window_timings = []
     status = 'candidate_semantics'; window_reports = []
     step = max(1, window_frames - max(0, min(window_overlap, window_frames - 1)))
     for begin in range(0, len(frames), step):
@@ -492,6 +525,7 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
             content.extend([{"type": "text", "text": f"Frame id: {begin + offset}; timestamp: {timestamp} seconds."},
                             {"type": "image", "image": image}])
         content.append({"type": "text", "text": instruction})
+        window_started = time.monotonic()
         inputs = processor.apply_chat_template([{"role": "user", "content": content}], tokenize=True,
             add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
         with torch.inference_mode():
@@ -505,6 +539,9 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
             parsed = {"raw_output": text}; status = 'partial_semantic_output'
             review_queue.append({'reason': 'invalid_or_truncated_window_json', 'window': [begin, end]})
         parsed = normalize_semantic(parsed, list(range(begin, end)), timestamps[begin:end], duration_s)
+        window_timings.append({"window_index": len(window_reports),
+                               "seconds": round(time.monotonic() - window_started, 4),
+                               "frame_start": begin, "frame_end": end})
         if parsed.get("validation_issues"):
             status = 'partial_semantic_output' if status == 'candidate_semantics' else status
             review_queue.append({'reason': 'schema_or_evidence_validation_issue',
@@ -518,6 +555,7 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
             (Path(frames_cache) / 'windows.json').write_text(json.dumps(window_reports, ensure_ascii=False, indent=2))
         if end >= len(frames):
             break
+    aggregation_started = time.monotonic()
     flattened_actions = merge_action_segments(
         [s for x in window_reports for s in x['semantic'].get('action_segments', [])])
     flattened_candidates = merge_high_difficulty_candidates(
@@ -543,9 +581,45 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     # A model's generated wording or confidence is never a confirmation of H.
     parsed['difficulty'] = recording_difficulty(parsed, duration_s)
     review_queue.append({'reason': 'recording_level_merge_and_task_boundary_review_required'})
+    stage_timings["window_inference_s"] = round(sum(x["seconds"] for x in window_timings), 4)
+    stage_timings["aggregation_s"] = round(time.monotonic() - aggregation_started, 4)
+    stage_timings["total_s"] = round(time.monotonic() - started, 4)
     return {"video": video, "model": model_id, "frame_count": len(frames),
             "timestamps_s": timestamps, "semantic": parsed, 'status': status,
-            'review_queue': review_queue, 'elapsed_s': round(time.monotonic()-started, 2)}
+            'review_queue': review_queue, 'window_timings': window_timings,
+            'stage_timings_s': stage_timings,
+            'resource_usage': resource_snapshot(),
+            'model_reused': model_reused,
+            'elapsed_s': round(time.monotonic()-started, 2)}
+
+
+def analyze_many(videos, model_id, interval=2.0, max_frames=300, window_frames=16,
+                 frames_cache_root=None, max_duration=600.0, min_frames=4,
+                 window_overlap=2):
+    """Analyze multiple videos while loading the VLM exactly once."""
+    model, processor, model_load_s = load_vlm(model_id)
+    results = []
+    for video in videos:
+        cache = None
+        if frames_cache_root:
+            cache = str(Path(frames_cache_root) / Path(video).stem)
+        video_started = time.monotonic()
+        try:
+            result = analyze(video, model_id, interval, max_frames, window_frames,
+                             cache, max_duration, min_frames, window_overlap,
+                             model=model, processor=processor)
+        except Exception as exc:  # keep the resident batch alive and explain the failure
+            result = {
+                "video": video, "model": model_id, "status": "failed",
+                "error": f"{type(exc).__name__}: {exc}",
+                "review_queue": [{"reason": "batch_item_failed", "error_type": type(exc).__name__}],
+                "stage_timings_s": {"total_s": round(time.monotonic() - video_started, 4)},
+                "resource_usage": resource_snapshot(),
+                "model_reused": True,
+            }
+        result.setdefault("stage_timings_s", {})["shared_model_load_s"] = round(model_load_s, 4)
+        results.append(result)
+    return results
 
 def main():
     ap = argparse.ArgumentParser()
@@ -566,12 +640,24 @@ def main():
     ap.add_argument('--max-duration', type=float, default=600.0,
                     help='skip recordings longer than this many seconds (default: 600)')
     args = ap.parse_args()
-    report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames,
-                     args.frames_cache, args.max_duration, args.min_frames, args.window_overlap)
+    cli_started = time.monotonic()
+    try:
+        report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames,
+                         args.frames_cache, args.max_duration, args.min_frames, args.window_overlap)
+    except Exception as exc:
+        report = {
+            "video": args.video, "model": args.model, "status": "failed",
+            "error": f"{type(exc).__name__}: {exc}",
+            "review_queue": [{"reason": "pipeline_failed", "error_type": type(exc).__name__}],
+            "stage_timings_s": {"total_s": round(time.monotonic() - cli_started, 4)},
+            "resource_usage": resource_snapshot(),
+        }
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2))
     print(json.dumps({"status": report['status'], "out": args.out,
-                      "frame_count": report["frame_count"]}, ensure_ascii=False))
+                      "frame_count": report.get("frame_count", 0)}, ensure_ascii=False))
+    if report.get("status") == "failed":
+        raise SystemExit(1)
 
 if __name__ == "__main__":
     main()
