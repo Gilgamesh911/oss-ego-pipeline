@@ -52,7 +52,7 @@ def main():
     calls = []
     old_load, old_analyze = pipeline.load_vlm, pipeline.analyze
     try:
-        pipeline.load_vlm = lambda model_id: ("MODEL", "PROCESSOR", 1.25)
+        pipeline.load_vlm = lambda model_id, **kwargs: ("MODEL", "PROCESSOR", 1.25)
         def fake_analyze(video, *args, **kwargs):
             calls.append((video, kwargs.get("model"), kwargs.get("processor")))
             return {"video": video, "stage_timings_s": {}, "status": "candidate_semantics"}
@@ -68,7 +68,7 @@ def main():
     # of aborting the resident batch and hiding which input failed.
     old_load, old_analyze = pipeline.load_vlm, pipeline.analyze
     try:
-        pipeline.load_vlm = lambda model_id: ("MODEL", "PROCESSOR", 1.0)
+        pipeline.load_vlm = lambda model_id, **kwargs: ("MODEL", "PROCESSOR", 1.0)
         def failing_analyze(video, *args, **kwargs):
             if video == "bad.mp4":
                 raise ValueError("decode failed")
@@ -127,6 +127,28 @@ def main():
         assert "Script runtime excluding model inference" in md
         assert "0.2x" in md
         assert "table" in html and "Action timeline" in html
+
+    # P2-6: frame-grounded evidence and partial coverage no longer turn a
+    # valid action chain into an unconditional pending level.
+    normalized = pipeline.normalize_semantic({
+        "window_coverage": "complete", "task_applicability": "ego_task",
+        "action_segments": [{"start_frame_id": "F000001", "end_frame_id": "F000002",
+                              "canonical_action": "Move", "raw_action": "move",
+                              "object": "box", "task_stage": "move",
+                              "evidence_frame_ids": ["F000001", "F000002"]}],
+    }, ["F000001", "F000002"], [0.0, 2.0], 2.0)
+    assert normalized["action_segments"][0]["start_s"] == 0.0
+    assert normalized["action_segments"][0]["end_s"] == 2.0
+    partial_semantic = {
+        "task_applicability": "ego_task", "coverage": {"status": "partial", "score": 0.7},
+        "coverage_complete": None,
+        "action_segments": [{"canonical_action": "Move", "object": "box", "start_s": 0,
+                              "end_s": 2, "task_stage": "move", "evidence_times": [0]}],
+        "unknown": [], "high_difficulty_candidates": [],
+    }
+    partial_diff = pipeline.recording_difficulty(partial_semantic, 2)
+    assert partial_diff["level"] == "低"
+    assert partial_diff["review_status"] == "candidate_partial"
     print("P2 regression checks passed")
 
 

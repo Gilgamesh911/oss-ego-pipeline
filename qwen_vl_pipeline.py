@@ -150,6 +150,7 @@ def write_report_files(report, output_json, report_md=None, report_html=None):
     d = data["difficulty"]
     s = data["semantic"]
     model_load_display = t.get("model_load_s", t.get("shared_model_load_s"))
+    coverage = s.get("coverage", {}) or {}
     lines = [
         f"# Pipeline report: `{data['video']}`", "",
         f"- Status: `{data['status']}`", f"- Model: `{data['model']}`",
@@ -169,6 +170,7 @@ def write_report_files(report, output_json, report_md=None, report_html=None):
         f"- Objects: {', '.join(s.get('objects', [])) or '—'}",
         f"- Level: `{d.get('level', '—')}`; reason: {d.get('reason', '—')}",
         f"- T/N/H: `{d.get('T', '—')}` / `{d.get('N', '—')}` / `{d.get('H', '—')}`",
+        f"- Coverage: `{coverage.get('status', 'unknown')}` (score `{coverage.get('score', '—')}`); evidence grounded ratio `{coverage.get('evidence_grounded_ratio', '—')}`",
         "", "## Action evidence", "",
         "| Start–end | Stage | Action | Object | State change | Confidence | Evidence frames |",
         "|---:|---|---|---|---|---:|---|",
@@ -208,7 +210,7 @@ code {{ overflow-wrap:anywhere; }}
 <div class="metrics"><div class="metric"><span class="muted">Video duration</span><strong>{html_escape(_fmt_seconds(data['duration']))}</strong></div><div class="metric"><span class="muted">End-to-end</span><strong>{html_escape(_fmt_seconds(t.get('end_to_end_s')))}</strong><span class="muted">{t.get('end_to_end_to_video_ratio', '—')}× video</span></div><div class="metric"><span class="muted">Script excluding inference</span><strong>{html_escape(_fmt_seconds(t.get('script_runtime_excluding_inference_s')))}</strong><span class="muted">{t.get('script_runtime_to_video_ratio', '—')}× video</span></div><div class="metric"><span class="muted">Model inference</span><strong>{html_escape(_fmt_seconds(t.get('model_inference_s', t.get('window_inference_s'))))}</strong><span class="muted">{t.get('model_inference_to_video_ratio', '—')}× video</span></div></div>
 <h2>Action timeline</h2><p class="muted">Timeline is normalized to the recorded video duration; hover an action for details.</p>
 <div class="track" role="img" aria-label="Action timeline">{''.join(timeline) or '<span class="muted">No validated action segments</span>'}</div>
-<h2>Data and semantics</h2><table><tr><th>Scene</th><td>{html_escape(str(s.get('scene') or '—'))}</td></tr><tr><th>Task applicability</th><td>{html_escape(str(s.get('task_applicability', 'unknown')))}</td></tr><tr><th>Summary</th><td>{html_escape(str(s.get('summary') or '—'))}</td></tr><tr><th>Objects</th><td>{html_escape(', '.join(s.get('objects', [])) or '—')}</td></tr><tr><th>Level / basis</th><td>{html_escape(str(d.get('level', '—')))} / {html_escape(str(d.get('reason', '—')))}</td></tr><tr><th>T / N / H</th><td>{html_escape(str(d.get('T', '—')))} / {html_escape(str(d.get('N', '—')))} / {html_escape(str(d.get('H', '—')))}</td></tr></table>
+<h2>Data and semantics</h2><table><tr><th>Scene</th><td>{html_escape(str(s.get('scene') or '—'))}</td></tr><tr><th>Task applicability</th><td>{html_escape(str(s.get('task_applicability', 'unknown')))}</td></tr><tr><th>Summary</th><td>{html_escape(str(s.get('summary') or '—'))}</td></tr><tr><th>Objects</th><td>{html_escape(', '.join(s.get('objects', [])) or '—')}</td></tr><tr><th>Level / basis</th><td>{html_escape(str(d.get('level', '—')))} / {html_escape(str(d.get('reason', '—')))}</td></tr><tr><th>T / N / H</th><td>{html_escape(str(d.get('T', '—')))} / {html_escape(str(d.get('N', '—')))} / {html_escape(str(d.get('H', '—')))}</td></tr><tr><th>Coverage</th><td>{html_escape(str(coverage.get('status', 'unknown')))} · score {html_escape(str(coverage.get('score', '—')))} · evidence grounded {html_escape(str(coverage.get('evidence_grounded_ratio', '—')))}</td></tr></table>
 <h2>Action evidence</h2><table><tr><th>Interval</th><th>Stage</th><th>Action</th><th>Object</th><th>State</th><th>Evidence</th></tr>{''.join(f'<tr><td>{html_escape(str(r["start"]))}–{html_escape(str(r["end"]))}s</td><td>{html_escape(str(r["stage"]))}</td><td>{html_escape(str(r["action"]))}<br><span class="muted">{html_escape(str(r["raw"]))}</span></td><td>{html_escape(str(r["object"]))}</td><td>{html_escape(str(r["before"]))} → {html_escape(str(r["after"]))}</td><td>{html_escape(str(r["evidence"]))}</td></tr>' for r in data["actions"]) or '<tr><td colspan="6">No validated action segments</td></tr>'}</table>
 <h2>Review basis</h2><p>Unknown intervals: <code>{html_escape(json.dumps(data['unknown'], ensure_ascii=False))}</code></p><p>Validation issues: <strong>{len(data['validation'])}</strong></p><p>Review queue: <code>{html_escape(json.dumps(data['review_queue'], ensure_ascii=False))}</code></p>
 </html>'''
@@ -216,12 +218,13 @@ code {{ overflow-wrap:anywhere; }}
     return {"markdown": str(md_path), "html": str(html_path)}
 
 
-def load_vlm(model_id):
+def load_vlm(model_id, attn_implementation=None):
     """Load the VLM once so batch callers can reuse it across recordings."""
     started = time.monotonic()
-    model = Qwen3VLForConditionalGeneration.from_pretrained(
-        model_id, dtype=torch.bfloat16, device_map="auto"
-    ).eval()
+    load_kwargs = {"dtype": torch.bfloat16, "device_map": "auto"}
+    if attn_implementation:
+        load_kwargs["attn_implementation"] = attn_implementation
+    model = Qwen3VLForConditionalGeneration.from_pretrained(model_id, **load_kwargs).eval()
     processor = AutoProcessor.from_pretrained(model_id)
     return model, processor, time.monotonic() - started
 
@@ -274,14 +277,32 @@ def normalize_applicability(value, issues=None):
     return normalized
 
 
-def _nearest_frame_id(value, frame_ids, timestamps, tolerance=0.05):
-    if not isinstance(value, (int, float)) or not timestamps:
+def _coerce_frame_id(value, frame_ids):
+    """Accept the canonical F000123 id and legacy numeric frame indices."""
+    if value in frame_ids:
+        return value
+    if isinstance(value, bool):
+        return None
+    try:
+        numeric = int(value)
+    except (TypeError, ValueError):
+        return None
+    for frame_id in frame_ids:
+        if isinstance(frame_id, str) and frame_id.lstrip("F").isdigit() and int(frame_id.lstrip("F")) == numeric:
+            return frame_id
+    if 0 <= numeric < len(frame_ids):
+        return frame_ids[numeric]
+    return None
+
+
+def _nearest_frame_id(value, frame_ids, timestamps, tolerance=0.75):
+    if not isinstance(value, (int, float)) or isinstance(value, bool) or not timestamps:
         return None
     index = min(range(len(timestamps)), key=lambda i: abs(float(timestamps[i]) - float(value)))
     return frame_ids[index] if abs(float(timestamps[index]) - float(value)) <= tolerance else None
 
 
-def normalize_semantic(raw, frame_ids, timestamps, duration_s):
+def normalize_semantic(raw, frame_ids, timestamps, duration_s, window_start_s=None, window_end_s=None):
     """Validate one model window before it can be merged into recording output.
 
     Evidence is represented by real input frame IDs. Legacy evidence_times are
@@ -300,6 +321,11 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
         "high_difficulty_candidates": [],
         "task_applicability": normalize_applicability(raw.get("task_applicability"), issues),
     }
+    window_coverage = raw.get("window_coverage", raw.get("coverage_status", "unknown"))
+    if window_coverage not in {"complete", "partial", "no_task", "unknown"}:
+        issues.append({"field": "window_coverage", "reason": "unknown_value", "value": window_coverage})
+        window_coverage = "unknown"
+    result["window_coverage"] = window_coverage
     coverage_complete = raw.get("coverage_complete")
     if coverage_complete is not None and not isinstance(coverage_complete, bool):
         issues.append({"field": "coverage_complete", "reason": "expected_boolean"})
@@ -340,6 +366,13 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
         # Only accept numeric finite values. Range and ordering are checked in the report validator.
         for key in ("start_s", "end_s", "confidence"):
             if not isinstance(action.get(key), (int, float)) or isinstance(action.get(key), bool):
+                # start/end are derived from grounded frame IDs below; they
+                # are intentionally absent from the model-facing schema.
+                if key in {"start_s", "end_s"} and (action.get("start_frame_id") is not None or
+                                                     action.get("end_frame_id") is not None or
+                                                     isinstance(action.get("evidence_frame_ids"), list)):
+                    action[key] = None
+                    continue
                 issues.append({"field": f"action_segments[{i}].{key}", "reason": "expected_number"})
                 action[key] = None
         evidence_ids = action.get("evidence_frame_ids")
@@ -353,11 +386,33 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
                         issues.append({"field": f"action_segments[{i}].evidence_times", "reason": "no_matching_input_frame", "value": value})
                     else:
                         evidence_ids.append(frame_id)
-        valid_ids = [x for x in evidence_ids if x in frame_ids]
+        valid_ids = []
+        for value in evidence_ids:
+            frame_id = _coerce_frame_id(value, frame_ids)
+            if frame_id is not None:
+                valid_ids.append(frame_id)
         if len(valid_ids) != len(evidence_ids):
             issues.append({"field": f"action_segments[{i}].evidence_frame_ids", "reason": "unknown_frame_id"})
         action["evidence_frame_ids"] = list(dict.fromkeys(valid_ids))
         action["evidence_times"] = [timestamps[frame_ids.index(x)] for x in action["evidence_frame_ids"]]
+        # Prefer intervals grounded by actual frame IDs. If a model emitted
+        # local window seconds, rebase them to the recording timeline only as
+        # a fallback; this prevents later windows from drifting backwards.
+        start_id = _coerce_frame_id(action.get("start_frame_id"), frame_ids)
+        end_id = _coerce_frame_id(action.get("end_frame_id"), frame_ids)
+        anchors = [x for x in (action["evidence_frame_ids"] + [start_id, end_id]) if x in frame_ids]
+        if anchors:
+            anchor_times = [timestamps[frame_ids.index(x)] for x in anchors]
+            action["start_s"] = min(anchor_times)
+            action["end_s"] = max(anchor_times)
+            if action["end_s"] <= action["start_s"]:
+                action["end_s"] = min(duration_s, action["start_s"] + 0.001)
+        elif (window_start_s is not None and window_end_s is not None and
+              isinstance(action.get("start_s"), (int, float)) and
+              isinstance(action.get("end_s"), (int, float))):
+            start, end = float(action["start_s"]), float(action["end_s"])
+            if window_start_s > 0 and 0 <= start < end <= max(0.0, window_end_s - window_start_s + 1.0):
+                action["start_s"], action["end_s"] = start + window_start_s, end + window_start_s
         result["action_segments"].append(action)
 
     for field in ("unknown", "high_difficulty_candidates"):
@@ -382,7 +437,7 @@ def normalize_semantic(raw, frame_ids, timestamps, duration_s):
                                        "reason": "no_matching_input_frame", "value": value})
                     else:
                         evidence_ids.append(frame_id)
-        valid_ids = [x for x in evidence_ids if x in frame_ids]
+        valid_ids = [x for x in (_coerce_frame_id(v, frame_ids) for v in evidence_ids) if x is not None]
         if len(valid_ids) != len(evidence_ids):
             issues.append({"field": f"high_difficulty_candidates[{i}].evidence_frame_ids",
                            "reason": "unknown_frame_id", "value": evidence_ids})
@@ -462,17 +517,27 @@ def recording_difficulty(semantic: dict, duration_s: float) -> dict:
                 human_confirmed.append(c)
     unknown_duration = sum(max(0, float(u.get("end_s", 0)) - float(u.get("start_s", 0)))
                          for u in semantic.get("unknown", []) if isinstance(u, dict))
-    complete = semantic.get("coverage_complete") is True and not semantic.get("unknown") and bool(segments)
+    coverage = semantic.get("coverage", {}) or {}
+    coverage_score = coverage.get("score")
+    complete = (coverage.get("status") == "complete" or
+                (semantic.get("coverage_complete") is True and not semantic.get("unknown")))
+    provisional = isinstance(coverage_score, (int, float)) and coverage_score >= 0.6
     if human_confirmed:
         level, review = "高", "confirmed"
     elif rule_passed:
         level, review = "待判定", "candidate_high"
-    elif not complete or not n:
+    elif not n:
         level, review = "待判定", "pending"
-    elif n <= 3:
-        level, review = "低", "candidate"
+    elif complete or provisional:
+        level, review = ("低" if n <= 3 else "中"), ("candidate" if complete else "candidate_partial")
     else:
-        level, review = "中", "candidate"
+        level, review = "待判定", "pending"
+    if review == "candidate_partial":
+        reason = "已形成任务阶段候选，但覆盖证据为部分覆盖，需人工复核"
+    elif review == "pending":
+        reason = "动作链不完整或证据不足"
+    else:
+        reason = "未确认高难事件"
     return {"T": round(duration_s, 3), "N": n, "H": len(human_confirmed),
             "H_type": [c.get("type") or c.get("H_type") for c in human_confirmed],
             "atomic_action_count": atomic_action_count,
@@ -487,9 +552,9 @@ def recording_difficulty(semantic: dict, duration_s: float) -> dict:
                                      "evidence_times": c.get("evidence_times", [])} for c in human_confirmed],
             "unknown_duration": round(unknown_duration, 3),
             "merged_action_count": n,
+            "coverage_score": coverage_score,
             "reason": "存在人工确认的高难事件" if human_confirmed else
-                      ("存在规则通过但尚未人工确认的高难候选" if rule_passed else
-                       ("动作链不完整或证据不足" if review == "pending" else "未确认高难事件"))}
+                      ("存在规则通过但尚未人工确认的高难候选" if rule_passed else reason)}
 
 def merge_action_segments(segments, tolerance=0.5):
     """Merge duplicate actions produced by overlapping VLM windows.
@@ -632,7 +697,7 @@ def sample_video(video: str, interval: float, max_frames: int, frames_cache=None
 def analyze(video: str, model_id: str, interval: float, max_frames: int, window_frames: int = 16,
             frames_cache=None, max_duration: float = 600.0, min_frames: int = 4,
             window_overlap: int = 2, model=None, processor=None, logger=None,
-            log_path=None, run_id=None) -> dict:
+            log_path=None, run_id=None, attn_implementation=None) -> dict:
     started = time.monotonic()
     stage_timings = {}
     if logger is None and log_path:
@@ -676,7 +741,7 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     print(f'Sampled {len(frames)} frames, {timestamps[0]}–{timestamps[-1]} seconds', flush=True)
     model_reused = model is not None and processor is not None
     if not model_reused:
-        model, processor, model_load_s = load_vlm(model_id)
+        model, processor, model_load_s = load_vlm(model_id, attn_implementation=attn_implementation)
         stage_timings["model_load_s"] = round(model_load_s, 4)
         if logger:
             logger.emit("model_load_complete", video=video, model=model_id,
@@ -686,18 +751,19 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         if logger:
             logger.emit("model_reused", video=video, model=model_id)
     instruction = (
-        "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
+        "请只分析当前窗口内按时间顺序排列的第一视角视频帧。严格只输出 JSON，必须包含 "
         "summary（中文一句话）、scene（场景）、objects（对象数组）、"
         "task_applicability（只能是 ego_task、non_task、mixed、unknown；判断是否存在连续的第一视角操作任务）、"
-        "action_segments（最多12个主要阶段，每项含 start_s、end_s、task_stage、canonical_action、raw_action、object、state_before、state_after、confidence、"
+        "window_coverage（只能是 complete、partial、no_task、unknown，表示当前窗口而不是整条视频），"
+        "action_segments（最多12个主要阶段，每项含 start_frame_id、end_frame_id、task_stage、canonical_action、raw_action、object、state_before、state_after、confidence、"
         "evidence_frame_ids（只能从输入帧ID中选择的数组）），unknown（无法判断的区间及原因），"
         "high_difficulty_candidates（候选事件数组，每项含 type、start_s、end_s、evidence_frame_ids、reason）。"
         "canonical_action 必须严格使用以下原子动作之一：" + ", ".join(ATOMIC_ACTIONS) + "。"
         "动作不在词表时使用 others，并在 raw_action 保留原始描述；不要创造新 canonical_action。"
         "只描述画面证据，不预设场景或任务。综合全程的前后状态识别动作。"
-        "每张输入图前都有唯一Frame id；evidence_frame_ids只能复制这些ID，不能自行创造。"
-        "start_s/end_s是估计时间区间，可以落在相邻输入帧之间，但不能超出窗口。task_stage用于把连续原子动作归并为一个任务阶段；state_before/state_after描述可见状态变化。"
-        "coverage_complete只能在视频从开头到结尾均有足够证据时为true，否则为false。"
+        "每张输入图前都有唯一Frame id；start_frame_id、end_frame_id、evidence_frame_ids只能逐字复制这些ID，不能自行创造。"
+        "不要输出start_s/end_s；动作秒数由脚本根据帧ID计算。task_stage用于把当前窗口内连续原子动作归并为一个任务阶段；state_before/state_after描述可见状态变化。"
+        "window_coverage只判断当前窗口：complete表示窗口内动作/无动作证据清楚，partial表示有遮挡或不确定，no_task表示明确没有操作任务，unknown表示无法判断。"
         "同阶段连续重复可以合并，跨阶段或目标变化分别保留。"
         "候选高难事件仅限有外部反馈与响应的交互、有条件证据的决策、"
         "有目标切换/恢复/协调证据的多线程协调；普通接触、双手操作或多个对象不等于确认高难。"
@@ -707,12 +773,14 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     review_queue = []
     window_timings = []
     status = 'candidate_semantics'; window_reports = []
+    json_valid_windows = 0
     step = max(1, window_frames - max(0, min(window_overlap, window_frames - 1)))
     for begin in range(0, len(frames), step):
         end = min(begin + window_frames, len(frames))
         content = []
         for offset, (image, timestamp) in enumerate(zip(frames[begin:end], timestamps[begin:end])):
-            content.extend([{"type": "text", "text": f"Frame id: {begin + offset}; timestamp: {timestamp} seconds."},
+            frame_id = f"F{begin + offset:06d}"
+            content.extend([{"type": "text", "text": f"Frame id: {frame_id}; timestamp: {timestamp} seconds."},
                             {"type": "image", "image": image}])
         content.append({"type": "text", "text": instruction})
         window_started = time.monotonic()
@@ -725,10 +793,13 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         try:
             parsed = json.loads(text[text.find("{"):text.rfind("}")+1])
             if not isinstance(parsed, dict): raise ValueError('JSON is not an object')
+            json_valid_windows += 1
         except (ValueError, TypeError):
             parsed = {"raw_output": text}; status = 'partial_semantic_output'
             review_queue.append({'reason': 'invalid_or_truncated_window_json', 'window': [begin, end]})
-        parsed = normalize_semantic(parsed, list(range(begin, end)), timestamps[begin:end], duration_s)
+        window_frame_ids = [f"F{index:06d}" for index in range(begin, end)]
+        parsed = normalize_semantic(parsed, window_frame_ids, timestamps[begin:end], duration_s,
+                                    timestamps[begin], timestamps[end - 1])
         window_timings.append({"window_index": len(window_reports),
                                "seconds": round(time.monotonic() - window_started, 4),
                                "frame_start": begin, "frame_end": end})
@@ -744,7 +815,8 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
                                  'issues': parsed['validation_issues']})
         window_reports.append({'window_index': len(window_reports), 'frame_start': begin,
                                'frame_end': end, 'time_start': timestamps[begin],
-                               'time_end': timestamps[end-1], 'semantic': parsed})
+                               'time_end': timestamps[end-1], 'json_valid': bool(parsed.get("raw_output") is None),
+                               'semantic': parsed})
         print(f'Window {len(window_reports)} complete: {timestamps[begin]:.3f}–{timestamps[end-1]:.3f}s', flush=True)
         if frames_cache:
             (Path(frames_cache) / 'windows.json').write_text(json.dumps(window_reports, ensure_ascii=False, indent=2))
@@ -773,6 +845,40 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     parsed['task_applicability'] = next(iter(applicability)) if len(applicability) == 1 else ('mixed' if applicability else 'unknown')
     if parsed['high_difficulty_candidates']:
         review_queue.append({'reason': 'high_difficulty_candidates_require_evidence_review'})
+    duration_span = max(0.001, timestamps[-1] - timestamps[0]) if timestamps else 0.0
+    target_gap = max(interval * 1.5, 1.0)
+    gaps = [b - a for a, b in zip(timestamps, timestamps[1:])]
+    sampling_complete = bool(timestamps) and timestamps[0] <= max(0.75, interval) and \
+        timestamps[-1] >= max(0.0, duration_s - max(1.5, interval * 1.5)) and \
+        (not gaps or max(gaps) <= max(target_gap, duration_s / max(1, len(timestamps) - 1) * 1.5))
+    total_actions = sum(len(x['semantic'].get('action_segments', [])) for x in window_reports)
+    grounded_actions = sum(1 for x in window_reports for action in x['semantic'].get('action_segments', [])
+                           if action.get('evidence_frame_ids'))
+    evidence_grounded_ratio = (grounded_actions / total_actions) if total_actions else (1.0 if parsed['task_applicability'] == 'non_task' else 0.5)
+    window_success_ratio = len(window_reports) / max(1, len(list(range(0, len(frames), step))))
+    schema_valid_ratio = json_valid_windows / max(1, len(window_reports))
+    sampling_score = 1.0 if sampling_complete else 0.5
+    coverage_score = round(0.30 * sampling_score + 0.25 * window_success_ratio +
+                          0.20 * schema_valid_ratio + 0.25 * evidence_grounded_ratio, 3)
+    if coverage_score >= 0.85 and schema_valid_ratio == 1.0 and evidence_grounded_ratio >= 0.8:
+        coverage_status = 'complete'
+    elif coverage_score >= 0.6:
+        coverage_status = 'partial'
+    else:
+        coverage_status = 'unknown'
+    parsed['coverage'] = {
+        'sampling_complete': sampling_complete,
+        'window_success_ratio': round(window_success_ratio, 3),
+        'schema_valid_ratio': round(schema_valid_ratio, 3),
+        'evidence_grounded_ratio': round(evidence_grounded_ratio, 3),
+        'task_boundary_status': 'unknown',
+        'score': coverage_score,
+        'status': coverage_status,
+        'reasons': [] if coverage_status == 'complete' else ['窗口级输出或证据帧不足，任务边界需复核'],
+    }
+    parsed['coverage_complete'] = True if coverage_status == 'complete' else False if coverage_status == 'unknown' else None
+    if coverage_status != 'complete':
+        review_queue.append({'reason': 'recording_coverage_requires_review', 'coverage': parsed['coverage']})
     # A model's generated wording or confidence is never a confirmation of H.
     parsed['difficulty'] = recording_difficulty(parsed, duration_s)
     review_queue.append({'reason': 'recording_level_merge_and_task_boundary_review_required'})
@@ -797,27 +903,59 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
 
 def analyze_many(videos, model_id, interval=2.0, max_frames=300, window_frames=16,
                  frames_cache_root=None, max_duration=600.0, min_frames=4,
-                 window_overlap=2, logger=None, log_path=None, run_id=None):
+                 window_overlap=2, logger=None, log_path=None, run_id=None,
+                 attn_implementation=None):
     """Analyze multiple videos while loading the VLM exactly once."""
     if logger is None and log_path:
         logger = JsonlLogger(log_path, run_id=run_id)
     if logger:
         logger.emit("batch_start", video_count=len(videos), model=model_id)
     batch_started = time.monotonic()
-    model, processor, model_load_s = load_vlm(model_id)
+    model, processor, model_load_s = load_vlm(model_id, attn_implementation=attn_implementation)
     if logger:
         logger.emit("batch_model_load_complete", model=model_id, model_load_s=round(model_load_s, 4))
     results = []
-    for video in videos:
+    for video_index, video in enumerate(videos):
         cache = None
         if frames_cache_root:
-            cache = str(Path(frames_cache_root) / Path(video).stem)
+            # Several recordings commonly share names such as left_cam_left.mp4.
+            # Include the manifest position so one recording never reuses another
+            # recording's frame cache.
+            cache = str(Path(frames_cache_root) / f"{video_index:03d}_{Path(video).stem}")
         video_started = time.monotonic()
+        retry_window_frames = None
         try:
             result = analyze(video, model_id, interval, max_frames, window_frames,
                              cache, max_duration, min_frames, window_overlap,
                              model=model, processor=processor, logger=logger)
         except Exception as exc:  # keep the resident batch alive and explain the failure
+            is_oom = isinstance(exc, RuntimeError) and "out of memory" in str(exc).lower()
+            if is_oom and window_frames > 4:
+                retry_window_frames = max(4, window_frames // 2)
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                if logger:
+                    logger.emit("video_retry", video=video, reason="cuda_oom",
+                                original_window_frames=window_frames,
+                                retry_window_frames=retry_window_frames)
+                try:
+                    result = analyze(video, model_id, interval, max_frames, retry_window_frames,
+                                     cache, max_duration, min_frames,
+                                     min(window_overlap, retry_window_frames - 1),
+                                     model=model, processor=processor, logger=logger)
+                except Exception as retry_exc:
+                    exc = retry_exc
+                else:
+                    result["retry"] = {"reason": "cuda_oom", "window_frames": retry_window_frames}
+                    result.setdefault("review_queue", []).append({"reason": "retried_after_cuda_oom",
+                                                                    "window_frames": retry_window_frames})
+                    exc = None
+            if exc is None:
+                timing = result.setdefault("stage_timings_s", {})
+                _timing_metrics(timing, timing.get("video_duration_s"))
+                timing["shared_model_load_s"] = round(model_load_s, 4)
+                results.append(result)
+                continue
             result = {
                 "video": video, "model": model_id, "status": "failed",
                 "error": f"{type(exc).__name__}: {exc}",
@@ -860,6 +998,8 @@ def main():
     ap.add_argument('--log', help='JSONL event log; defaults to <out>.log.jsonl')
     ap.add_argument('--report-md', help='Markdown report path; defaults to <out>.report.md')
     ap.add_argument('--report-html', help='HTML timeline report path; defaults to <out>.report.html')
+    ap.add_argument('--attn-implementation', choices=['eager', 'sdpa', 'flash_attention_2'],
+                    help='attention backend; use eager when installed SDPA is incompatible')
     args = ap.parse_args()
     cli_started = time.monotonic()
     log_path = args.log or str(Path(args.out).with_suffix('.log.jsonl'))
@@ -867,7 +1007,7 @@ def main():
     try:
         report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames,
                          args.frames_cache, args.max_duration, args.min_frames, args.window_overlap,
-                         logger=logger)
+                         logger=logger, attn_implementation=args.attn_implementation)
     except Exception as exc:
         report = {
             "video": args.video, "model": args.model, "status": "failed",

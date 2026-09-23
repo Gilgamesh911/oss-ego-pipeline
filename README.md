@@ -49,6 +49,8 @@ python3 qwen_vl_pipeline.py \
 
 `stage_timings_s` 会明确拆出 `model_inference_s`、`script_runtime_excluding_inference_s`（脚本总耗时减模型推理，包含模型加载）和 `script_overhead_excluding_model_s`（再扣除模型加载），并提供各自相对视频时长的 `*_to_video_ratio`。因此十分钟视频的脚本运行比可直接看 `script_runtime_to_video_ratio`，不会把模型推理误算进脚本耗时。
 
+任务覆盖不再由模型直接给整条 recording 一个布尔值。脚本会分别统计抽帧覆盖、窗口成功率、Schema 有效率和证据帧落地率，生成 `semantic.coverage.status`（`complete`/`partial`/`unknown`）和 `semantic.coverage.score`。`difficulty.level` 是候选等级；`review_status=candidate_partial` 表示可以参考但仍需人工复核。
+
 `--frames-cache` 仅保存选定帧和逐窗推理检查点，不保存原视频；源文件及采样参数匹配时可复用完整抽帧缓存。PyAV使用FFmpeg原生日志回调，避免多线程解码器析构时Python日志回调死锁。每20帧和每个推理窗口均打印进度。
 
 level规则输出只是初判：现有动作合并不能可靠区分同阶段重复和任务依赖，也不能仅凭模型文字确认高难因果证据。历史商超报告的 `confirmed` 不能作为已核验结论，需结合证据帧和完整性检查复核。JSON解析失败会记录在 `review_queue`。

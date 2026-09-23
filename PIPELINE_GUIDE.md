@@ -69,10 +69,13 @@ python3 scripts/run_qwen_batch.py \
 - `--frames-cache`：可选，只缓存选中帧和窗口 JSON，默认不启用。
 - `--log`：可选，JSONL 事件日志；默认 `<out>.log.jsonl`。
 - `--report-md` / `--report-html`：单视频报告路径；默认 `<out>.report.md` 和 `<out>.report.html`。
+- `--attn-implementation`：可选 `eager`、`sdpa` 或 `flash_attention_2`；当前 PPU 环境的 SDPA 路径不稳定时使用 `eager`。
 
 时间字段说明：`end_to_end_s` 是从脚本开始到结束的墙钟时间；`model_inference_s` 是所有 VLM 窗口推理时间之和；`script_runtime_excluding_inference_s` 是前者减去推理时间；`script_overhead_excluding_model_s` 进一步扣除模型加载。相应的 `*_to_video_ratio` 都以视频实际时长为分母。批量模式另记录一次性的 `shared_model_load_s`。
 
 批量模式默认在 `<out stem>_reports/` 为每条视频生成 `.report.md` 和 `.report.html`，也可用 `--report-dir` 指定目录；`--log` 同样默认为 `<out>.log.jsonl`。
+
+覆盖判定采用脚本计算的 `semantic.coverage`：`sampling_complete`、`window_success_ratio`、`schema_valid_ratio`、`evidence_grounded_ratio` 和综合 `score`。模型窗口只输出 `window_coverage`，不再声称看到了整条视频。动作的开始/结束时间由 `start_frame_id`、`end_frame_id` 和真实抽帧时间派生，避免窗口局部时间漂移。批量缓存目录使用序号加文件名，避免多个 `left_cam_left.mp4` 互相复用缓存；CUDA OOM 时会清空缓存并用更小窗口重试一次。
 
 ## 4. VLM 输出
 

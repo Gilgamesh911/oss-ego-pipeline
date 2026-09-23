@@ -40,6 +40,8 @@ def main():
     ap.add_argument("--max-duration", type=float, default=600.0)
     ap.add_argument("--log", help="JSONL event log; defaults to <out>.log.jsonl")
     ap.add_argument("--report-dir", help="per-video report directory; defaults to <out stem>_reports")
+    ap.add_argument("--attn-implementation", choices=["eager", "sdpa", "flash_attention_2"],
+                    help="attention backend; use eager when installed SDPA is incompatible")
     args = ap.parse_args()
     videos = read_videos(args)
     log_path = args.log or str(Path(args.out).with_suffix('.log.jsonl'))
@@ -47,7 +49,7 @@ def main():
     results = analyze_many(videos, args.model, args.interval, args.max_frames,
                            args.window_frames, args.frames_cache_root,
                            args.max_duration, args.min_frames, args.window_overlap,
-                           logger=logger)
+                           logger=logger, attn_implementation=args.attn_implementation)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     report_dir = Path(args.report_dir or (Path(args.out).parent / f"{Path(args.out).stem}_reports"))
     report_dir.mkdir(parents=True, exist_ok=True)
