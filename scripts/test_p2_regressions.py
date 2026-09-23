@@ -97,6 +97,36 @@ def main():
         failure = json.loads(out.read_text())
         assert failure["status"] == "failed"
         assert failure["review_queue"][0]["reason"] == "pipeline_failed"
+        assert Path(temp, "failed.log.jsonl").exists()
+        assert Path(temp, "failed.report.md").exists()
+        assert Path(temp, "failed.report.html").exists()
+        events = [json.loads(line)["event"] for line in Path(temp, "failed.log.jsonl").read_text().splitlines()]
+        assert "video_failed" in events and "report_written" in events
+
+    # P2-5: reports expose the requested script/model split, duration ratios,
+    # task semantics, level, and evidence basis in both formats.
+    synthetic = {
+        "video": "/data/example.mp4", "model": "test-model", "status": "candidate_semantics",
+        "frame_count": 4, "stage_timings_s": {
+            "video_duration_s": 10.0, "total_s": 5.0, "model_load_s": 1.0,
+            "window_inference_s": 3.0, "script_runtime_excluding_inference_s": 2.0,
+            "script_overhead_excluding_model_s": 1.0, "end_to_end_to_video_ratio": 0.5,
+            "model_inference_to_video_ratio": 0.3, "script_runtime_to_video_ratio": 0.2,
+            "script_overhead_to_video_ratio": 0.1,
+        },
+        "semantic": {"scene": "table", "summary": "move cup", "objects": ["cup"],
+                     "task_applicability": "ego_task", "action_segments": [],
+                     "unknown": [], "validation_issues": [],
+                     "difficulty": {"T": 10, "N": 1, "H": 0, "level": "低", "reason": "未确认高难事件"}},
+        "review_queue": [{"reason": "recording_level_merge_and_task_boundary_review_required"}],
+    }
+    with tempfile.TemporaryDirectory(prefix="p2_report_") as temp:
+        paths = pipeline.write_report_files(synthetic, Path(temp) / "result.json")
+        md = Path(paths["markdown"]).read_text()
+        html = Path(paths["html"]).read_text()
+        assert "Script runtime excluding model inference" in md
+        assert "0.2x" in md
+        assert "table" in html and "Action timeline" in html
     print("P2 regression checks passed")
 
 

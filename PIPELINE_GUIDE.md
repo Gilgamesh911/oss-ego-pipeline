@@ -37,6 +37,7 @@
 7. 对重叠窗口的重复动作做 recording 级合并；若模型提供 `task_stage`，同时区分任务阶段数 `N` 与原子动作数。
 8. 将无效 JSON、无效时间、候选高难事件和聚合待复核事项写入 `review_queue`。
 9. 输出 `stage_timings_s`、逐窗口耗时、显存快照和失败原因，便于定位性能瓶颈。
+10. 自动写出 JSONL 事件日志以及 Markdown/HTML 可视化报告；报告包含路径、时长、场景、任务适用性、语义摘要、T/N/H、level、判断依据、动作证据和复核队列。
 
 运行示例：
 
@@ -66,6 +67,12 @@ python3 scripts/run_qwen_batch.py \
 - `--min-frames`：短视频最少均匀采样帧数，默认 4。
 - `--max-duration`：超过该秒数直接跳过，默认 600 秒；临时测试可显式增大。
 - `--frames-cache`：可选，只缓存选中帧和窗口 JSON，默认不启用。
+- `--log`：可选，JSONL 事件日志；默认 `<out>.log.jsonl`。
+- `--report-md` / `--report-html`：单视频报告路径；默认 `<out>.report.md` 和 `<out>.report.html`。
+
+时间字段说明：`end_to_end_s` 是从脚本开始到结束的墙钟时间；`model_inference_s` 是所有 VLM 窗口推理时间之和；`script_runtime_excluding_inference_s` 是前者减去推理时间；`script_overhead_excluding_model_s` 进一步扣除模型加载。相应的 `*_to_video_ratio` 都以视频实际时长为分母。批量模式另记录一次性的 `shared_model_load_s`。
+
+批量模式默认在 `<out stem>_reports/` 为每条视频生成 `.report.md` 和 `.report.html`，也可用 `--report-dir` 指定目录；`--log` 同样默认为 `<out>.log.jsonl`。
 
 ## 4. VLM 输出
 

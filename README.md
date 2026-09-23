@@ -41,6 +41,14 @@ python3 qwen_vl_pipeline.py \
 
 当前 Qwen 脚本以每 2 秒抽帧为目标、短视频至少 4 帧并包含尾帧、每 16 帧一个默认重叠 2 帧的 VLM 窗口，并在 recording 级汇总窗口结果。超过300帧预算的长视频采用全程均匀粗采样，尚未接入 YOLO/ByteTrack 变化筛选。单视频输出包含阶段耗时、窗口耗时、显存快照和失败原因；批量入口 `scripts/run_qwen_batch.py` 会复用一次加载的模型。
 
+每次运行还会自动生成三个旁路产物（失败和超长跳过也会生成）：
+
+- `<out>.log.jsonl`：逐事件日志，包含抽帧、模型加载/复用、每个窗口推理、聚合、完成/失败时间。
+- `<out>.report.md`：可审阅的 Markdown 报告。
+- `<out>.report.html`：自包含 HTML 报告和动作时间线。
+
+`stage_timings_s` 会明确拆出 `model_inference_s`、`script_runtime_excluding_inference_s`（脚本总耗时减模型推理，包含模型加载）和 `script_overhead_excluding_model_s`（再扣除模型加载），并提供各自相对视频时长的 `*_to_video_ratio`。因此十分钟视频的脚本运行比可直接看 `script_runtime_to_video_ratio`，不会把模型推理误算进脚本耗时。
+
 `--frames-cache` 仅保存选定帧和逐窗推理检查点，不保存原视频；源文件及采样参数匹配时可复用完整抽帧缓存。PyAV使用FFmpeg原生日志回调，避免多线程解码器析构时Python日志回调死锁。每20帧和每个推理窗口均打印进度。
 
 level规则输出只是初判：现有动作合并不能可靠区分同阶段重复和任务依赖，也不能仅凭模型文字确认高难因果证据。历史商超报告的 `confirmed` 不能作为已核验结论，需结合证据帧和完整性检查复核。JSON解析失败会记录在 `review_queue`。

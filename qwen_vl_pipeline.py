@@ -2,6 +2,8 @@
 """Run Qwen3-VL semantic analysis on sampled frames from an OSS-mounted video."""
 from __future__ import annotations
 import argparse, json, time
+from datetime import datetime, timezone
+from html import escape as html_escape
 from pathlib import Path
 import torch
 from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
@@ -48,6 +50,170 @@ APPLICABILITY_ALIASES = {
     "mixed": "mixed", "混合": "mixed", "混合视频": "mixed",
     "unknown": "unknown", "未知": "unknown", "不确定": "unknown",
 }
+
+
+class JsonlLogger:
+    """Small flush-per-event logger safe for long-running batch jobs."""
+
+    def __init__(self, path, run_id=None):
+        self.path = Path(path)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        # One log belongs to one output run; avoid mixing repeated reruns of
+        # the same --out path while still flushing every event immediately.
+        self.path.write_text("", encoding="utf-8")
+        self.run_id = run_id or self.path.stem
+        self.started = time.monotonic()
+
+    def emit(self, event, **fields):
+        record = {
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "run_id": self.run_id,
+            "event": event,
+            "elapsed_since_log_start_s": round(time.monotonic() - self.started, 4),
+        }
+        record.update(fields)
+        with self.path.open("a", encoding="utf-8") as stream:
+            stream.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def _timing_metrics(stage_timings, duration_s):
+    """Add wall-clock and video-duration ratios without hiding model time."""
+    total = float(stage_timings.get("total_s", 0.0) or 0.0)
+    inference = float(stage_timings.get("window_inference_s", 0.0) or 0.0)
+    model_load = float(stage_timings.get("model_load_s", 0.0) or 0.0)
+    script_runtime = max(0.0, total - inference)
+    script_overhead = max(0.0, total - inference - model_load)
+    stage_timings["end_to_end_s"] = round(total, 4)
+    stage_timings["model_inference_s"] = round(inference, 4)
+    stage_timings["script_runtime_excluding_inference_s"] = round(script_runtime, 4)
+    stage_timings["script_overhead_excluding_model_s"] = round(script_overhead, 4)
+    if duration_s and duration_s > 0:
+        stage_timings["video_duration_s"] = round(float(duration_s), 4)
+        stage_timings["end_to_end_to_video_ratio"] = round(total / duration_s, 4)
+        stage_timings["model_inference_to_video_ratio"] = round(inference / duration_s, 4)
+        stage_timings["script_runtime_to_video_ratio"] = round(script_runtime / duration_s, 4)
+        stage_timings["script_overhead_to_video_ratio"] = round(script_overhead / duration_s, 4)
+
+
+def _report_paths(out_path):
+    output = Path(out_path)
+    return output.with_suffix(".report.md"), output.with_suffix(".report.html")
+
+
+def _fmt_seconds(value):
+    if value is None:
+        return "—"
+    try:
+        return f"{float(value):.3f}s"
+    except (TypeError, ValueError):
+        return str(value)
+
+
+def _report_content(report):
+    timings = report.get("stage_timings_s", {}) or {}
+    semantic = report.get("semantic", {}) or {}
+    difficulty = semantic.get("difficulty", {}) or {}
+    duration = report.get("duration_s", timings.get("video_duration_s", difficulty.get("T")))
+    actions = semantic.get("action_segments", []) or []
+    unknown = semantic.get("unknown", []) or []
+    validation = semantic.get("validation_issues", []) or []
+    rows = []
+    for action in actions:
+        rows.append({
+            "start": action.get("start_s"), "end": action.get("end_s"),
+            "stage": action.get("task_stage", ""),
+            "action": action.get("canonical_action", action.get("raw_action", "others")),
+            "raw": action.get("raw_action", ""), "object": action.get("object", ""),
+            "before": action.get("state_before", ""), "after": action.get("state_after", ""),
+            "confidence": action.get("confidence"),
+            "evidence": ", ".join(str(x) for x in action.get("evidence_frame_ids", [])),
+        })
+    return {
+        "status": report.get("status", "unknown"), "video": report.get("video", ""),
+        "model": report.get("model", ""), "duration": duration,
+        "frame_count": report.get("frame_count", 0),
+        "timestamps": report.get("timestamps_s", []), "timings": timings,
+        "semantic": semantic, "difficulty": difficulty, "actions": rows,
+        "unknown": unknown, "validation": validation,
+        "review_queue": report.get("review_queue", []) or [],
+    }
+
+
+def write_report_files(report, output_json, report_md=None, report_html=None):
+    """Write a readable Markdown report and a self-contained HTML timeline."""
+    data = _report_content(report)
+    default_md, default_html = _report_paths(output_json)
+    md_path, html_path = Path(report_md or default_md), Path(report_html or default_html)
+    md_path.parent.mkdir(parents=True, exist_ok=True)
+    html_path.parent.mkdir(parents=True, exist_ok=True)
+    t = data["timings"]
+    d = data["difficulty"]
+    s = data["semantic"]
+    model_load_display = t.get("model_load_s", t.get("shared_model_load_s"))
+    lines = [
+        f"# Pipeline report: `{data['video']}`", "",
+        f"- Status: `{data['status']}`", f"- Model: `{data['model']}`",
+        f"- Video duration: `{_fmt_seconds(data['duration'])}`",
+        f"- Sampled frames: `{data['frame_count']}`", "",
+        "## Runtime breakdown", "",
+        "| Metric | Value | Ratio to video duration |", "|---|---:|---:|",
+        f"| End-to-end wall time | {_fmt_seconds(t.get('end_to_end_s'))} | {t.get('end_to_end_to_video_ratio', '—')}x |",
+        f"| Script runtime excluding model inference | {_fmt_seconds(t.get('script_runtime_excluding_inference_s'))} | {t.get('script_runtime_to_video_ratio', '—')}x |",
+        f"| Script overhead excluding model load and inference | {_fmt_seconds(t.get('script_overhead_excluding_model_s'))} | {t.get('script_overhead_to_video_ratio', '—')}x |",
+        f"| Model load (or shared batch load) | {_fmt_seconds(model_load_display)} | — |",
+        f"| Model inference | {_fmt_seconds(t.get('model_inference_s', t.get('window_inference_s')))} | {t.get('model_inference_to_video_ratio', '—')}x |",
+        "", "## Data and semantics", "",
+        f"- Scene: {s.get('scene') or '—'}",
+        f"- Task applicability: `{s.get('task_applicability', 'unknown')}`",
+        f"- Summary: {s.get('summary') or '—'}",
+        f"- Objects: {', '.join(s.get('objects', [])) or '—'}",
+        f"- Level: `{d.get('level', '—')}`; reason: {d.get('reason', '—')}",
+        f"- T/N/H: `{d.get('T', '—')}` / `{d.get('N', '—')}` / `{d.get('H', '—')}`",
+        "", "## Action evidence", "",
+        "| Start–end | Stage | Action | Object | State change | Confidence | Evidence frames |",
+        "|---:|---|---|---|---|---:|---|",
+    ]
+    for row in data["actions"]:
+        lines.append(f"| {row['start']}–{row['end']}s | {row['stage']} | {row['action']} ({row['raw']}) | {row['object']} | {row['before']} → {row['after']} | {row['confidence']} | {row['evidence']} |")
+    if not data["actions"]:
+        lines.append("| — | — | No validated action segments | — | — | — | — |")
+    lines += ["", "## Review basis", "", f"- Unknown intervals: `{json.dumps(data['unknown'], ensure_ascii=False)}`",
+              f"- Validation issues: `{len(data['validation'])}`",
+              f"- Review queue: `{json.dumps(data['review_queue'], ensure_ascii=False)}`", ""]
+    md_path.write_text("\n".join(lines), encoding="utf-8")
+
+    duration_num = float(data["duration"] or 0.0)
+    timeline = []
+    for row in data["actions"]:
+        start = float(row["start"] or 0.0) if row["start"] is not None else 0.0
+        end = float(row["end"] or start) if row["end"] is not None else start
+        left = max(0.0, min(100.0, start / duration_num * 100)) if duration_num else 0.0
+        width = max(0.8, min(100.0 - left, (end - start) / duration_num * 100)) if duration_num else 1.0
+        label = f"{row['action']} · {row['object']} · {start:.2f}–{end:.2f}s"
+        timeline.append(f'<div class="action" style="left:{left:.3f}%;width:{width:.3f}%" title="{html_escape(label)}"><span>{html_escape(row["action"])}</span></div>')
+    html = f'''<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline report</title>
+<style>
+:root {{ color-scheme: light dark; --bg: Canvas; --fg: CanvasText; --muted: color-mix(in srgb, CanvasText 65%, Canvas); --track: color-mix(in srgb, CanvasText 12%, Canvas); --accent: #3976d4; --accent2: #d97706; }}
+body {{ font-family: system-ui, sans-serif; background:var(--bg); color:var(--fg); margin:2rem auto; max-width:1100px; padding:0 1rem; line-height:1.45; }}
+table {{ border-collapse:collapse; width:100%; margin:1rem 0 1.5rem; }} th,td {{ text-align:left; padding:.45rem .6rem; border-bottom:1px solid color-mix(in srgb, CanvasText 18%, Canvas); vertical-align:top; }}
+.muted {{ color:var(--muted); }} .metrics {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:.7rem; }}
+.metric {{ padding:.8rem; border:1px solid color-mix(in srgb, CanvasText 18%, Canvas); border-radius:.5rem; }} .metric strong {{ display:block; font-size:1.15rem; }}
+.track {{ position:relative; height:2.2rem; background:var(--track); border-radius:.3rem; margin:1rem 0 1.5rem; }} .action {{ position:absolute; top:.25rem; height:1.7rem; background:var(--accent); color:white; border-radius:.25rem; overflow:hidden; white-space:nowrap; padding:.25rem .35rem; box-sizing:border-box; font-size:.78rem; }}
+code {{ overflow-wrap:anywhere; }}
+</style>
+<h1>Pipeline report</h1>
+<p><strong>Status:</strong> {html_escape(str(data['status']))} · <strong>Video:</strong> <code>{html_escape(str(data['video']))}</code></p>
+<div class="metrics"><div class="metric"><span class="muted">Video duration</span><strong>{html_escape(_fmt_seconds(data['duration']))}</strong></div><div class="metric"><span class="muted">End-to-end</span><strong>{html_escape(_fmt_seconds(t.get('end_to_end_s')))}</strong><span class="muted">{t.get('end_to_end_to_video_ratio', '—')}× video</span></div><div class="metric"><span class="muted">Script excluding inference</span><strong>{html_escape(_fmt_seconds(t.get('script_runtime_excluding_inference_s')))}</strong><span class="muted">{t.get('script_runtime_to_video_ratio', '—')}× video</span></div><div class="metric"><span class="muted">Model inference</span><strong>{html_escape(_fmt_seconds(t.get('model_inference_s', t.get('window_inference_s'))))}</strong><span class="muted">{t.get('model_inference_to_video_ratio', '—')}× video</span></div></div>
+<h2>Action timeline</h2><p class="muted">Timeline is normalized to the recorded video duration; hover an action for details.</p>
+<div class="track" role="img" aria-label="Action timeline">{''.join(timeline) or '<span class="muted">No validated action segments</span>'}</div>
+<h2>Data and semantics</h2><table><tr><th>Scene</th><td>{html_escape(str(s.get('scene') or '—'))}</td></tr><tr><th>Task applicability</th><td>{html_escape(str(s.get('task_applicability', 'unknown')))}</td></tr><tr><th>Summary</th><td>{html_escape(str(s.get('summary') or '—'))}</td></tr><tr><th>Objects</th><td>{html_escape(', '.join(s.get('objects', [])) or '—')}</td></tr><tr><th>Level / basis</th><td>{html_escape(str(d.get('level', '—')))} / {html_escape(str(d.get('reason', '—')))}</td></tr><tr><th>T / N / H</th><td>{html_escape(str(d.get('T', '—')))} / {html_escape(str(d.get('N', '—')))} / {html_escape(str(d.get('H', '—')))}</td></tr></table>
+<h2>Action evidence</h2><table><tr><th>Interval</th><th>Stage</th><th>Action</th><th>Object</th><th>State</th><th>Evidence</th></tr>{''.join(f'<tr><td>{html_escape(str(r["start"]))}–{html_escape(str(r["end"]))}s</td><td>{html_escape(str(r["stage"]))}</td><td>{html_escape(str(r["action"]))}<br><span class="muted">{html_escape(str(r["raw"]))}</span></td><td>{html_escape(str(r["object"]))}</td><td>{html_escape(str(r["before"]))} → {html_escape(str(r["after"]))}</td><td>{html_escape(str(r["evidence"]))}</td></tr>' for r in data["actions"]) or '<tr><td colspan="6">No validated action segments</td></tr>'}</table>
+<h2>Review basis</h2><p>Unknown intervals: <code>{html_escape(json.dumps(data['unknown'], ensure_ascii=False))}</code></p><p>Validation issues: <strong>{len(data['validation'])}</strong></p><p>Review queue: <code>{html_escape(json.dumps(data['review_queue'], ensure_ascii=False))}</code></p>
+</html>'''
+    html_path.write_text(html, encoding="utf-8")
+    return {"markdown": str(md_path), "html": str(html_path)}
 
 
 def load_vlm(model_id):
@@ -465,16 +631,26 @@ def sample_video(video: str, interval: float, max_frames: int, frames_cache=None
 
 def analyze(video: str, model_id: str, interval: float, max_frames: int, window_frames: int = 16,
             frames_cache=None, max_duration: float = 600.0, min_frames: int = 4,
-            window_overlap: int = 2, model=None, processor=None) -> dict:
+            window_overlap: int = 2, model=None, processor=None, logger=None,
+            log_path=None, run_id=None) -> dict:
     started = time.monotonic()
     stage_timings = {}
+    if logger is None and log_path:
+        logger = JsonlLogger(log_path, run_id=run_id)
+    if logger:
+        logger.emit("video_start", video=video, model=model_id)
     stage_started = time.monotonic()
     import av
     with av.open(video) as probe:
         duration_s = float(probe.streams.video[0].duration * probe.streams.video[0].time_base)
     stage_timings["probe_s"] = round(time.monotonic() - stage_started, 4)
+    if logger:
+        logger.emit("probe_complete", video=video, duration_s=duration_s,
+                    probe_s=stage_timings["probe_s"])
     if duration_s > max_duration:
-        return {"video": video, "model": model_id, "frame_count": 0,
+        stage_timings["total_s"] = round(time.monotonic() - started, 4)
+        _timing_metrics(stage_timings, duration_s)
+        result = {"video": video, "model": model_id, "duration_s": duration_s, "frame_count": 0,
                 "timestamps_s": [], "status": "skipped_too_long",
                 "semantic": {"difficulty": {"level": "待处理", "T": round(duration_s, 3)}},
                 "review_queue": [{"reason": "recording_exceeds_max_duration",
@@ -482,10 +658,19 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
                 "stage_timings_s": stage_timings,
                 "resource_usage": resource_snapshot(),
                 "elapsed_s": round(time.monotonic()-started, 2)}
+        if logger:
+            logger.emit("video_skipped", video=video, status=result["status"],
+                        stage_timings_s=stage_timings)
+        return result
     print('Sampling video...', flush=True)
     stage_started = time.monotonic()
     frames, timestamps = sample_video(video, interval, max_frames, frames_cache, min_frames)
     stage_timings["sampling_s"] = round(time.monotonic() - stage_started, 4)
+    if logger:
+        logger.emit("sampling_complete", video=video, frame_count=len(frames),
+                    first_timestamp_s=timestamps[0] if timestamps else None,
+                    last_timestamp_s=timestamps[-1] if timestamps else None,
+                    sampling_s=stage_timings["sampling_s"])
     if not frames:
         raise ValueError('No video frames decoded')
     print(f'Sampled {len(frames)} frames, {timestamps[0]}–{timestamps[-1]} seconds', flush=True)
@@ -493,8 +678,13 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     if not model_reused:
         model, processor, model_load_s = load_vlm(model_id)
         stage_timings["model_load_s"] = round(model_load_s, 4)
+        if logger:
+            logger.emit("model_load_complete", video=video, model=model_id,
+                        model_load_s=stage_timings["model_load_s"])
     else:
         stage_timings["model_load_s"] = 0.0
+        if logger:
+            logger.emit("model_reused", video=video, model=model_id)
     instruction = (
         "请分析这些按时间顺序排列的第一视角视频帧。严格只输出 JSON，字段为 "
         "summary（中文一句话）、scene（场景）、objects（对象数组）、"
@@ -542,6 +732,11 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
         window_timings.append({"window_index": len(window_reports),
                                "seconds": round(time.monotonic() - window_started, 4),
                                "frame_start": begin, "frame_end": end})
+        if logger:
+            logger.emit("window_complete", video=video, window_index=len(window_reports),
+                        frame_start=begin, frame_end=end,
+                        window_inference_s=window_timings[-1]["seconds"],
+                        time_start_s=timestamps[begin], time_end_s=timestamps[end - 1])
         if parsed.get("validation_issues"):
             status = 'partial_semantic_output' if status == 'candidate_semantics' else status
             review_queue.append({'reason': 'schema_or_evidence_validation_issue',
@@ -584,20 +779,34 @@ def analyze(video: str, model_id: str, interval: float, max_frames: int, window_
     stage_timings["window_inference_s"] = round(sum(x["seconds"] for x in window_timings), 4)
     stage_timings["aggregation_s"] = round(time.monotonic() - aggregation_started, 4)
     stage_timings["total_s"] = round(time.monotonic() - started, 4)
-    return {"video": video, "model": model_id, "frame_count": len(frames),
+    _timing_metrics(stage_timings, duration_s)
+    result = {"video": video, "model": model_id, "duration_s": duration_s, "frame_count": len(frames),
             "timestamps_s": timestamps, "semantic": parsed, 'status': status,
             'review_queue': review_queue, 'window_timings': window_timings,
             'stage_timings_s': stage_timings,
             'resource_usage': resource_snapshot(),
             'model_reused': model_reused,
             'elapsed_s': round(time.monotonic()-started, 2)}
+    if logger:
+        logger.emit("video_complete", video=video, status=status,
+                    frame_count=len(frames), stage_timings_s=stage_timings,
+                    task_applicability=parsed.get("task_applicability"),
+                    level=parsed.get("difficulty", {}).get("level"))
+    return result
 
 
 def analyze_many(videos, model_id, interval=2.0, max_frames=300, window_frames=16,
                  frames_cache_root=None, max_duration=600.0, min_frames=4,
-                 window_overlap=2):
+                 window_overlap=2, logger=None, log_path=None, run_id=None):
     """Analyze multiple videos while loading the VLM exactly once."""
+    if logger is None and log_path:
+        logger = JsonlLogger(log_path, run_id=run_id)
+    if logger:
+        logger.emit("batch_start", video_count=len(videos), model=model_id)
+    batch_started = time.monotonic()
     model, processor, model_load_s = load_vlm(model_id)
+    if logger:
+        logger.emit("batch_model_load_complete", model=model_id, model_load_s=round(model_load_s, 4))
     results = []
     for video in videos:
         cache = None
@@ -607,7 +816,7 @@ def analyze_many(videos, model_id, interval=2.0, max_frames=300, window_frames=1
         try:
             result = analyze(video, model_id, interval, max_frames, window_frames,
                              cache, max_duration, min_frames, window_overlap,
-                             model=model, processor=processor)
+                             model=model, processor=processor, logger=logger)
         except Exception as exc:  # keep the resident batch alive and explain the failure
             result = {
                 "video": video, "model": model_id, "status": "failed",
@@ -617,8 +826,17 @@ def analyze_many(videos, model_id, interval=2.0, max_frames=300, window_frames=1
                 "resource_usage": resource_snapshot(),
                 "model_reused": True,
             }
-        result.setdefault("stage_timings_s", {})["shared_model_load_s"] = round(model_load_s, 4)
+            result["stage_timings_s"]["video_duration_s"] = None
+            if logger:
+                logger.emit("video_failed", video=video, error=result["error"],
+                            stage_timings_s=result["stage_timings_s"])
+        timing = result.setdefault("stage_timings_s", {})
+        _timing_metrics(timing, timing.get("video_duration_s"))
+        timing["shared_model_load_s"] = round(model_load_s, 4)
         results.append(result)
+    if logger:
+        logger.emit("batch_complete", video_count=len(videos),
+                    batch_wall_time_s=round(time.monotonic() - batch_started, 4))
     return results
 
 def main():
@@ -639,11 +857,17 @@ def main():
     ap.add_argument('--frames-cache', help='cache selected frames and window outputs; never caches the original video')
     ap.add_argument('--max-duration', type=float, default=600.0,
                     help='skip recordings longer than this many seconds (default: 600)')
+    ap.add_argument('--log', help='JSONL event log; defaults to <out>.log.jsonl')
+    ap.add_argument('--report-md', help='Markdown report path; defaults to <out>.report.md')
+    ap.add_argument('--report-html', help='HTML timeline report path; defaults to <out>.report.html')
     args = ap.parse_args()
     cli_started = time.monotonic()
+    log_path = args.log or str(Path(args.out).with_suffix('.log.jsonl'))
+    logger = JsonlLogger(log_path, run_id=Path(args.out).stem)
     try:
         report = analyze(args.video, args.model, args.interval, args.max_frames, args.window_frames,
-                         args.frames_cache, args.max_duration, args.min_frames, args.window_overlap)
+                         args.frames_cache, args.max_duration, args.min_frames, args.window_overlap,
+                         logger=logger)
     except Exception as exc:
         report = {
             "video": args.video, "model": args.model, "status": "failed",
@@ -652,10 +876,20 @@ def main():
             "stage_timings_s": {"total_s": round(time.monotonic() - cli_started, 4)},
             "resource_usage": resource_snapshot(),
         }
+        if logger:
+            logger.emit("video_failed", video=args.video, error=report["error"],
+                        stage_timings_s=report["stage_timings_s"])
+    _timing_metrics(report.setdefault("stage_timings_s", {}),
+                    report.get("stage_timings_s", {}).get("video_duration_s"))
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2))
+    report_paths = write_report_files(report, args.out, args.report_md, args.report_html)
+    report["report_paths"] = report_paths
+    Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2))
+    logger.emit("report_written", video=args.video, report_paths=report_paths)
     print(json.dumps({"status": report['status'], "out": args.out,
-                      "frame_count": report.get("frame_count", 0)}, ensure_ascii=False))
+                      "frame_count": report.get("frame_count", 0),
+                      "log": log_path, **report_paths}, ensure_ascii=False))
     if report.get("status") == "failed":
         raise SystemExit(1)
 
